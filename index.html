@@ -16,6 +16,18 @@
                             accent: '#ec4899',
                             dark: '#0f172a',
                             light: '#f8fafc',
+                            cappuccino: {
+                                50: '#faf8f5',
+                                100: '#f5efe6',
+                                200: '#ebe0d1',
+                                300: '#dcc8b0',
+                                400: '#c9ab89',
+                                500: '#b8906d',
+                                600: '#a67c5d',
+                                700: '#8b664e',
+                                800: '#715343',
+                                900: '#5c4438',
+                            }
                         }
                     }
                 }
@@ -64,7 +76,7 @@
             }
         </style>
     </head>
-    <body class="bg-slate-50">
+    <body class="bg-cappuccino-50">
         <!-- Navigation -->
         <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md shadow-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,9 +109,9 @@
         </nav>
 
         <!-- Hero Section -->
-        <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3')] bg-cover bg-center opacity-20"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/50"></div>
+        <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-cappuccino-900 via-cappuccino-800 to-cappuccino-900 overflow-hidden">
+            <div class="absolute inset-0 bg-[url('images/salon.jpeg')] bg-cover bg-center opacity-20"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-cappuccino-900/50"></div>
 
             <div class="relative z-10 text-center px-4 mt-20">
                 <div class="animate-float">
@@ -127,18 +139,29 @@
                         <i class="fas fa-dumbbell text-pink-400 text-2xl mr-2"></i>
                         <span class="text-white font-semibold">Modern Ekipman</span>
                     </div>
+                    <a href="https://www.instagram.com/ers.ptstudio/" target="_blank" class="glass px-6 py-4 rounded-full hover-scale">
+                        <i class="fab fa-instagram text-pink-400 text-2xl mr-2"></i>
+                        <span class="text-white font-semibold">@ers.ptstudio</span>
+                    </a>
                 </div>
 
-                <a href="https://wa.me/905332470660" target="_blank"
-                   class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white text-lg font-bold rounded-full shadow-2xl hover-scale transition-all duration-300">
-                    <i class="fab fa-whatsapp text-2xl mr-3"></i>
-                    WhatsApp ile İletişime Geç
-                </a>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/905332470660" target="_blank"
+                       class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white text-lg font-bold rounded-full shadow-2xl hover-scale transition-all duration-300">
+                        <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                        Hemen Başla
+                    </a>
+                    <a href="https://www.instagram.com/ers.ptstudio/" target="_blank"
+                       class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white text-lg font-bold rounded-full shadow-2xl hover-scale transition-all duration-300">
+                        <i class="fab fa-instagram text-2xl mr-3"></i>
+                        Dönüşümleri Gör
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-white">
+        <section id="about" class="py-20 bg-cappuccino-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hakkımızda</h2>
@@ -189,17 +212,27 @@
                         </ul>
                     </div>
 
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl opacity-20 blur-2xl"></div>
-                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ers PT Studio"
-                             class="relative rounded-3xl shadow-2xl w-full h-auto object-cover">
+                    <div class="space-y-6">
+                        <!-- Studio Images Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-scale">
+                                <div class="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl opacity-20 blur-xl"></div>
+                                <img src="images/enterance.jpeg" alt="Ers PT Studio - Giriş"
+                                     class="relative w-full h-64 object-cover rounded-2xl">
+                            </div>
+                            <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-scale">
+                                <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-20 blur-xl"></div>
+                                <img src="images/external.jpeg" alt="Ers PT Studio - Dış Görünüm"
+                                     class="relative w-full h-64 object-cover rounded-2xl">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-20 bg-gradient-to-br from-slate-50 to-indigo-50">
+        <section id="services" class="py-20 bg-gradient-to-br from-cappuccino-50 to-cappuccino-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hizmetlerimiz</h2>
@@ -259,7 +292,7 @@
         </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="py-20 bg-white">
+    <section id="reviews" class="py-20 bg-cappuccino-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Müşteri Yorumları</h2>
@@ -316,44 +349,44 @@
     </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gradient-to-br from-slate-900 to-indigo-900">
+        <section id="contact" class="py-20 bg-gradient-to-br from-cappuccino-900 to-cappuccino-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">İletişim</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-400 to-pink-400 mx-auto rounded-full"></div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-cappuccino-50 mb-4">İletişim</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-cappuccino-400 to-cappuccino-300 mx-auto rounded-full"></div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-12">
                     <div class="space-y-6">
-                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
-                            <i class="fas fa-map-marker-alt text-indigo-400 text-3xl"></i>
+                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
+                            <i class="fas fa-map-marker-alt text-cappuccino-300 text-3xl"></i>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2">Adres</h4>
-                                <p class="text-gray-300">Adalet Mahallesi 1594/9 Sokak, I Blok, Apt No: 87M, Kat: 0<br>Bayraklı, İzmir 35530</p>
+                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">Adres</h4>
+                                <p class="text-cappuccino-200">Adalet Mahallesi 1594/9 Sokak, I Blok, Apt No: 87M, Kat: 0<br>Bayraklı, İzmir 35530</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
+                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
                             <i class="fas fa-phone text-green-400 text-3xl"></i>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2">Telefon</h4>
-                                <a href="tel:+905332470660" class="text-gray-300 hover:text-white">+90 533 247 06 60</a>
+                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">Telefon</h4>
+                                <a href="tel:+905332470660" class="text-cappuccino-200 hover:text-cappuccino-50">+90 533 247 06 60</a>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
+                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
                             <i class="fab fa-whatsapp text-green-400 text-3xl"></i>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2">WhatsApp</h4>
-                                <a href="https://wa.me/905332470660" target="_blank" class="text-gray-300 hover:text-white">Mesaj Gönder</a>
+                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">WhatsApp</h4>
+                                <a href="https://wa.me/905332470660" target="_blank" class="text-cappuccino-200 hover:text-cappuccino-50">Mesaj Gönder</a>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
-                            <i class="fas fa-clock text-blue-400 text-3xl"></i>
+                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
+                            <i class="fas fa-clock text-cappuccino-300 text-3xl"></i>
                             <div>
-                                <h4 class="text-xl font-bold text-white mb-2">Çalışma Saatleri</h4>
-                                <p class="text-gray-300">Pazartesi - Cuma: 08:00 - 21:00<br>Cumartesi: 09:00 - 18:00</p>
+                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">Çalışma Saatleri</h4>
+                                <p class="text-cappuccino-200">Pazartesi - Cuma: 08:00 - 21:00<br>Cumartesi: 09:00 - 18:00</p>
                             </div>
                         </div>
                     </div>
@@ -367,35 +400,35 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-slate-950 text-white py-12">
+        <footer class="bg-cappuccino-950 text-cappuccino-100 py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-3 gap-8 mb-8">
                     <div>
-                        <h3 class="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent mb-4">
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-cappuccino-300 to-cappuccino-200 bg-clip-text text-transparent mb-4">
                             ERS PT STUDIO
                         </h3>
-                        <p class="text-gray-400">Bayraklı'nın en modern ve özel kişisel antrenman stüdyosu</p>
+                        <p class="text-cappuccino-300">Bayraklı'nın en modern ve özel kişisel antrenman stüdyosu</p>
                     </div>
 
                     <div>
-                        <h4 class="text-lg font-bold mb-4">Hızlı Linkler</h4>
+                        <h4 class="text-lg font-bold mb-4 text-cappuccino-50">Hızlı Linkler</h4>
                         <ul class="space-y-2">
-                            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Ana Sayfa</a></li>
-                            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">Hakkımızda</a></li>
-                            <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Hizmetler</a></li>
-                            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">İletişim</a></li>
+                            <li><a href="#home" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Ana Sayfa</a></li>
+                            <li><a href="#about" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Hakkımızda</a></li>
+                            <li><a href="#services" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Hizmetler</a></li>
+                            <li><a href="#contact" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">İletişim</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-lg font-bold mb-4">İletişim</h4>
-                        <p class="text-gray-400">Bayraklı, İzmir</p>
-                        <p class="text-gray-400">Tel: +90 533 247 06 60</p>
+                        <h4 class="text-lg font-bold mb-4 text-cappuccino-50">İletişim</h4>
+                        <p class="text-cappuccino-300">Bayraklı, İzmir</p>
+                        <p class="text-cappuccino-300">Tel: +90 533 247 06 60</p>
                     </div>
                 </div>
 
-                <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-                    <p>&copy; 2024 Ers Personal Training Studio. Tüm hakları saklıdır.</p>
+                <div class="border-t border-cappuccino-800 pt-8 text-center text-cappuccino-300">
+                    <p>&copy; 2025 Ers Personal Training Studio. Tüm hakları saklıdır.</p>
                 </div>
             </div>
         </footer>
