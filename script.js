@@ -51,5 +51,3 @@ document.querySelectorAll('section > div').forEach(el => {
     observer.observe(el);
 });
 
-
-});
