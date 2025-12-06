@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+    <html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ers Personal Training Studio - İzmir Bayraklı</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#6366f1',
+                            secondary: '#8b5cf6',
+                            accent: '#ec4899',
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+
+            .gradient-primary {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+
+            .gradient-accent {
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            }
+
+            .gradient-blue {
+                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            }
+
+            .glass {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50">
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <div class="flex items-center">
+                        <h2 class="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">
+                            ERS PT STUDIO
+                        </h2>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300">Ana Sayfa</a>
+                        <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">Hakkımızda</a>
+                        <a href="#services" class="text-gray-300 hover:text-white transition-colors duration-300">Hizmetler</a>
+                        <a href="#reviews" class="text-gray-300 hover:text-white transition-colors duration-300">Yorumlar</a>
+                        <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">İletişim</a>
+                    </div>
+                    <button class="md:hidden text-white" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-slate-900 pb-4">
+                <a href="#home" class="block px-4 py-2 text-gray-300 hover:bg-slate-800">Ana Sayfa</a>
+                <a href="#about" class="block px-4 py-2 text-gray-300 hover:bg-slate-800">Hakkımızda</a>
+                <a href="#services" class="block px-4 py-2 text-gray-300 hover:bg-slate-800">Hizmetler</a>
+                <a href="#reviews" class="block px-4 py-2 text-gray-300 hover:bg-slate-800">Yorumlar</a>
+                <a href="#contact" class="block px-4 py-2 text-gray-300 hover:bg-slate-800">İletişim</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3')] bg-cover bg-center opacity-20"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/50"></div>
+
+            <div class="relative z-10 text-center px-4 mt-20">
+                <div class="animate-float">
+                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                        ERS PERSONAL<br/>
+                        <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                            TRAINING STUDIO
+                        </span>
+                    </h1>
+                </div>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Bayraklı'nın En Modern ve Özel Antrenman Stüdyosu
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <div class="glass px-6 py-4 rounded-full">
+                        <i class="fas fa-award text-yellow-400 text-2xl mr-2"></i>
+                        <span class="text-white font-semibold">14 Yıl Deneyim</span>
+                    </div>
+                    <div class="glass px-6 py-4 rounded-full">
+                        <i class="fas fa-user text-indigo-400 text-2xl mr-2"></i>
+                        <span class="text-white font-semibold">1-1 Özel Ders</span>
+                    </div>
+                    <div class="glass px-6 py-4 rounded-full">
+                        <i class="fas fa-dumbbell text-pink-400 text-2xl mr-2"></i>
+                        <span class="text-white font-semibold">Modern Ekipman</span>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/905332470660" target="_blank"
+                   class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white text-lg font-bold rounded-full shadow-2xl hover-scale transition-all duration-300">
+                    <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                    WhatsApp ile İletişime Geç
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hakkımızda</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4">
+                            Ersin Hoca ile Kişiye Özel Antrenman
+                        </h3>
+                        <p class="text-xl text-indigo-600 font-semibold mb-6">
+                            14 yıllık deneyime sahip Ersin Hoca ile tüm dersler birebir ve tamamen kişiye özeldir.
+                        </p>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
+                                <i class="fas fa-certificate text-indigo-600 text-3xl"></i>
+                                <span class="text-slate-800 font-semibold">TVGBF 2nd Level 🏆🏆</span>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                                <i class="fas fa-graduation-cap text-purple-600 text-3xl"></i>
+                                <span class="text-slate-800 font-semibold">EQF L-4 PT ☄️</span>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                Şehrin tam ortasında Bayraklı'da
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                Sessiz, sakin ve tertemiz ortam
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                Yepyeni ve en modern cihazlar
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                Profesyonel ekipmanlar
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                Kişiye özel antrenman programları
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl opacity-20 blur-2xl"></div>
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ers PT Studio"
+                             class="relative rounded-3xl shadow-2xl w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-gradient-to-br from-slate-50 to-indigo-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hizmetlerimiz</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-running text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Functional Fitness</h3>
+                        <p class="text-slate-600">Günlük hayatınızı kolaylaştıran fonksiyonel fitness antrenmanları</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-purple-100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-dumbbell text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Strength Training</h3>
+                        <p class="text-slate-600">Kuvvet ve kas gelişimi için özel tasarlanmış programlar</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-pink-100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-stretching text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Mobility & Flexibility</h3>
+                        <p class="text-slate-600">Hareket kabiliyetinizi artıran mobilite çalışmaları</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-blue-100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-heartbeat text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Conditioning</h3>
+                        <p class="text-slate-600">Kardiyovasküler dayanıklılık ve kondisyon geliştirme</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-green-100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-user-md text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Corrective Exercises</h3>
+                        <p class="text-slate-600">Postür düzeltme ve koruyucu egzersizler</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-users text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">1-1 Personal Training</h3>
+                        <p class="text-slate-600">Tamamen size özel, birebir antrenman seansları</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Müşteri Yorumları</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600">Müşterilerimizden gelen gerçek değerlendirmeler</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
+                    <p class="text-slate-700 italic mb-4">"Ersin hocayla çalışmaya başlayınca hızlı bir şekilde güçlendim. Salon güzel ekipmanlara sahip ve çok temiz. Gönül rahatlığıyla tercih edebilirsiniz."</p>
+                    <p class="font-semibold text-slate-900">- Güngör</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
+                    <p class="text-slate-700 italic mb-4">"Kesinlikle kendinizi gönül rahatlığıyla emanet edebileceğiniz bir antrenör Ersin hoca... kısa zamanda sonuç alabileceğiniz bir stüdyo. Severek devam ediyorum... Tavsiye edilir😉"</p>
+                    <p class="font-semibold text-slate-900">- Esra Özdal</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
+                    <p class="text-slate-700 italic mb-4">"Amacınıza ulaşmak için en kısa ve en güvenilir yol arayış içerisinde iseniz kesinlikle gitmeniz gereken en doğru yerdesiniz. Sessiz sakin bir ortamda mükemmel antrenörlük bilgisi ile Ersin hocanın ilgi ve alakası birleşince en uzun yol bile size yakın gelir."</p>
+                    <p class="font-semibold text-slate-900">- Yılmaz Hoca</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
+                    <p class="text-slate-700 italic mb-4">"Ersin hocamızın disiplinli olması beni en çok motive eden şey. Birde ödün vermez tam çalışma bitmeden bırakmaz, özverili şekilde o gün ki çalışma neyse bitene kadar ilgilenir."</p>
+                    <p class="font-semibold text-slate-900">- Kadriye S.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
+                    <p class="text-slate-700 italic mb-4">"Spor yapmayı sevmiyorsanız, ya da motivasyon yerlerdeyse ya da 'ben kendimi geliştireceğim' diyorsanız Ersin Hoca doğru adres. Hiç düşünmeyin. Kapın suyunuzu havlunuzu, dayanın kapısına. Pişman olmayacaksınız!"</p>
+                    <p class="font-semibold text-slate-900">- Şebnem Tuna</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
+                    <p class="text-slate-700 italic mb-4">"Ersin ile yaptığım antrenmanlardan çok memnunum. Spor alanında ikinci kademe antrenör olarak bir profesyonel olarak, detaylara ve öğrencisinin bireysel özelliklerine son derece dikkat ediyor."</p>
+                    <p class="font-semibold text-slate-900">- Natali Kovalchuk</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="https://maps.app.goo.gl/acynQNu1m71YwE9n6" target="_blank"
+                   class="inline-flex items-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full shadow-lg hover-scale transition-all duration-300">
+                    <i class="fab fa-google text-2xl mr-3"></i>
+                    Tüm Yorumları Google'da Görüntüle
+                </a>
+            </div>
+        </div>
+    </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gradient-to-br from-slate-900 to-indigo-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">İletişim</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-400 to-pink-400 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
+                            <i class="fas fa-map-marker-alt text-indigo-400 text-3xl"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Adres</h4>
+                                <p class="text-gray-300">Adalet Mahallesi 1594/9 Sokak, I Blok, Apt No: 87M, Kat: 0<br>Bayraklı, İzmir 35530</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
+                            <i class="fas fa-phone text-green-400 text-3xl"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Telefon</h4>
+                                <a href="tel:+905332470660" class="text-gray-300 hover:text-white">+90 533 247 06 60</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
+                            <i class="fab fa-whatsapp text-green-400 text-3xl"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">WhatsApp</h4>
+                                <a href="https://wa.me/905332470660" target="_blank" class="text-gray-300 hover:text-white">Mesaj Gönder</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-md rounded-2xl">
+                            <i class="fas fa-clock text-blue-400 text-3xl"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Çalışma Saatleri</h4>
+                                <p class="text-gray-300">Pazartesi - Cuma: 08:00 - 21:00<br>Cumartesi: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden shadow-2xl h-96">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3121.956389447089!2d27.155765076536444!3d38.46826197126634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b962f2d3c8c8c3%3A0x7f9f9f9f9f9f9f9f!2sAdalet%2C%201594%2F9.%20Sk.%20No%3A87%2C%2035530%20Bayrakl%C4%B1%2F%C4%B0zmir!5e0!3m2!1str!2str!4v1733491200000!5m2!1str!2str"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-slate-950 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent mb-4">
+                            ERS PT STUDIO
+                        </h3>
+                        <p class="text-gray-400">Bayraklı'nın en modern ve özel kişisel antrenman stüdyosu</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Hızlı Linkler</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Ana Sayfa</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">Hakkımızda</a></li>
+                            <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Hizmetler</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">İletişim</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">İletişim</h4>
+                        <p class="text-gray-400">Bayraklı, İzmir</p>
+                        <p class="text-gray-400">Tel: +90 533 247 06 60</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                    <p>&copy; 2024 Ers Personal Training Studio. Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- WhatsApp Floating Button -->
+        <a href="https://wa.me/905332470660" target="_blank"
+           class="fixed bottom-8 right-8 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl hover-scale z-50 transition-all duration-300">
+            <i class="fab fa-whatsapp text-white text-3xl"></i>
+        </a>
+
+        <script src="script.js"></script>
+    </body>
+    </html>
