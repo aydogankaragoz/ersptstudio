@@ -4,6 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ers Personal Training Studio - İzmir Bayraklı</title>
+
+        <!-- Preconnect to external resources -->
+        <link rel="preconnect" href="https://cdn.tailwindcss.com">
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="dns-prefetch" href="https://www.google.com">
+        <link rel="dns-prefetch" href="https://maps.googleapis.com">
+
+        <!-- Preload critical resources -->
+        <link rel="preload" href="images/logo.jpeg" as="image">
+        <link rel="preload" href="images/salon.jpeg" as="image">
+
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <script>
@@ -33,8 +46,8 @@
                 }
             }
         </script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
             body {
                 font-family: 'Inter', sans-serif;
@@ -222,12 +235,12 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-scale">
                                 <div class="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl opacity-20 blur-xl"></div>
-                                <img src="images/enterance.jpeg" alt="Ers PT Studio - Giriş"
+                                <img src="images/enterance.jpeg" alt="Ers PT Studio - Giriş" loading="lazy"
                                      class="relative w-full h-64 object-cover rounded-2xl">
                             </div>
                             <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-scale">
                                 <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-20 blur-xl"></div>
-                                <img src="images/external.jpeg" alt="Ers PT Studio - Dış Görünüm"
+                                <img src="images/external.jpeg" alt="Ers PT Studio - Dış Görünüm" loading="lazy"
                                      class="relative w-full h-64 object-cover rounded-2xl">
                             </div>
                         </div>
