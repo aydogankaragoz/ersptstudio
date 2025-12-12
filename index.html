@@ -106,6 +106,7 @@
                         <a href="#services" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Hizmetler</a>
                         <a href="#packages" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Paketler</a>
                         <a href="#reviews" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Yorumlar</a>
+                        <a href="#schedule" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Randevu</a>
                         <a href="#contact" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">İletişim</a>
                     </div>
                     <button class="md:hidden text-cappuccino-100" id="mobile-menu-btn">
@@ -120,6 +121,7 @@
                 <a href="#services" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Hizmetler</a>
                 <a href="#packages" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Paketler</a>
                 <a href="#reviews" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Yorumlar</a>
+                <a href="#schedule" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Randevu</a>
                 <a href="#contact" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">İletişim</a>
             </div>
         </nav>
@@ -499,6 +501,105 @@
             </div>
         </div>
     </section>
+
+        <!-- Appointment Scheduling Section -->
+        <section id="schedule" class="py-20 bg-gradient-to-br from-cappuccino-50 to-cappuccino-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hemen Randevunu Al</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
+                    <p class="text-slate-600 text-lg">Müsait zamanları gör, seansını planla</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                        <div class="p-6 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-center">
+                            <i class="fas fa-calendar-check text-4xl mb-3"></i>
+                            <h3 class="text-2xl font-bold">Online Randevu Sistemi</h3>
+                            <p class="mt-2">Müsait zamanları görüntüleyin ve size uygun saati seçin</p>
+                        </div>
+
+                        <!-- Google Calendar Appointment Scheduling Embed -->
+                        <div class="relative" style="min-height: 600px;">
+                            <!-- Google Calendar Appointment Scheduling begin -->
+                            <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ028x5Db2FQ5l94iTOHSChkOkzPL-ohjoinBU11eDpJY3d8_ZKiK01mTV7h9m28sTP9Ter6yKK1?gv=true"
+                                    style="border: 0"
+                                    width="100%"
+                                    height="600"
+                                    frameborder="0">
+                            </iframe>
+                            <!-- end Google Calendar Appointment Scheduling -->
+
+                            <!-- Fallback content -->
+                            <div class="p-8 text-center">
+                                <p class="text-slate-600 mb-4">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    Takvim yüklenirken sorun mu yaşıyorsunuz?
+                                </p>
+                                <a href="https://wa.me/905332470660?text=Randevu%20almak%20istiyorum"
+                                   target="_blank"
+                                   class="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-all duration-300">
+                                    <i class="fab fa-whatsapp text-xl mr-2"></i>
+                                    WhatsApp ile Randevu Al
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instructions Card -->
+                    <div class="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 shadow-lg">
+                        <h4 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-question-circle text-indigo-600"></i>
+                            Nasıl Randevu Alırım?
+                        </h4>
+                        <ol class="space-y-3 text-slate-700">
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold">1</span>
+                                <span>Yukarıdaki takvimden size uygun bir tarih ve saat seçin</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">2</span>
+                                <span>İletişim bilgilerinizi girin</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center font-bold">3</span>
+                                <span>Randevunuzu onaylayın - size otomatik hatırlatma gelecek</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Important Notes Card -->
+                    <div class="mt-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 shadow-lg border-2 border-amber-200">
+                        <h4 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-exclamation-circle text-amber-600"></i>
+                            Önemli Bilgiler
+                        </h4>
+                        <div class="space-y-3 text-slate-700">
+                            <p class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-green-600 mt-1 flex-shrink-0"></i>
+                                <span><strong>Yanınızda Getirmeniz Gerekenler:</strong> Spor kıyafeti, havlu, temiz iç mekan spor ayakkabısı ve su matarası</span>
+                            </p>
+                            <p class="flex items-start gap-3">
+                                <i class="fas fa-utensils text-orange-600 mt-1 flex-shrink-0"></i>
+                                <span><strong>Beslenme:</strong> Antrenman öncesi en az 2 saat önce yemek yemiş olmanız önerilir. Ağır yemeklerden kaçının</span>
+                            </p>
+                            <p class="flex items-start gap-3">
+                                <i class="fas fa-clock text-blue-600 mt-1 flex-shrink-0"></i>
+                                <span><strong>Zamanında Geliş:</strong> Lütfen randevu saatinizden 5-10 dakika önce stüdyoda olun</span>
+                            </p>
+                            <p class="flex items-start gap-3">
+                                <i class="fas fa-info-circle text-indigo-600 mt-1 flex-shrink-0"></i>
+                                <span><strong>İptal/Değişiklik:</strong> Randevunuzu iptal veya değiştirmek isterseniz lütfen en az 24 saat önceden haber verin</span>
+                            </p>
+                            <p class="flex items-start gap-3">
+                                <i class="fas fa-heartbeat text-red-600 mt-1 flex-shrink-0"></i>
+                                <span><strong>Sağlık Durumu:</strong> Herhangi bir sağlık sorununuz veya sakatlığınız varsa lütfen antrenörünüze bilgi verin</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Contact Section -->
         <section id="contact" class="py-20 bg-gradient-to-br from-cappuccino-900 to-cappuccino-800">
