@@ -164,7 +164,195 @@
             "description": "14 yıllık deneyime sahip ISSA sertifikalı kişisel antrenör",
             "image": "https://ersptstudio.com.tr/images/trainer.jpeg",
             "sameAs": "https://www.instagram.com/ers.ptstudio/"
+          },
+          "potentialAction": [
+            {
+              "@type": "ReserveAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://ersptstudio.com.tr/#schedule",
+                "actionPlatform": [
+                  "http://schema.org/DesktopWebPlatform",
+                  "http://schema.org/MobileWebPlatform"
+                ]
+              },
+              "result": {
+                "@type": "Reservation",
+                "name": "Randevu Al"
+              }
+            }
+          ]
+        }
+        </script>
+
+        <!-- Sitelinks SearchBox Schema -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "url": "https://ersptstudio.com.tr/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://ersptstudio.com.tr/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
           }
+        }
+        </script>
+
+        <!-- FAQ Schema for Rich Results -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Personal training seansları ne kadar sürüyor?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Her seans 60 dakika sürmektedir. Seanslar tamamen birebir ve kişiye özeldir. İhtiyacınıza göre fonksiyonel fitness, güç antrenmanı, mobilite veya kondisyon çalışmaları yapılır."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Otopark imkanı var mı?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Evet, stüdyomuzda otopark sorunu bulunmamaktadır. Bayraklı merkezde kolay ulaşım sağlanabilir ve araç park etme konusunda sıkıntı yaşanmaz."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Hangi paketleri sunuyorsunuz?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "8 ders (başlangıç), 12 ders (orta seviye) ve 16 ders (pro seviye) paketlerimiz mevcuttur. Tüm paketler birebir antrenman, kişiye özel program ve vücut analizi içerir. 12 ve 16 ders paketlerinde beslenme programı ve WhatsApp desteği de bulunmaktadır."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Ersin Hoca'nın sertifikaları nelerdir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ersin Hoca ISSA (International Sports Sciences Association) sertifikalı personal trainer'dır. Ayrıca TVGBF 2nd Level ve EQF L-4 PT sertifikalarına sahiptir. 14 yıllık deneyimi ile postür, mobilite ve güç odaklı antrenmanlar sunar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "İlk seansı nasıl alabilirim?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "WhatsApp üzerinden +90 533 247 06 60 numarasından veya web sitemizdeki online randevu sistemi üzerinden kolayca randevu alabilirsiniz. İlk seansta vücut analizi yapılır ve size özel program hazırlanır."
+              }
+            }
+          ]
+        }
+        </script>
+
+        <!-- BreadcrumbList Schema -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Ana Sayfa",
+              "item": "https://ersptstudio.com.tr/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Hakkımızda",
+              "item": "https://ersptstudio.com.tr/#about"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Hizmetler",
+              "item": "https://ersptstudio.com.tr/#services"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Paketler",
+              "item": "https://ersptstudio.com.tr/#packages"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Randevu",
+              "item": "https://ersptstudio.com.tr/#schedule"
+            }
+          ]
+        }
+        </script>
+
+        <!-- Individual Review Schemas for Rich Snippets -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "name": "Ers Personal Training Studio"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Güngör"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Ersin hocayla çalışmaya başlayınca hızlı bir şekilde güçlendim. Salon güzel ekipmanlara sahip ve çok temiz. Gönül rahatlığıyla tercih edebilirsiniz."
+        }
+        </script>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "name": "Ers Personal Training Studio"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Esra ��zdal"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Kesinlikle kendinizi gönül rahatlığıyla emanet edebileceğiniz bir antrenör Ersin hoca... kısa zamanda sonuç alabileceğiniz bir stüdyo. Severek devam ediyorum... Tavsiye edilir."
+        }
+        </script>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "name": "Ers Personal Training Studio"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Yılmaz Hoca"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Amacınıza ulaşmak için en kısa ve en güvenilir yol arayış içerisinde iseniz kesinlikle gitmeniz gereken en doğru yerdesiniz. Sessiz sakin bir ortamda mükemmel antrenörlük bilgisi ile Ersin hocanın ilgi ve alakası birleşince en uzun yol bile size yakın gelir."
         }
         </script>
 
