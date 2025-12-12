@@ -1,0 +1,14 @@
+# Robots.txt for Ers Personal Training Studio
+User-agent: *
+Allow: /
+Allow: /images/
+
+# Sitemap
+Sitemap: https://ersptstudio.com.tr/sitemap.xml
+
+# Disallow nothing - allow all crawlers
+Disallow:
+
+# Crawl-delay
+Crawl-delay: 1
+

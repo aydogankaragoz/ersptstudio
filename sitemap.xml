@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <url>
+        <loc>https://ersptstudio.com.tr/</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://ersptstudio.com.tr/images/logo.jpeg</image:loc>
+            <image:title>Ers Personal Training Studio Logo</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://ersptstudio.com.tr/images/salon.jpeg</image:loc>
+            <image:title>Ers Personal Training Studio Salon</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://ersptstudio.com.tr/images/entrance.jpeg</image:loc>
+            <image:title>Ers Personal Training Studio Entrance</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://ersptstudio.com.tr/images/external.jpeg</image:loc>
+            <image:title>Ers Personal Training Studio External</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://ersptstudio.com.tr/#about</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://ersptstudio.com.tr/#services</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://ersptstudio.com.tr/#packages</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ersptstudio.com.tr/#schedule</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ersptstudio.com.tr/#contact</loc>
+        <lastmod>2025-12-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+</urlset>
+
