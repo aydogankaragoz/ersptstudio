@@ -30,6 +30,69 @@ document.addEventListener('click', function(e) {
     }
 });
 
+// Google Analytics Event Tracking
+if (typeof gtag !== 'undefined') {
+    // WhatsApp CTA tracking
+    document.querySelectorAll('[data-ga-event="whatsapp-cta"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const location = this.getAttribute('data-ga-location') || 'unknown';
+            gtag('event', 'click_whatsapp', {
+                event_category: 'engagement',
+                event_label: location,
+                value: 1
+            });
+        });
+    });
+
+    // Instagram CTA tracking
+    document.querySelectorAll('[data-ga-event="instagram-cta"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const location = this.getAttribute('data-ga-location') || 'unknown';
+            gtag('event', 'click_instagram', {
+                event_category: 'engagement',
+                event_label: location,
+                value: 1
+            });
+        });
+    });
+
+    // Package CTA tracking
+    document.querySelectorAll('[data-ga-event="package-cta"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const packageType = this.getAttribute('data-ga-package') || 'unknown';
+            gtag('event', 'click_package', {
+                event_category: 'conversion',
+                event_label: packageType,
+                value: 1
+            });
+        });
+    });
+
+    // Schedule CTA tracking
+    document.querySelectorAll('[data-ga-event="schedule-cta"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const location = this.getAttribute('data-ga-location') || 'unknown';
+            gtag('event', 'click_schedule', {
+                event_category: 'conversion',
+                event_label: location,
+                value: 1
+            });
+        });
+    });
+
+    // Google Reviews tracking
+    document.querySelectorAll('[data-ga-event="google-reviews"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const location = this.getAttribute('data-ga-location') || 'unknown';
+            gtag('event', 'click_google_reviews', {
+                event_category: 'engagement',
+                event_label: location,
+                value: 1
+            });
+        });
+    });
+}
+
 // Scroll Animations with Intersection Observer
 const observerOptions = {
     threshold: 0.1,
