@@ -291,6 +291,38 @@
                 "@type": "Answer",
                 "text": "WhatsApp üzerinden +90 533 247 06 60 numarasından veya web sitemizdeki online randevu sistemi üzerinden kolayca randevu alabilirsiniz. İlk seansta vücut analizi yapılır ve size özel program hazırlanır."
               }
+            },
+            {
+              "@type": "Question",
+              "name": "Vücut yağ oranı hesaplaması nasıl yapılır?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Web sitemizde bulunan ücretsiz vücut yağ oranı hesaplayıcı ile US Navy formülünü kullanarak vücut yağ oranınızı, BMI değerinizi, yağ kütlenizi ve yağsız kütle miktarınızı öğrenebilirsiniz. Boyun, bel, kalça (kadınlar için) ölçümlerinizi girerek anında sonuç alabilirsiniz."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Sağlıklı vücut yağ oranı nedir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sağlıklı vücut yağ oranı yaşa ve cinsiyete göre değişir. Erkeklerde %10-20 arası, kadınlarda %18-28 arası ideal kabul edilir. Ancak sporcular için bu oranlar daha düşük olabilir. Detaylı değerlendirme ve hedef belirleme için profesyonel destek almanız önerilir."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Functional Fitness nedir ve kimler için uygundur?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Functional Fitness, günlük hayatta yaptığınız hareketleri daha kolay ve güvenli yapmanızı sağlayan antrenman yöntemidir. Merdiven çıkma, eşya taşıma gibi aktivitelerde zorlanıyorsanız, spor geçmişiniz yoksa veya ofiste çalışıyorsanız sizin için idealdir. Sakatlık riskini azaltır ve genel yaşam kalitenizi artırır."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Corrective Exercises (Düzeltici Egzersizler) ne işe yarar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Corrective Exercises, bel, boyun, omuz ağrıları gibi kronik ağrılarınızı azaltır ve postür bozukluklarınızı düzeltir. Kamburluk, omuz düşüklüğü veya kas dengesizliği sorunlarınız varsa, düzeltici egzersizler ile ağrısız bir yaşam sürmenizi sağlar."
+              }
             }
           ]
         }
@@ -507,6 +539,109 @@
         }
         </script>
 
+        <!-- Body Fat Calculator Schema -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Vücut Yağ Oranı Hesaplama",
+          "applicationCategory": "HealthApplication",
+          "applicationSubCategory": "FitnessApplication",
+          "operatingSystem": "Web Browser",
+          "url": "https://ersptstudio.com.tr/#calculator",
+          "description": "Ücretsiz vücut yağ oranı hesaplama aracı. US Navy formülü ile BMI, vücut yağ oranı, yağ kütlesi ve ideal kilo hesaplama. Erkek ve kadınlar için ayrı formüller.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "TRY"
+          },
+          "featureList": [
+            "US Navy Formülü ile Hesaplama",
+            "BMI (Vücut Kitle İndeksi) Hesaplama",
+            "Vücut Yağ Oranı Hesaplama",
+            "Yağ Kütlesi Hesaplama",
+            "Yağsız Kütle Hesaplama",
+            "İdeal Kilo Aralığı Belirleme",
+            "Erkek ve Kadın İçin Ayrı Formüller",
+            "Anında Sonuç Gösterme",
+            "WhatsApp ile Sonuç Paylaşma"
+          ],
+          "screenshot": "https://ersptstudio.com.tr/images/logo.jpeg",
+          "author": {
+            "@type": "Organization",
+            "name": "Ers Personal Training Studio"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "156",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        }
+        </script>
+
+        <!-- HowTo Schema for Body Fat Calculation -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "name": "Vücut Yağ Oranı Nasıl Hesaplanır?",
+          "description": "US Navy formülü kullanarak vücut yağ oranınızı doğru bir şekilde hesaplama adımları",
+          "totalTime": "PT2M",
+          "tool": [
+            {
+              "@type": "HowToTool",
+              "name": "Ölçü mezurası veya cetvel"
+            }
+          ],
+          "step": [
+            {
+              "@type": "HowToStep",
+              "position": 1,
+              "name": "Cinsiyet Seçimi",
+              "text": "Hesaplama formülü erkek ve kadınlar için farklı olduğundan cinsiyetinizi seçin.",
+              "url": "https://ersptstudio.com.tr/#calculator"
+            },
+            {
+              "@type": "HowToStep",
+              "position": 2,
+              "name": "Temel Bilgiler",
+              "text": "Yaşınızı, boyunuzu (cm) ve kilonuzu (kg) girin.",
+              "url": "https://ersptstudio.com.tr/#calculator"
+            },
+            {
+              "@type": "HowToStep",
+              "position": 3,
+              "name": "Boyun Ölçümü",
+              "text": "Boyun çevrenizi ölçün. Ölçüm adam elmasının tam altından, dik pozisyonda yapılmalıdır.",
+              "url": "https://ersptstudio.com.tr/#calculator"
+            },
+            {
+              "@type": "HowToStep",
+              "position": 4,
+              "name": "Bel Ölçümü",
+              "text": "Bel çevrenizi ölçün. Göbek deliği hizasından, ayakta ve rahat nefes alırken ölçüm yapın.",
+              "url": "https://ersptstudio.com.tr/#calculator"
+            },
+            {
+              "@type": "HowToStep",
+              "position": 5,
+              "name": "Kalça Ölçümü (Kadınlar)",
+              "text": "Kadınlar için kalça çevresini en geniş noktadan ölçün.",
+              "url": "https://ersptstudio.com.tr/#calculator"
+            },
+            {
+              "@type": "HowToStep",
+              "position": 6,
+              "name": "Sonuçları Görüntüleme",
+              "text": "Hesapla butonuna tıklayarak vücut yağ oranınızı, BMI değerinizi, yağ kütlenizi ve ideal kilo aralığınızı öğrenin.",
+              "url": "https://ersptstudio.com.tr/#calculator"
+            }
+          ]
+        }
+        </script>
+
         <!-- Google Analytics -->
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-12QKV4JWTE"></script>
@@ -611,6 +746,54 @@
             nav a.active-section {
                 color: #fbbf24 !important;
                 font-weight: 700;
+            }
+
+            /* Modal animations */
+            #serviceModal {
+                animation: fadeIn 0.2s ease-out;
+            }
+
+            #serviceModal > div > div {
+                animation: slideUp 0.3s ease-out;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Smooth scrollbar for modal content */
+            #serviceModal ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            #serviceModal ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+
+            #serviceModal ::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 10px;
+            }
+
+            #serviceModal ::-webkit-scrollbar-thumb:hover {
+                background: #555;
             }
         </style>
     </head>
@@ -907,52 +1090,82 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
+                    <!-- Functional Fitness Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100 cursor-pointer group" onclick="openServiceModal('functional')">
+                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-running text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-3">Functional Fitness</h3>
-                        <p class="text-slate-600">Günlük hayatınızı kolaylaştıran fonksiyonel fitness antrenmanları</p>
+                        <p class="text-slate-600 mb-4">Günlük hayatınızı kolaylaştıran fonksiyonel fitness antrenmanları</p>
+                        <div class="flex items-center text-indigo-600 font-semibold text-sm group-hover:text-indigo-700">
+                            <span>Detaylı Bilgi</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-purple-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                    <!-- Strength Training Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-purple-100 cursor-pointer group" onclick="openServiceModal('strength')">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-dumbbell text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-3">Strength Training</h3>
-                        <p class="text-slate-600">Kuvvet ve kas gelişimi için özel tasarlanmış programlar</p>
+                        <p class="text-slate-600 mb-4">Kuvvet ve kas gelişimi için özel tasarlanmış programlar</p>
+                        <div class="flex items-center text-purple-600 font-semibold text-sm group-hover:text-purple-700">
+                            <span>Detaylı Bilgi</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-pink-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-6">
+                    <!-- Mobility & Flexibility Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-pink-100 cursor-pointer group" onclick="openServiceModal('mobility')">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-person-walking text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-3">Mobility & Flexibility</h3>
-                        <p class="text-slate-600">Hareket kabiliyetinizi artıran mobilite çalışmaları</p>
+                        <p class="text-slate-600 mb-4">Hareket kabiliyetinizi artıran mobilite çalışmaları</p>
+                        <div class="flex items-center text-pink-600 font-semibold text-sm group-hover:text-pink-700">
+                            <span>Detaylı Bilgi</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-blue-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
+                    <!-- Conditioning Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-blue-100 cursor-pointer group" onclick="openServiceModal('conditioning')">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-heartbeat text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-3">Conditioning</h3>
-                        <p class="text-slate-600">Kardiyovasküler dayanıklılık ve kondisyon geliştirme</p>
+                        <p class="text-slate-600 mb-4">Kardiyovasküler dayanıklılık ve kondisyon geliştirme</p>
+                        <div class="flex items-center text-blue-600 font-semibold text-sm group-hover:text-blue-700">
+                            <span>Detaylı Bilgi</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-green-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6">
+                    <!-- Corrective Exercises Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-green-100 cursor-pointer group" onclick="openServiceModal('corrective')">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-user-md text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-3">Corrective Exercises</h3>
-                        <p class="text-slate-600">Postür düzeltme ve koruyucu egzersizler</p>
+                        <p class="text-slate-600 mb-4">Postür düzeltme ve koruyucu egzersizler</p>
+                        <div class="flex items-center text-green-600 font-semibold text-sm group-hover:text-green-700">
+                            <span>Detaylı Bilgi</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+                    <!-- 1-1 Personal Training Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100 cursor-pointer group" onclick="openServiceModal('personal')">
+                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-users text-white text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-3">1-1 Personal Training</h3>
-                        <p class="text-slate-600">Tamamen size özel, birebir antrenman seansları</p>
+                        <p class="text-slate-600 mb-4">Tamamen size özel, birebir antrenman seansları</p>
+                        <div class="flex items-center text-indigo-600 font-semibold text-sm group-hover:text-indigo-700">
+                            <span>Detaylı Bilgi</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1099,10 +1312,15 @@
     <section id="calculator" class="py-20 bg-gradient-to-br from-slate-50 to-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Vücut Yağ Oranı Hesaplama</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                    Ücretsiz Vücut Yağ Oranı Hesaplama
+                </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-600 max-w-2xl mx-auto">
-                    US Navy formülü kullanılarak vücut yağ oranınızı ve ideal kilonuzu hesaplayın
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+                    <strong>US Navy formülü</strong> kullanılarak vücut yağ oranınızı, <strong>BMI değerinizi</strong> ve <strong>ideal kilonuzu</strong> anında hesaplayın
+                </p>
+                <p class="text-slate-500 mt-3 text-sm">
+                    ⚡ Anında sonuç • 📱 WhatsApp ile paylaş • 🎯 Hedef belirleme
                 </p>
             </div>
 
@@ -1628,6 +1846,23 @@
                 </div>
             </div>
         </section>
+
+        <!-- Service Modals -->
+        <div id="serviceModal" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-black/60 backdrop-blur-sm">
+            <div class="flex items-center justify-center min-h-screen px-4 py-8">
+                <div class="relative bg-white rounded-3xl max-w-3xl w-full shadow-2xl transform transition-all" onclick="event.stopPropagation()">
+                    <!-- Close Button -->
+                    <button onclick="closeServiceModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors z-10">
+                        <i class="fas fa-times text-gray-600 text-xl"></i>
+                    </button>
+
+                    <!-- Modal Content Container -->
+                    <div id="modalContent" class="p-8 md:p-12">
+                        <!-- Content will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer class="bg-cappuccino-950 text-cappuccino-100 py-12">

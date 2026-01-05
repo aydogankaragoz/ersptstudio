@@ -615,3 +615,366 @@ if (floatingNav) {
     floatingNav.style.transition = 'opacity 0.3s ease';
 }
 
+// Service Modal Functions
+const serviceContent = {
+    functional: {
+        icon: 'fa-running',
+        gradient: 'from-indigo-500 to-purple-500',
+        title: 'Functional Fitness',
+        subtitle: 'Günlük Hayatınızı Kolaylaştıran Antrenman',
+        description: 'Functional Fitness, günlük hayatta yaptığınız hareketleri daha kolay ve güvenli yapmanızı sağlayan özel bir antrenman yöntemidir.',
+        benefits: [
+            {
+                icon: 'fa-home',
+                title: 'Günlük Aktivitelerde Kolaylık',
+                desc: 'Merdiven çıkma, eşya taşıma, yerden kalkma gibi günlük hareketlerinizi daha kolay yaparsınız'
+            },
+            {
+                icon: 'fa-shield-alt',
+                title: 'Sakatlık Riskini Azaltma',
+                desc: 'Doğru hareket kalıplarını öğrenerek yaralanma riskini en aza indirirsiniz'
+            },
+            {
+                icon: 'fa-balance-scale',
+                title: 'Denge ve Koordinasyon',
+                desc: 'Vücudunuzun farklı kaslarını birlikte çalıştırarak denge ve koordinasyonunuzu geliştirirsiniz'
+            },
+            {
+                icon: 'fa-bolt',
+                title: 'Enerji ve Canlılık',
+                desc: 'Genel fitness seviyeniz artar, kendinizi daha enerjik ve canlı hissedersiniz'
+            }
+        ],
+        forWhom: [
+            'Günlük işlerini daha kolay yapmak isteyenler',
+            'Spor geçmişi olmayanlar ve başlangıç seviyesindekiler',
+            'Yaşlanan vücudunu aktif tutmak isteyenler',
+            'Ofis çalışanları ve hareketsiz yaşayanlar'
+        ],
+        examples: [
+            'Squat (Çömelme) - Otururken ve kalkarken',
+            'Deadlift (Yerden kaldırma) - Eşya kaldırırken',
+            'Lunge (Hamle) - Yürürken ve merdiven çıkarken',
+            'Push/Pull (İtme/Çekme) - Kapı açarken, alışveriş torbaları taşırken'
+        ]
+    },
+    strength: {
+        icon: 'fa-dumbbell',
+        gradient: 'from-purple-500 to-pink-500',
+        title: 'Strength Training',
+        subtitle: 'Kas ve Kuvvet Geliştirme Programı',
+        description: 'Strength Training, kaslarınızı güçlendirerek fiziksel gücünüzü ve vücut kompozisyonunuzu geliştiren sistemli bir antrenman yöntemidir.',
+        benefits: [
+            {
+                icon: 'fa-fire',
+                title: 'Metabolizma Hızlanması',
+                desc: 'Kas kütleniz arttıkça metabolizmanız hızlanır ve daha fazla kalori yakarırsınız'
+            },
+            {
+                icon: 'fa-chart-line',
+                title: 'Kas Gelişimi',
+                desc: 'Hedef aldığınız kas gruplarında görünür büyüme ve tanımlama sağlarsınız'
+            },
+            {
+                icon: 'fa-bone',
+                title: 'Kemik Yoğunluğu',
+                desc: 'Kemikleriniz güçlenir, osteoporoz riskini azaltırsınız'
+            },
+            {
+                icon: 'fa-battery-full',
+                title: 'Fiziksel Güç',
+                desc: 'Günlük aktivitelerde daha güçlü hisseder, yorulmanız azalır'
+            }
+        ],
+        forWhom: [
+            'Kas kütlesi kazanmak isteyenler',
+            'Vücut şekillendirme hedefi olanlar',
+            'Fiziksel gücünü artırmak isteyenler',
+            'Spor performansını geliştirmek isteyenler'
+        ],
+        examples: [
+            'Bench Press - Göğüs ve kol kasları',
+            'Squat & Deadlift - Bacak ve sırt kasları',
+            'Overhead Press - Omuz ve kol kasları',
+            'Pull-ups & Rows - Sırt ve kol kasları'
+        ]
+    },
+    mobility: {
+        icon: 'fa-person-walking',
+        gradient: 'from-pink-500 to-rose-500',
+        title: 'Mobility & Flexibility',
+        subtitle: 'Hareket Kabiliyeti ve Esneklik',
+        description: 'Mobility ve Flexibility çalışmaları, eklemlerinizin hareket genişliğini artırarak daha sağlıklı ve ağrısız hareket etmenizi sağlar.',
+        benefits: [
+            {
+                icon: 'fa-hand-sparkles',
+                title: 'Ağrı Azalması',
+                desc: 'Sırt, boyun, bel ağrılarınız azalır, eklemleriniz daha rahat hareket eder'
+            },
+            {
+                icon: 'fa-expand',
+                title: 'Hareket Genişliği',
+                desc: 'Eklemlerinizin hareket aralığı artar, daha geniş ve serbest hareket edersiniz'
+            },
+            {
+                icon: 'fa-running',
+                title: 'Performans Artışı',
+                desc: 'Diğer antrenmanlarınızda daha iyi performans gösterirsiniz'
+            },
+            {
+                icon: 'fa-bed',
+                title: 'Yaşam Kalitesi',
+                desc: 'Günlük yaşamınızda daha rahat ve konforlu hareket edersiniz'
+            }
+        ],
+        forWhom: [
+            'Ofis çalışanları ve uzun süre oturanlar',
+            'Eklem ağrısı ve sertliği çekenler',
+            'Spor performansını artırmak isteyenler',
+            'Yaşlılıkta aktif kalmak isteyenler'
+        ],
+        examples: [
+            'Dynamic Stretching - Dinamik esneme hareketleri',
+            'Foam Rolling - Kas gevşetme teknikleri',
+            'Joint Mobilization - Eklem hareketliliği çalışmaları',
+            'Yoga & Pilates Elements - Yoga ve pilates unsurları'
+        ]
+    },
+    conditioning: {
+        icon: 'fa-heartbeat',
+        gradient: 'from-blue-500 to-cyan-500',
+        title: 'Conditioning',
+        subtitle: 'Kardiyovasküler Dayanıklılık Geliştirme',
+        description: 'Conditioning antrenmanları, kalp-damar sağlığınızı ve genel dayanıklılığınızı geliştirerek enerjinizi artırır.',
+        benefits: [
+            {
+                icon: 'fa-heart',
+                title: 'Kalp Sağlığı',
+                desc: 'Kalp kasınız güçlenir, kan dolaşımınız iyileşir, hastalık riski azalır'
+            },
+            {
+                icon: 'fa-lungs',
+                title: 'Solunum Kapasitesi',
+                desc: 'Akciğer kapasitesi artar, daha verimli nefes alıp verirsiniz'
+            },
+            {
+                icon: 'fa-weight-scale',
+                title: 'Yağ Yakımı',
+                desc: 'Yüksek kalori yakımı ile kilo verme ve fit kalmanızı destekler'
+            },
+            {
+                icon: 'fa-mountain',
+                title: 'Dayanıklılık',
+                desc: 'Uzun süreli aktivitelerde yorulmadan performans gösterirsiniz'
+            }
+        ],
+        forWhom: [
+            'Kilo vermek isteyenler',
+            'Dayanıklılığını artırmak isteyenler',
+            'Kalp sağlığını iyileştirmek isteyenler',
+            'Spor müsabakalarına hazırlananlar'
+        ],
+        examples: [
+            'HIIT Training - Yüksek yoğunluklu interval antrenman',
+            'Circuit Training - Devre antrenmanı',
+            'Cardio Intervals - Kardiyo aralıkları',
+            'Endurance Work - Dayanıklılık çalışmaları'
+        ]
+    },
+    corrective: {
+        icon: 'fa-user-md',
+        gradient: 'from-green-500 to-emerald-500',
+        title: 'Corrective Exercises',
+        subtitle: 'Postür Düzeltme ve Koruyucu Egzersizler',
+        description: 'Corrective Exercises, vücudunuzdaki kas dengesizliklerini ve postür bozukluklarını düzelterek ağrısız bir yaşam sürmenizi sağlar.',
+        benefits: [
+            {
+                icon: 'fa-user-check',
+                title: 'Postür Düzeltme',
+                desc: 'Kamburluk, omuz düşüklüğü gibi postür bozukluklarınız düzelir'
+            },
+            {
+                icon: 'fa-ban',
+                title: 'Ağrı Önleme',
+                desc: 'Kronik ağrılarınız azalır veya tamamen geçer'
+            },
+            {
+                icon: 'fa-balance-scale',
+                title: 'Kas Dengesi',
+                desc: 'Zayıf kaslarınız güçlenir, gergin kaslarınız gevşer'
+            },
+            {
+                icon: 'fa-shield',
+                title: 'Sakatlık Koruması',
+                desc: 'Gelecekteki sakatlıklara karşı korunmanızı sağlar'
+            }
+        ],
+        forWhom: [
+            'Kronik ağrısı olanlar (bel, boyun, omuz)',
+            'Postür problemi yaşayanlar',
+            'Sakatlık geçmişi olanlar',
+            'Önleyici sağlık yaklaşımı isteyenler'
+        ],
+        examples: [
+            'Postural Assessment - Postür değerlendirmesi',
+            'Muscle Activation - Kas aktivasyonu çalışmaları',
+            'Movement Pattern Correction - Hareket kalıbı düzeltme',
+            'Therapeutic Exercises - Terapötik egzersizler'
+        ]
+    },
+    personal: {
+        icon: 'fa-users',
+        gradient: 'from-indigo-500 to-blue-500',
+        title: '1-1 Personal Training',
+        subtitle: 'Tamamen Size Özel Bireysel Antrenman',
+        description: '1-1 Personal Training, sadece sizin hedeflerinize ve ihtiyaçlarınıza odaklanan, %100 kişiselleştirilmiş antrenman deneyimidir.',
+        benefits: [
+            {
+                icon: 'fa-bullseye',
+                title: 'Hedefe Odaklı',
+                desc: 'Antrenmanlar tamamen sizin özel hedeflerinize göre tasarlanır'
+            },
+            {
+                icon: 'fa-user-clock',
+                title: 'Kişisel İlgi',
+                desc: 'Antrenörünüzün tüm dikkatini alırsınız, her harekette destek görürsünız'
+            },
+            {
+                icon: 'fa-calendar-check',
+                title: 'Esnek Program',
+                desc: 'Kendi programınıza uygun saatlerde antrenman yaparsınız'
+            },
+            {
+                icon: 'fa-chart-line',
+                title: 'Hızlı İlerleme',
+                desc: 'Bireysel rehberlik sayesinde daha hızlı ve etkili sonuçlar alırsınız'
+            }
+        ],
+        forWhom: [
+            'Maksimum sonuç almak isteyenler',
+            'Özel sağlık durumu olanlar',
+            'Motivasyon desteği isteyenler',
+            'Zamanını verimli kullanmak isteyenler'
+        ],
+        examples: [
+            'Individual Assessment - Kişisel değerlendirme',
+            'Custom Programming - Özel program tasarımı',
+            'Form Correction - Form düzeltme ve rehberlik',
+            'Progress Tracking - İlerleme takibi ve program güncellemeleri'
+        ]
+    }
+};
+
+function openServiceModal(serviceType) {
+    const modal = document.getElementById('serviceModal');
+    const modalContent = document.getElementById('modalContent');
+    const service = serviceContent[serviceType];
+
+    if (!service) return;
+
+    // Track modal open in Google Analytics if available
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'service_modal_open', {
+            'service_type': serviceType,
+            'service_name': service.title
+        });
+    }
+
+    modalContent.innerHTML = `
+        <div class="mb-8">
+            <div class="w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-3xl flex items-center justify-center mb-6 mx-auto">
+                <i class="fas ${service.icon} text-white text-4xl"></i>
+            </div>
+            <h2 class="text-4xl font-bold text-center text-slate-900 mb-2">${service.title}</h2>
+            <p class="text-center text-lg text-slate-600 mb-6">${service.subtitle}</p>
+            <p class="text-slate-700 text-center leading-relaxed">${service.description}</p>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <i class="fas fa-star text-yellow-500"></i>
+                Faydaları
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                ${service.benefits.map(benefit => `
+                    <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-5 border border-slate-200">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br ${service.gradient} rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas ${benefit.icon} text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">${benefit.title}</h4>
+                                <p class="text-sm text-slate-600">${benefit.desc}</p>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-user-check text-green-500"></i>
+                Kimler İçin Uygundur?
+            </h3>
+            <ul class="space-y-3">
+                ${service.forWhom.map(item => `
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <span>${item}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-dumbbell text-indigo-500"></i>
+                Örnek Hareketler
+            </h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                ${service.examples.map(example => `
+                    <div class="bg-white border-2 border-slate-200 rounded-lg p-4 flex items-center gap-3">
+                        <i class="fas fa-circle text-indigo-500 text-xs"></i>
+                        <span class="text-slate-700">${example}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-br ${service.gradient} rounded-2xl p-6 text-center">
+            <h3 class="text-white text-xl font-bold mb-3">Bu Antrenman Size Uygun mu?</h3>
+            <p class="text-white/90 mb-5">Hemen iletişime geçin, size özel bir program oluşturalım!</p>
+            <a href="https://wa.me/905332470660?text=Merhaba!%20${encodeURIComponent(service.title)}%20hakkında%20detaylı%20bilgi%20almak%20istiyorum" 
+               target="_blank"
+               onclick="if(typeof gtag !== 'undefined'){gtag('event','whatsapp_from_modal',{'service':'${serviceType}'})}"
+               class="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all duration-300">
+                <i class="fab fa-whatsapp text-green-500 text-2xl"></i>
+                WhatsApp ile İletişime Geç
+            </a>
+        </div>
+    `;
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // Close on backdrop click
+    modal.onclick = function(e) {
+        if (e.target === modal) {
+            closeServiceModal();
+        }
+    };
+}
+
+function closeServiceModal() {
+    const modal = document.getElementById('serviceModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal on ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeServiceModal();
+    }
+});
