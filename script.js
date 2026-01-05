@@ -15,19 +15,76 @@ if (mobileMenuBtn && mobileMenu) {
     });
 }
 
-// Smooth Scrolling with event delegation
+// Smooth Scrolling with event delegation and URL update
 document.addEventListener('click', function(e) {
     if (e.target.matches('a[href^="#"]')) {
         e.preventDefault();
-        const target = document.querySelector(e.target.getAttribute('href'));
+        const targetId = e.target.getAttribute('href');
+        const target = document.querySelector(targetId);
         if (target) {
             const offsetTop = target.offsetTop - 80;
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
+            // Update URL without page jump
+            history.pushState(null, null, targetId);
+
+            // Update active state in navigation
+            updateActiveNavLink(targetId);
         }
     }
+});
+
+// Scroll to section if URL has hash on page load
+window.addEventListener('load', function() {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            setTimeout(function() {
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                updateActiveNavLink(window.location.hash);
+            }, 100);
+        }
+    }
+});
+
+// Update active navigation link
+function updateActiveNavLink(hash) {
+    // Remove active class from all links
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+        link.classList.remove('active-section');
+    });
+
+    // Add active class to current link
+    document.querySelectorAll(`nav a[href="${hash}"]`).forEach(link => {
+        link.classList.add('active-section');
+    });
+}
+
+// Update active link on scroll
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPosition = window.scrollY + 150;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = '#' + section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                history.replaceState(null, null, sectionId);
+                updateActiveNavLink(sectionId);
+            }
+        });
+    }, 100);
 });
 
 // Google Analytics Event Tracking
@@ -91,6 +148,17 @@ if (typeof gtag !== 'undefined') {
             });
         });
     });
+
+    // Calculator WhatsApp CTA tracking
+    document.querySelectorAll('[data-ga-event="calculator-whatsapp-cta"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            gtag('event', 'calculator_whatsapp_cta', {
+                event_category: 'conversion',
+                event_label: 'post_calculation',
+                value: 1
+            });
+        });
+    });
 }
 
 // Scroll Animations with Intersection Observer
@@ -108,6 +176,25 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
+
+// Track when calculator section comes into view
+const calculatorSection = document.getElementById('calculator');
+if (calculatorSection && typeof gtag !== 'undefined') {
+    const calculatorObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                gtag('event', 'calculator_section_view', {
+                    event_category: 'calculator',
+                    event_label: 'section_in_viewport',
+                    value: 1
+                });
+                calculatorObserver.unobserve(entry.target); // Track only once per page load
+            }
+        });
+    }, { threshold: 0.3 });
+
+    calculatorObserver.observe(calculatorSection);
+}
 
 // Use requestIdleCallback for non-critical animations
 if ('requestIdleCallback' in window) {
@@ -154,6 +241,15 @@ function selectGender(gender) {
         hipContainer.style.display = 'block';
         hipInput.setAttribute('required', 'required');
     }
+
+    // Track gender selection
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'calculator_gender_select', {
+            event_category: 'calculator',
+            event_label: gender,
+            value: 1
+        });
+    }
 }
 
 // Make selectGender available globally
@@ -162,11 +258,35 @@ window.selectGender = selectGender;
 // Body Fat Form Submission
 const bodyFatForm = document.getElementById('bodyFatForm');
 if (bodyFatForm) {
+    // Track when user starts filling the form (focus on first input)
+    let formStartTracked = false;
+    bodyFatForm.querySelectorAll('input').forEach(input => {
+        input.addEventListener('focus', function() {
+            if (!formStartTracked && typeof gtag !== 'undefined') {
+                gtag('event', 'calculator_form_start', {
+                    event_category: 'calculator',
+                    event_label: 'user_started_filling',
+                    value: 1
+                });
+                formStartTracked = true;
+            }
+        });
+    });
+
     bodyFatForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         if (!selectedGender) {
             alert('Lütfen cinsiyetinizi seçin');
+
+            // Track incomplete submission
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'calculator_incomplete', {
+                    event_category: 'calculator',
+                    event_label: 'missing_gender',
+                    value: 0
+                });
+            }
             return;
         }
 
@@ -204,12 +324,61 @@ if (bodyFatForm) {
         // Display results
         displayResults(bodyFatPercentage, bmi, fatMass, leanMass, idealWeightMin, idealWeightMax, selectedGender, age);
 
-        // Track calculator usage
+        // Track calculator usage with detailed data
         if (typeof gtag !== 'undefined') {
             gtag('event', 'calculate_body_fat', {
                 event_category: 'calculator',
                 event_label: selectedGender,
                 value: Math.round(bodyFatPercentage)
+            });
+
+            // Track BMI category
+            let bmiCategory;
+            if (bmi < 18.5) bmiCategory = 'underweight';
+            else if (bmi <= 24.9) bmiCategory = 'normal';
+            else if (bmi <= 29.9) bmiCategory = 'overweight';
+            else bmiCategory = 'obese';
+
+            gtag('event', 'calculator_bmi_category', {
+                event_category: 'calculator',
+                event_label: bmiCategory,
+                value: Math.round(bmi)
+            });
+
+            // Track body fat category
+            let bfCategory;
+            if (selectedGender === 'male') {
+                if (bodyFatPercentage < 6) bfCategory = 'very_low';
+                else if (bodyFatPercentage <= 13) bfCategory = 'athletic';
+                else if (bodyFatPercentage <= 17) bfCategory = 'ideal';
+                else if (bodyFatPercentage <= 24) bfCategory = 'average';
+                else bfCategory = 'high';
+            } else {
+                if (bodyFatPercentage < 14) bfCategory = 'very_low';
+                else if (bodyFatPercentage <= 20) bfCategory = 'athletic';
+                else if (bodyFatPercentage <= 24) bfCategory = 'ideal';
+                else if (bodyFatPercentage <= 31) bfCategory = 'average';
+                else bfCategory = 'high';
+            }
+
+            gtag('event', 'calculator_bodyfat_category', {
+                event_category: 'calculator',
+                event_label: `${selectedGender}_${bfCategory}`,
+                value: Math.round(bodyFatPercentage)
+            });
+
+            // Track age group
+            let ageGroup;
+            if (age < 25) ageGroup = '18-24';
+            else if (age < 35) ageGroup = '25-34';
+            else if (age < 45) ageGroup = '35-44';
+            else if (age < 55) ageGroup = '45-54';
+            else ageGroup = '55+';
+
+            gtag('event', 'calculator_age_group', {
+                event_category: 'calculator',
+                event_label: ageGroup,
+                value: 1
             });
         }
 
@@ -338,3 +507,37 @@ function generateRecommendations(bodyFatPercentage, bmi, gender, age) {
 
     return recommendations;
 }
+
+// Smooth Scroll to Top - handled by main click handler now
+// Just ensure #home exists and works
+document.querySelectorAll('.scroll-to-top').forEach(button => {
+    // Anchor links will be handled by the main click handler above
+    // This is just for any custom behavior if needed
+});
+
+// Show/Hide Floating Navigation based on scroll
+let lastScrollTop = 0;
+const floatingNav = document.querySelector('.fixed.bottom-8.right-8');
+
+if (floatingNav) {
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Show after scrolling down 300px
+        if (scrollTop > 300) {
+            floatingNav.style.opacity = '1';
+            floatingNav.style.pointerEvents = 'auto';
+        } else {
+            floatingNav.style.opacity = '0';
+            floatingNav.style.pointerEvents = 'none';
+        }
+
+        lastScrollTop = scrollTop;
+    });
+
+    // Initially hide
+    floatingNav.style.opacity = '0';
+    floatingNav.style.pointerEvents = 'none';
+    floatingNav.style.transition = 'opacity 0.3s ease';
+}
+
