@@ -220,6 +220,7 @@ if ('requestIdleCallback' in window) {
 
 // Body Fat Calculator
 let selectedGender = null;
+let calculationResults = null; // Store results for WhatsApp message
 
 function selectGender(gender) {
     selectedGender = gender;
@@ -321,8 +322,25 @@ if (bodyFatForm) {
         const idealWeightMin = 18.5 * heightInMeters * heightInMeters;
         const idealWeightMax = 24.9 * heightInMeters * heightInMeters;
 
+        // Store results globally
+        calculationResults = {
+            gender: selectedGender === 'male' ? 'Erkek' : 'Kadın',
+            age: age,
+            height: height,
+            weight: weight,
+            bodyFatPercentage: bodyFatPercentage,
+            bmi: bmi,
+            fatMass: fatMass,
+            leanMass: leanMass,
+            idealWeightMin: idealWeightMin,
+            idealWeightMax: idealWeightMax
+        };
+
         // Display results
         displayResults(bodyFatPercentage, bmi, fatMass, leanMass, idealWeightMin, idealWeightMax, selectedGender, age);
+
+        // Update WhatsApp CTA with calculation results
+        updateWhatsAppCTA();
 
         // Track calculator usage with detailed data
         if (typeof gtag !== 'undefined') {
@@ -506,6 +524,62 @@ function generateRecommendations(bodyFatPercentage, bmi, gender, age) {
     recommendations.push('Kişiselleştirilmiş program için profesyonel destek alın');
 
     return recommendations;
+}
+
+// Update WhatsApp CTA with calculation results
+function updateWhatsAppCTA() {
+    if (!calculationResults) return;
+
+    const results = calculationResults;
+
+    // Determine body fat category
+    let bfCategory;
+    if (results.gender === 'Erkek') {
+        if (results.bodyFatPercentage < 6) bfCategory = 'Çok Düşük';
+        else if (results.bodyFatPercentage <= 13) bfCategory = 'Atletik';
+        else if (results.bodyFatPercentage <= 17) bfCategory = 'İdeal';
+        else if (results.bodyFatPercentage <= 24) bfCategory = 'Ortalama';
+        else bfCategory = 'Yüksek';
+    } else {
+        if (results.bodyFatPercentage < 14) bfCategory = 'Çok Düşük';
+        else if (results.bodyFatPercentage <= 20) bfCategory = 'Atletik';
+        else if (results.bodyFatPercentage <= 24) bfCategory = 'İdeal';
+        else if (results.bodyFatPercentage <= 31) bfCategory = 'Ortalama';
+        else bfCategory = 'Yüksek';
+    }
+
+    // Determine BMI category
+    let bmiCategory;
+    if (results.bmi < 18.5) bmiCategory = 'Zayıf';
+    else if (results.bmi <= 24.9) bmiCategory = 'Normal';
+    else if (results.bmi <= 29.9) bmiCategory = 'Fazla Kilolu';
+    else bmiCategory = 'Obez';
+
+    // Create personalized WhatsApp message
+    const message = `Merhaba! Vücut yağ oranı hesaplama yaptım ve sonuçlarım şöyle:
+
+Cinsiyet: ${results.gender}
+Yaş: ${results.age}
+Boy: ${results.height} cm
+Kilo: ${results.weight} kg
+
+SONUÇLARIM:
+- Vücut Yağ Oranı: %${results.bodyFatPercentage.toFixed(1)} (${bfCategory})
+- BMI: ${results.bmi.toFixed(1)} (${bmiCategory})
+- Yağ Kütlesi: ${results.fatMass.toFixed(1)} kg
+- Yağsız Kütle: ${results.leanMass.toFixed(1)} kg
+- İdeal Kilo Aralığım: ${results.idealWeightMin.toFixed(1)} - ${results.idealWeightMax.toFixed(1)} kg
+
+Hedeflerime ulaşmak için kişisel antrenman programı ve beslenme desteği almak istiyorum. Detaylı bilgi alabilir miyim?`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Update WhatsApp CTA button
+    const whatsappCTA = document.querySelector('[data-ga-event="calculator-whatsapp-cta"]');
+    if (whatsappCTA) {
+        whatsappCTA.href = `https://wa.me/905332470660?text=${encodedMessage}`;
+    }
 }
 
 // Smooth Scroll to Top - handled by main click handler now
