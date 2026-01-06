@@ -748,6 +748,33 @@
                 font-weight: 700;
             }
 
+            /* Tooltip styles */
+            .group:hover > span.absolute {
+                animation: tooltipFadeIn 0.2s ease-out forwards;
+            }
+
+            @keyframes tooltipFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translate(-50%, -5px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+
+            /* Mobile tooltip - show on tap */
+            @media (max-width: 768px) {
+                .group > span.absolute {
+                    display: none;
+                }
+
+                .group:active > span.absolute {
+                    display: block !important;
+                }
+            }
+
             /* Modal animations */
             #serviceModal {
                 animation: fadeIn 0.2s ease-out;
@@ -1317,7 +1344,18 @@
                 </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
                 <p class="text-slate-600 max-w-2xl mx-auto text-lg">
-                    <strong>US Navy formülü</strong> kullanılarak vücut yağ oranınızı, <strong>BMI değerinizi</strong> ve <strong>ideal kilonuzu</strong> anında hesaplayın
+                    <span class="inline-flex items-center gap-1 relative group">
+                        <strong>US Navy formülü</strong>
+                        <span class="cursor-help inline-flex items-center justify-center w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full text-xs font-bold">
+                            <i class="fas fa-info"></i>
+                        </span>
+                        <!-- Tooltip -->
+                        <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-80 bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
+                            <strong class="block mb-2 text-indigo-300">🎖️ US Navy Formülü</strong>
+                            ABD Deniz Kuvvetleri tarafından askeri personelin vücut yağ oranını ölçmek için geliştirilmiş bilimsel bir yöntemdir. Basit ölçümlerle (boyun, bel, kalça) yüksek doğruluk oranı sağlar ve dünya çapında fitness profesyonelleri tarafından kullanılır.
+                            <span class="absolute top-full left-1/2 -translate-x-1/2 -mt-2 border-8 border-transparent border-t-slate-900"></span>
+                        </span>
+                    </span> kullanılarak vücut yağ oranınızı, <strong>BMI değerinizi</strong> ve <strong>ideal kilonuzu</strong> anında hesaplayın
                 </p>
                 <p class="text-slate-500 mt-3 text-sm">
                     ⚡ Anında sonuç • 📱 WhatsApp ile paylaş • 🎯 Hedef belirleme
@@ -1533,7 +1571,16 @@
                         <div class="mt-8 p-4 bg-amber-50 border-l-4 border-amber-500 rounded">
                             <p class="text-amber-800 text-sm">
                                 <i class="fas fa-exclamation-triangle mr-2"></i>
-                                <strong>Not:</strong> Bu hesaplama US Navy formülüne dayalı bir tahmindir. Kesin sonuçlar için profesyonel vücut analizi önerilir.
+                                <strong>Not:</strong> Bu hesaplama
+                                <span class="inline-flex items-center gap-1 relative group">
+                                    <span class="underline decoration-dotted cursor-help font-semibold">US Navy formülüne</span>
+                                    <!-- Tooltip -->
+                                    <span class="absolute bottom-full left-0 mb-2 hidden group-hover:block w-72 bg-slate-900 text-white text-xs rounded-lg p-3 shadow-2xl z-50 pointer-events-none">
+                                        <strong class="block mb-1 text-amber-300">ℹ️ US Navy Formülü</strong>
+                                        1984'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.
+                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
+                                    </span>
+                                </span> dayalı bir tahmindir. Kesin sonuçlar için profesyonel vücut analizi önerilir.
                             </p>
                         </div>
 

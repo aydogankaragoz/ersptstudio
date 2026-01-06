@@ -344,10 +344,28 @@ if (bodyFatForm) {
 
         // Track calculator usage with detailed data
         if (typeof gtag !== 'undefined') {
+            // Main calculation event with full user data
             gtag('event', 'calculate_body_fat', {
                 event_category: 'calculator',
                 event_label: selectedGender,
-                value: Math.round(bodyFatPercentage)
+                value: Math.round(bodyFatPercentage),
+                // Detailed measurement data
+                user_gender: selectedGender,
+                user_age: age,
+                user_height: height,
+                user_weight: weight,
+                user_neck: neck,
+                user_waist: waist,
+                user_hip: hip || 0,
+                // Calculated results
+                result_bodyfat: bodyFatPercentage.toFixed(1),
+                result_bmi: bmi.toFixed(1),
+                result_fat_mass: fatMass.toFixed(1),
+                result_lean_mass: leanMass.toFixed(1),
+                result_ideal_min: idealWeightMin.toFixed(1),
+                result_ideal_max: idealWeightMax.toFixed(1),
+                // Timestamp
+                calculation_date: new Date().toISOString()
             });
 
             // Track BMI category
@@ -360,7 +378,10 @@ if (bodyFatForm) {
             gtag('event', 'calculator_bmi_category', {
                 event_category: 'calculator',
                 event_label: bmiCategory,
-                value: Math.round(bmi)
+                value: Math.round(bmi),
+                bmi_value: bmi.toFixed(1),
+                gender: selectedGender,
+                age: age
             });
 
             // Track body fat category
@@ -382,7 +403,10 @@ if (bodyFatForm) {
             gtag('event', 'calculator_bodyfat_category', {
                 event_category: 'calculator',
                 event_label: `${selectedGender}_${bfCategory}`,
-                value: Math.round(bodyFatPercentage)
+                value: Math.round(bodyFatPercentage),
+                bodyfat_percentage: bodyFatPercentage.toFixed(1),
+                category: bfCategory,
+                gender: selectedGender
             });
 
             // Track age group
@@ -396,7 +420,9 @@ if (bodyFatForm) {
             gtag('event', 'calculator_age_group', {
                 event_category: 'calculator',
                 event_label: ageGroup,
-                value: 1
+                value: 1,
+                exact_age: age,
+                gender: selectedGender
             });
         }
 
