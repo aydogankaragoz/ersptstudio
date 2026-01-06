@@ -1017,6 +1017,26 @@ const tooltipContents = {
         title: 'ℹ️ US Navy Formülü',
         content: '1984\'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.',
         color: 'amber'
+    },
+    'bmi': {
+        title: '📊 BMI (Body Mass Index)',
+        content: 'Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir. Formül: Kilo (kg) / Boy² (m)',
+        color: 'blue'
+    },
+    'tvgbf': {
+        title: '🏆 TVGBF 2nd Level',
+        content: 'Türkiye Vücut Geliştirme ve Fitness Federasyonu tarafından verilen 2. Seviye Antrenörlük Sertifikası. İleri düzey antrenman programlama, spor fizyolojisi ve beslenme konularında yetkinlik belgesidir.',
+        color: 'indigo'
+    },
+    'eqf': {
+        title: '🎓 EQF Level 4 Personal Trainer',
+        content: 'European Qualifications Framework (Avrupa Yeterlilik Çerçevesi) 4. Seviye Personal Trainer sertifikası. AB ülkelerinde tanınan, uluslararası standartlarda eğitim yeterliliği belgesidir.',
+        color: 'purple'
+    },
+    'issa': {
+        title: '🌟 ISSA Certified Personal Trainer',
+        content: 'International Sports Sciences Association - 1988\'den beri dünya çapında 140+ ülkede tanınan, bilimsel temelli personal training sertifikası. Spor bilimi, anatomi ve egzersiz fizyolojisi alanlarında kapsamlı eğitim.',
+        color: 'pink'
     }
 };
 
@@ -1032,7 +1052,10 @@ function openTooltipModal(tooltipId) {
 
     const colorClasses = {
         'indigo': 'text-indigo-600 bg-indigo-50 border-indigo-200',
-        'amber': 'text-amber-600 bg-amber-50 border-amber-200'
+        'amber': 'text-amber-600 bg-amber-50 border-amber-200',
+        'blue': 'text-blue-600 bg-blue-50 border-blue-200',
+        'purple': 'text-purple-600 bg-purple-50 border-purple-200',
+        'pink': 'text-pink-600 bg-pink-50 border-pink-200'
     };
 
     content.innerHTML = `

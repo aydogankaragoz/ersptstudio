@@ -10,7 +10,7 @@
 
         <!-- SEO Meta Tags -->
         <meta name="description" content="İzmir Bayraklı'da özel 1-1 personal training stüdyosu. ISSA sertifikalı antrenör Ersin Hoca ile güç, mobilite ve yağ yakım odaklı birebir dersler. 14 yıl deneyim, modern ekipman, kişiye özel programlar. Ücretsiz vücut yağ oranı hesaplama.">
-        <meta name="keywords" content="personal trainer izmir, izmir spor salonu, bayraklı personal training, kişiye özel antrenman, ISSA trainer, functional fitness izmir, vücut yağ oranı hesaplama, body fat calculator, özel spor salonu izmir, birebir antrenman izmir, fitness koçu izmir, kilo verme programı, kas geliştirme, vücut analizi izmir">
+        <meta name="keywords" content="personal trainer izmir, izmir spor salonu, bayraklı personal training, kişiye özel antrenman, ISSA trainer, ISSA certified personal trainer, TVGBF antrenör, EQF level 4 personal trainer, functional fitness izmir, vücut yağ oranı hesaplama, body fat calculator, özel spor salonu izmir, birebir antrenman izmir, fitness koçu izmir, kilo verme programı, kas geliştirme, vücut analizi izmir, sertifikalı antrenör izmir, uluslararası sertifikalı pt">
         <meta name="author" content="Ers Personal Training Studio">
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="https://ersptstudio.com.tr/">
@@ -170,9 +170,38 @@
             "@type": "Person",
             "name": "Ersin Hoca",
             "jobTitle": "ISSA Certified Personal Trainer",
-            "description": "14 yıllık deneyime sahip ISSA sertifikalı kişisel antrenör",
+            "description": "14 yıllık deneyime sahip ISSA, TVGBF ve EQF Level 4 sertifikalı kişisel antrenör",
             "image": "https://ersptstudio.com.tr/images/trainer.jpeg",
-            "sameAs": "https://www.instagram.com/ers.ptstudio/"
+            "sameAs": "https://www.instagram.com/ers.ptstudio/",
+            "hasCredential": [
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "ISSA Certified Personal Trainer",
+                "credentialCategory": "certification",
+                "recognizedBy": {
+                  "@type": "Organization",
+                  "name": "International Sports Sciences Association"
+                }
+              },
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "TVGBF 2nd Level",
+                "credentialCategory": "certification",
+                "recognizedBy": {
+                  "@type": "Organization",
+                  "name": "Türkiye Vücut Geliştirme ve Fitness Federasyonu"
+                }
+              },
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "EQF Level 4 Personal Trainer",
+                "credentialCategory": "certification",
+                "recognizedBy": {
+                  "@type": "Organization",
+                  "name": "European Qualifications Framework"
+                }
+              }
+            ]
           },
           "potentialAction": [
             {
@@ -322,6 +351,30 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Corrective Exercises, bel, boyun, omuz ağrıları gibi kronik ağrılarınızı azaltır ve postür bozukluklarınızı düzeltir. Kamburluk, omuz düşüklüğü veya kas dengesizliği sorunlarınız varsa, düzeltici egzersizler ile ağrısız bir yaşam sürmenizi sağlar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "ISSA sertifikası nedir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ISSA (International Sports Sciences Association), 1988'den beri dünya çapında 140+ ülkede tanınan uluslararası spor bilimleri birliğidir. ISSA Certified Personal Trainer sertifikası, spor bilimi, anatomi, egzersiz fizyolojisi ve beslenme konularında kapsamlı eğitim almış profesyonellere verilir."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "TVGBF 2nd Level sertifikası ne anlama gelir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "TVGBF (Türkiye Vücut Geliştirme ve Fitness Federasyonu) 2. Seviye Antrenörlük Sertifikası, ileri düzey antrenman programlama, spor fizyolojisi ve beslenme konularında yetkinlik belgesidir. Bu sertifika, antrenörün profesyonel seviyede hizmet verebileceğinin göstergesidir."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "EQF Level 4 PT sertifikası nedir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "EQF (European Qualifications Framework - Avrupa Yeterlilik Çerçevesi) Level 4 Personal Trainer sertifikası, Avrupa Birliği ülkelerinde tanınan uluslararası standartlarda eğitim yeterliliği belgesidir. Bu sertifika, antrenörün AB standartlarında eğitim aldığını gösterir."
               }
             }
           ]
@@ -871,21 +924,38 @@
 
             /* Smooth scrollbar for modal content */
             #serviceModal ::-webkit-scrollbar {
-                width: 8px;
+                width: 6px;
             }
 
             #serviceModal ::-webkit-scrollbar-track {
-                background: #f1f1f1;
+                background: #f1f5f9;
                 border-radius: 10px;
             }
 
             #serviceModal ::-webkit-scrollbar-thumb {
-                background: #888;
+                background: #cbd5e1;
                 border-radius: 10px;
             }
 
             #serviceModal ::-webkit-scrollbar-thumb:hover {
-                background: #555;
+                background: #94a3b8;
+            }
+
+            /* Modal mobile optimizations */
+            @media (max-width: 768px) {
+                #serviceModal .max-h-\[90vh\] {
+                    max-height: 85vh !important;
+                }
+
+                /* Smooth scrolling on mobile */
+                #serviceModal > div > div {
+                    -webkit-overflow-scrolling: touch;
+                }
+
+                /* Smaller scrollbar on mobile */
+                #serviceModal ::-webkit-scrollbar {
+                    width: 4px;
+                }
             }
         </style>
     </head>
@@ -1103,15 +1173,42 @@
                         <div class="space-y-4 mb-8">
                             <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
                                 <i class="fas fa-certificate text-indigo-600 text-3xl"></i>
-                                <span class="text-slate-800 font-semibold">TVGBF 2nd Level 🏆🏆</span>
+                                <span class="relative group tooltip-trigger">
+                                    <span onclick="openTooltipModal('tvgbf')" class="text-slate-800 font-semibold underline decoration-dotted cursor-help hover:text-indigo-600 transition-colors">TVGBF 2nd Level</span>
+                                    <span class="text-slate-800 font-semibold"> 🏆🏆</span>
+                                    <!-- Desktop Tooltip -->
+                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
+                                        <strong class="block mb-2 text-indigo-300">🏆 TVGBF 2nd Level</strong>
+                                        Türkiye Vücut Geliştirme ve Fitness Federasyonu tarafından verilen 2. Seviye Antrenörlük Sertifikası. İleri düzey antrenman programlama, spor fizyolojisi ve beslenme konularında yetkinlik belgesidir.
+                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
+                                    </span>
+                                </span>
                             </div>
                             <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
                                 <i class="fas fa-graduation-cap text-purple-600 text-3xl"></i>
-                                <span class="text-slate-800 font-semibold">EQF L-4 PT ☄️</span>
+                                <span class="relative group tooltip-trigger">
+                                    <span onclick="openTooltipModal('eqf')" class="text-slate-800 font-semibold underline decoration-dotted cursor-help hover:text-purple-600 transition-colors">EQF L-4 PT</span>
+                                    <span class="text-slate-800 font-semibold"> ☄️</span>
+                                    <!-- Desktop Tooltip -->
+                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
+                                        <strong class="block mb-2 text-purple-300">🎓 EQF Level 4 Personal Trainer</strong>
+                                        European Qualifications Framework (Avrupa Yeterlilik Çerçevesi) 4. Seviye Personal Trainer sertifikası. AB ülkelerinde tanınan, uluslararası standartlarda eğitim yeterliliği belgesidir.
+                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
+                                    </span>
+                                </span>
                             </div>
                             <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl">
                                 <i class="fas fa-award text-pink-600 text-3xl"></i>
-                                <span class="text-slate-800 font-semibold">ISSA Certified Personal Trainer 🌟</span>
+                                <span class="relative group tooltip-trigger">
+                                    <span onclick="openTooltipModal('issa')" class="text-slate-800 font-semibold underline decoration-dotted cursor-help hover:text-pink-600 transition-colors">ISSA Certified Personal Trainer</span>
+                                    <span class="text-slate-800 font-semibold"> 🌟</span>
+                                    <!-- Desktop Tooltip -->
+                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
+                                        <strong class="block mb-2 text-pink-300">🌟 ISSA Certified Personal Trainer</strong>
+                                        International Sports Sciences Association - 1988'den beri dünya çapında 140+ ülkede tanınan, bilimsel temelli personal training sertifikası. Spor bilimi, anatomi ve egzersiz fizyolojisi alanlarında kapsamlı eğitim.
+                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
+                                    </span>
+                                </span>
                             </div>
                         </div>
 
@@ -1409,18 +1506,23 @@
                 </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
                 <p class="text-slate-600 max-w-2xl mx-auto text-lg">
-                    <span class="inline-flex items-center gap-1 relative group tooltip-trigger">
-                        <strong>US Navy formülü</strong>
-                        <span onclick="openTooltipModal('navy-formula')" class="cursor-help inline-flex items-center justify-center w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full text-xs font-bold hover:bg-indigo-200 transition-colors">
-                            <i class="fas fa-info"></i>
-                        </span>
+                    <span class="relative group tooltip-trigger">
+                        <strong onclick="openTooltipModal('navy-formula')" class="underline decoration-dotted cursor-help hover:text-indigo-600 transition-colors">US Navy formülü</strong>
                         <!-- Desktop Tooltip -->
                         <span class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
                             <strong class="block mb-2 text-indigo-300">🎖️ US Navy Formülü</strong>
                             ABD Deniz Kuvvetleri tarafından askeri personelin vücut yağ oranını ölçmek için geliştirilmiş bilimsel bir yöntemdir. Basit ölçümlerle (boyun, bel, kalça) yüksek doğruluk oranı sağlar ve dünya çapında fitness profesyonelleri tarafından kullanılır.
                             <span class="absolute top-full left-1/2 -translate-x-1/2 -mt-2 border-8 border-transparent border-t-slate-900"></span>
                         </span>
-                    </span> kullanılarak vücut yağ oranınızı, <strong>BMI değerinizi</strong> ve <strong>ideal kilonuzu</strong> anında hesaplayın
+                    </span> kullanılarak vücut yağ oranınızı, <span class="relative group tooltip-trigger">
+                        <strong onclick="openTooltipModal('bmi')" class="underline decoration-dotted cursor-help hover:text-blue-600 transition-colors">BMI değerinizi</strong>
+                        <!-- Desktop Tooltip -->
+                        <span class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
+                            <strong class="block mb-2 text-blue-300">📊 BMI (Body Mass Index)</strong>
+                            Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir.
+                            <span class="absolute top-full left-1/2 -translate-x-1/2 -mt-2 border-8 border-transparent border-t-slate-900"></span>
+                        </span>
+                    </span> ve <strong>ideal kilonuzu</strong> anında hesaplayın
                 </p>
                 <p class="text-slate-500 mt-3 text-sm">
                     ⚡ Anında sonuç • 📱 WhatsApp ile paylaş • 🎯 Hedef belirleme
@@ -1545,7 +1647,17 @@
                         <!-- BMI -->
                         <div class="mb-6 p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl">
                             <div class="flex items-center justify-between">
-                                <span class="text-slate-600 font-semibold">Vücut Kitle İndeksi (BMI)</span>
+                                <span class="relative group tooltip-trigger">
+                                    <span onclick="openTooltipModal('bmi')" class="text-slate-600 font-semibold underline decoration-dotted cursor-help hover:text-blue-600 transition-colors">
+                                        Vücut Kitle İndeksi (BMI)
+                                    </span>
+                                    <!-- Desktop Tooltip -->
+                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
+                                        <strong class="block mb-2 text-blue-300">📊 BMI (Body Mass Index)</strong>
+                                        Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir.
+                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
+                                    </span>
+                                </span>
                                 <span id="bmiValue" class="text-3xl font-bold text-blue-600">--</span>
                             </div>
                             <p id="bmiCategory" class="text-center mt-2 text-sm font-semibold"></p>
@@ -1971,15 +2083,15 @@
 
         <!-- Service Modals -->
         <div id="serviceModal" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-black/60 backdrop-blur-sm">
-            <div class="flex items-center justify-center min-h-screen px-4 py-8">
-                <div class="relative bg-white rounded-3xl max-w-3xl w-full shadow-2xl transform transition-all" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-center min-h-screen px-3 py-6 sm:px-4 sm:py-8">
+                <div class="relative bg-white rounded-2xl sm:rounded-3xl max-w-3xl w-full shadow-2xl transform transition-all max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
                     <!-- Close Button -->
-                    <button onclick="closeServiceModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors z-10">
+                    <button onclick="closeServiceModal()" class="sticky top-3 sm:top-4 right-3 sm:right-4 float-right w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors z-10 ml-3 mb-3">
                         <i class="fas fa-times text-gray-600 text-xl"></i>
                     </button>
 
                     <!-- Modal Content Container -->
-                    <div id="modalContent" class="p-8 md:p-12">
+                    <div id="modalContent" class="p-6 sm:p-8 md:p-12 clear-both">
                         <!-- Content will be dynamically loaded here -->
                     </div>
                 </div>
