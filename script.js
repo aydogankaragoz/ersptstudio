@@ -1002,5 +1002,72 @@ function closeServiceModal() {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeServiceModal();
+        closeTooltipModal();
     }
 });
+
+// Tooltip Modal Functions for Mobile
+const tooltipContents = {
+    'navy-formula': {
+        title: '🎖️ US Navy Formülü',
+        content: 'ABD Deniz Kuvvetleri tarafından askeri personelin vücut yağ oranını ölçmek için geliştirilmiş bilimsel bir yöntemdir. Basit ölçümlerle (boyun, bel, kalça) yüksek doğruluk oranı sağlar ve dünya çapında fitness profesyonelleri tarafından kullanılır.',
+        color: 'indigo'
+    },
+    'navy-formula-2': {
+        title: 'ℹ️ US Navy Formülü',
+        content: '1984\'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.',
+        color: 'amber'
+    }
+};
+
+function openTooltipModal(tooltipId) {
+    // Only for mobile devices
+    if (window.innerWidth > 768) return;
+
+    const modal = document.getElementById('mobileTooltipModal');
+    const content = document.getElementById('mobileTooltipContent');
+    const tooltip = tooltipContents[tooltipId];
+
+    if (!tooltip) return;
+
+    const colorClasses = {
+        'indigo': 'text-indigo-600 bg-indigo-50 border-indigo-200',
+        'amber': 'text-amber-600 bg-amber-50 border-amber-200'
+    };
+
+    content.innerHTML = `
+        <div class="mb-4 p-4 ${colorClasses[tooltip.color]} border-2 rounded-xl">
+            <h3 class="font-bold text-lg mb-2">${tooltip.title}</h3>
+        </div>
+        <p class="text-slate-700 leading-relaxed">${tooltip.content}</p>
+    `;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Track in Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'tooltip_open', {
+            event_category: 'engagement',
+            event_label: tooltipId,
+            value: 1
+        });
+    }
+}
+
+function closeTooltipModal() {
+    const modal = document.getElementById('mobileTooltipModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Close tooltip modal on backdrop click
+document.getElementById('mobileTooltipModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeTooltipModal();
+    }
+});
+
+// Make functions globally available
+window.openTooltipModal = openTooltipModal;
+window.closeTooltipModal = closeTooltipModal;
