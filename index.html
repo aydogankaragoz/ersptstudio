@@ -1520,7 +1520,7 @@
                         <span class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
                             <strong class="block mb-2 text-blue-300">📊 BMI (Body Mass Index)</strong>
                             Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir.
-                            <span class="absolute top-full left-1/2 -translate-x-1/2 -mt-2 border-8 border-transparent border-t-slate-900"></span>
+                            <span class="absolute top-full left-4 -mt-2 border-8 border-transparent border-t-slate-900"></span>
                         </span>
                     </span> ve <strong>ideal kilonuzu</strong> anında hesaplayın
                 </p>
@@ -1720,7 +1720,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-slate-900 mb-2">Boyun Çevresi</h4>
-                                    <p class="text-slate-600 text-sm">Başınızı dik tutun ve boyun çevrenizi adem elması hizasından ölçün. Mezurayı çok sıkmayın.</p>
+                                    <p class="text-slate-600 text-sm mb-2">Başınızı dik tutun ve boyun çevrenizi adem elması hizasından ölçün. Mezurayı çok sıkmayın.</p>
                                 </div>
                             </div>
 
@@ -1730,7 +1730,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-slate-900 mb-2">Bel Çevresi</h4>
-                                    <p class="text-slate-600 text-sm">Ayakta dik durun, nefes verin ve gevşeyin. Göbek deliğiniz hizasından bel çevrenizi ölçün.</p>
+                                    <p class="text-slate-600 text-sm mb-2">Ayakta dik durun, nefes verin ve gevşeyin. Göbek deliğiniz hizasından bel çevrenizi ölçün.</p>
                                 </div>
                             </div>
 
@@ -1752,7 +1752,7 @@
                                 <span class="inline-flex items-center gap-1 relative group tooltip-trigger">
                                     <span onclick="openTooltipModal('navy-formula-2')" class="underline decoration-dotted cursor-help font-semibold hover:text-amber-900 transition-colors">US Navy formülüne</span>
                                     <!-- Desktop Tooltip -->
-                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-72 max-w-[90vw] bg-slate-900 text-white text-xs rounded-lg p-3 shadow-2xl z-50 pointer-events-none">
+                                    <span class="tooltip-content absolute bottom-full left-4 -mt-2 hidden w-72 max-w-[90vw] bg-slate-900 text-white text-xs rounded-lg p-3 shadow-2xl z-50 pointer-events-none">
                                         <strong class="block mb-1 text-amber-300">ℹ️ US Navy Formülü</strong>
                                         1984'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.
                                         <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
@@ -1850,7 +1850,6 @@
                             <a href="https://wa.me/905332470660?text=Vücut%20yağ%20oranım%20hakkında%20bilgi%20almak%20ve%20kişisel%20program%20için%20destek%20istiyorum"
                                target="_blank"
                                data-ga-event="whatsapp-cta"
-                               data-ga-location="bodyfat-benefits"
                                class="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105">
                                 <i class="fab fa-whatsapp text-xl"></i>
                                 <span>WhatsApp ile İletişime Geç</span>
@@ -2054,12 +2053,47 @@
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
-                            <i class="fas fa-clock text-cappuccino-300 text-3xl"></i>
-                            <div>
-                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">Çalışma Saatleri</h4>
-                                <p class="text-cappuccino-200">Pazartesi - Cuma: 08:00 - 22:00<br>Cumartesi: 09:00 - 22:00<br>Pazar: 11:30 - 18:30</p>
-                            </div>
+                        <!-- Working Hours -->
+                        <div class="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm" aria-label="Calisma saatleri">
+                          <h3 class="text-lg font-bold text-white">Calisma Saatleri</h3>
+                          <p class="mt-1 text-sm text-slate-300">Randevu ile calisiyoruz. Tum gunler icin saatler asagidadir.</p>
+
+                          <div id="workingHoursStatus" class="mt-3 flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm">
+                            <span id="workingHoursStatusDot" class="inline-block h-2.5 w-2.5 rounded-full bg-slate-400"></span>
+                            <span id="workingHoursStatusText" class="font-semibold text-white">Durum yukleniyor...</span>
+                            <span id="workingHoursStatusDetail" class="text-slate-300"></span>
+                          </div>
+
+                          <ul class="mt-4 space-y-2 text-sm text-slate-200" role="list">
+                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+                              <span class="font-medium">Pazartesi</span>
+                              <span class="text-slate-300">06:00 - 22:00</span>
+                            </li>
+                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+                              <span class="font-medium">Sali</span>
+                              <span class="text-slate-300">06:00 - 22:00</span>
+                            </li>
+                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+                              <span class="font-medium">Carsamba</span>
+                              <span class="text-slate-300">06:00 - 22:00</span>
+                            </li>
+                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+                              <span class="font-medium">Persembe</span>
+                              <span class="text-slate-300">06:00 - 22:00</span>
+                            </li>
+                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+                              <span class="font-medium">Cuma</span>
+                              <span class="text-slate-300">06:00 - 22:00</span>
+                            </li>
+                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+                              <span class="font-medium">Cumartesi</span>
+                              <span class="text-slate-300">08:00 - 20:00</span>
+                            </li>
+                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+                              <span class="font-medium">Pazar</span>
+                              <span class="text-slate-300">08:00 - 20:00</span>
+                            </li>
+                          </ul>
                         </div>
                     </div>
 
@@ -2161,3 +2195,4 @@
         <script src="script.js"></script>
     </body>
     </html>
+

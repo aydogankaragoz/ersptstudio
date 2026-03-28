@@ -1091,6 +1091,80 @@ document.getElementById('mobileTooltipModal')?.addEventListener('click', functio
     }
 });
 
-// Make functions globally available
-window.openTooltipModal = openTooltipModal;
-window.closeTooltipModal = closeTooltipModal;
+// Live working hours status (Google Maps style)
+(function() {
+  const statusDot = document.getElementById('workingHoursStatusDot');
+  const statusText = document.getElementById('workingHoursStatusText');
+  const statusDetail = document.getElementById('workingHoursStatusDetail');
+  if (!statusDot || !statusText || !statusDetail) return;
+
+  // Minutes from midnight
+  const toMinutes = (h, m) => h * 60 + m;
+  const formatTime = (mins) => {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    const pad = (v) => String(v).padStart(2, '0');
+    return `${pad(h)}:${pad(m)}`;
+  };
+
+  // Weekly schedule: 0=Sunday ... 6=Saturday (Date.getDay)
+  const schedule = {
+    0: { open: toMinutes(11, 30), close: toMinutes(18, 30) },   // Pazar
+    1: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Pazartesi
+    2: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Salı
+    3: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Çarşamba
+    4: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Perşembe
+    5: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Cuma
+    6: { open: toMinutes(9, 0), close: toMinutes(22, 0) },   // Cumartesi
+  };
+
+  const updateStatus = () => {
+    const now = new Date();
+    const day = now.getDay();
+    const minutesNow = now.getHours() * 60 + now.getMinutes();
+    const today = schedule[day];
+
+    const setUI = (dotColor, text, detail = '') => {
+      statusDot.className = `inline-block h-2.5 w-2.5 rounded-full ${dotColor}`;
+      statusText.textContent = text;
+      statusDetail.textContent = detail ? ` - ${detail}` : '';
+    };
+
+    const findNextOpen = () => {
+      for (let i = 1; i <= 7; i++) {
+        const nextDay = (day + i) % 7;
+        const next = schedule[nextDay];
+        if (next) return { dayOffset: i, time: next.open };
+      }
+      return null;
+    };
+
+    if (today && minutesNow >= today.open && minutesNow < today.close) {
+      const minutesToClose = today.close - minutesNow;
+      if (minutesToClose <= 60) {
+        setUI('bg-amber-400', 'Yakında kapanıyor', `${formatTime(today.close)}'de kapanacak`);
+      } else {
+        setUI('bg-emerald-400', 'Şimdi açık', `${formatTime(today.close)}'e kadar acik`);
+      }
+      return;
+    }
+
+    // Kapali durum: bugun daha acilmadiysa veya kapandiysa
+    if (today && minutesNow < today.open) {
+      setUI('bg-red-400', 'Kapalı', `Bugün ${formatTime(today.open)}'de acilacak`);
+      return;
+    }
+
+    const next = findNextOpen();
+    if (next) {
+      const isTomorrow = next.dayOffset === 1;
+      const dayText = isTomorrow ? 'Yarın' : `${next.dayOffset} gün sonra`;
+      setUI('bg-red-400', 'Kapalı', `${dayText} ${formatTime(next.time)}'de açılacak`);
+    } else {
+      setUI('bg-red-400', 'Kapalı', 'Randevu için arayınız.');
+    }
+  };
+
+  updateStatus();
+  setInterval(updateStatus, 60000);
+})();
