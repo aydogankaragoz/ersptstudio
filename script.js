@@ -230,15 +230,15 @@ function selectGender(gender) {
     const hipInput = document.getElementById('hip');
 
     // Reset both buttons
-    maleBtn.classList.remove('bg-indigo-50', 'border-indigo-500', 'shadow-lg');
-    femaleBtn.classList.remove('bg-pink-50', 'border-pink-500', 'shadow-lg');
+    maleBtn.classList.remove('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
+    femaleBtn.classList.remove('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
 
     if (gender === 'male') {
-        maleBtn.classList.add('bg-indigo-50', 'border-indigo-500', 'shadow-lg');
+        maleBtn.classList.add('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
         hipContainer.style.display = 'none';
         hipInput.removeAttribute('required');
     } else {
-        femaleBtn.classList.add('bg-pink-50', 'border-pink-500', 'shadow-lg');
+        femaleBtn.classList.add('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
         hipContainer.style.display = 'block';
         hipInput.setAttribute('required', 'required');
     }
@@ -907,30 +907,30 @@ function openServiceModal(serviceType) {
     }
 
     modalContent.innerHTML = `
-        <div class="mb-8">
-            <div class="w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-3xl flex items-center justify-center mb-6 mx-auto">
+        <div class="mb-8 text-center">
+            <div class="w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-3xl flex items-center justify-center mb-6 mx-auto shadow-lg shadow-gold-500/10 border border-gold-400/30">
                 <i class="fas ${service.icon} text-white text-4xl"></i>
             </div>
-            <h2 class="text-4xl font-bold text-center text-slate-900 mb-2">${service.title}</h2>
-            <p class="text-center text-lg text-slate-600 mb-6">${service.subtitle}</p>
-            <p class="text-slate-700 text-center leading-relaxed">${service.description}</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mb-2 gold-glow-text">${service.title}</h2>
+            <p class="text-center text-sm sm:text-base text-gold-300 font-medium mb-4">${service.subtitle}</p>
+            <p class="text-slate-300 text-center text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">${service.description}</p>
         </div>
 
         <div class="mb-8">
-            <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <i class="fas fa-star text-yellow-500"></i>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <i class="fas fa-star text-gold-400"></i>
                 Faydaları
             </h3>
             <div class="grid md:grid-cols-2 gap-4">
                 ${service.benefits.map(benefit => `
-                    <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-5 border border-slate-200">
-                        <div class="flex items-start gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br ${service.gradient} rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas ${benefit.icon} text-white"></i>
+                    <div class="glass-vip rounded-2xl p-5 border border-gold-500/20 hover:border-gold-500/40 transition-colors">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-gradient-to-br from-gold-400 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 border border-gold-400/30 shadow-md">
+                                <i class="fas ${benefit.icon} text-obsidian-950 font-bold text-lg"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-slate-900 mb-1">${benefit.title}</h4>
-                                <p class="text-sm text-slate-600">${benefit.desc}</p>
+                                <h4 class="font-bold text-white mb-1 text-sm sm:text-base">${benefit.title}</h4>
+                                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${benefit.desc}</p>
                             </div>
                         </div>
                     </div>
@@ -939,14 +939,14 @@ function openServiceModal(serviceType) {
         </div>
 
         <div class="mb-8">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <i class="fas fa-user-check text-green-500"></i>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <i class="fas fa-user-check text-gold-400"></i>
                 Kimler İçin Uygundur?
             </h3>
-            <ul class="space-y-3">
+            <ul class="grid sm:grid-cols-2 gap-3">
                 ${service.forWhom.map(item => `
-                    <li class="flex items-start gap-3 text-slate-700">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <li class="glass-vip p-3.5 rounded-xl border border-gold-500/20 flex items-center gap-3 text-slate-200 text-sm">
+                        <i class="fas fa-check-circle text-gold-400 text-base flex-shrink-0"></i>
                         <span>${item}</span>
                     </li>
                 `).join('')}
@@ -954,28 +954,28 @@ function openServiceModal(serviceType) {
         </div>
 
         <div class="mb-8">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <i class="fas fa-dumbbell text-indigo-500"></i>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <i class="fas fa-dumbbell text-gold-400"></i>
                 Örnek Hareketler
             </h3>
             <div class="grid md:grid-cols-2 gap-3">
                 ${service.examples.map(example => `
-                    <div class="bg-white border-2 border-slate-200 rounded-lg p-4 flex items-center gap-3">
-                        <i class="fas fa-circle text-indigo-500 text-xs"></i>
-                        <span class="text-slate-700">${example}</span>
+                    <div class="glass-vip border border-gold-500/20 rounded-xl p-4 flex items-center gap-3">
+                        <i class="fas fa-circle text-gold-400 text-xs"></i>
+                        <span class="text-slate-200 font-medium text-sm">${example}</span>
                     </div>
                 `).join('')}
             </div>
         </div>
 
-        <div class="bg-gradient-to-br ${service.gradient} rounded-2xl p-6 text-center">
-            <h3 class="text-white text-xl font-bold mb-3">Bu Antrenman Size Uygun mu?</h3>
-            <p class="text-white/90 mb-5">Hemen iletişime geçin, size özel bir program oluşturalım!</p>
+        <div class="glass-vip-gold rounded-2xl p-6 text-center border border-gold-400/50 shadow-xl">
+            <h3 class="text-white text-xl font-bold mb-2">Bu Antrenman Size Uygun mu?</h3>
+            <p class="text-gold-200 text-xs sm:text-sm mb-5">Hemen iletişime geçin, size özel bir VIP program oluşturalım!</p>
             <a href="https://wa.me/905332470660?text=Merhaba!%20${encodeURIComponent(service.title)}%20hakkında%20detaylı%20bilgi%20almak%20istiyorum" 
                target="_blank"
                onclick="if(typeof gtag !== 'undefined'){gtag('event','whatsapp_from_modal',{'service':'${serviceType}'})}"
-               class="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all duration-300">
-                <i class="fab fa-whatsapp text-green-500 text-2xl"></i>
+               class="gold-button inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-obsidian-950 font-extrabold text-sm shadow-lg hover:scale-105 transition-transform duration-300">
+                <i class="fab fa-whatsapp text-xl"></i>
                 WhatsApp ile İletişime Geç
             </a>
         </div>
@@ -1010,33 +1010,27 @@ document.addEventListener('keydown', function(e) {
 const tooltipContents = {
     'navy-formula': {
         title: '🎖️ US Navy Formülü',
-        content: 'ABD Deniz Kuvvetleri tarafından askeri personelin vücut yağ oranını ölçmek için geliştirilmiş bilimsel bir yöntemdir. Basit ölçümlerle (boyun, bel, kalça) yüksek doğruluk oranı sağlar ve dünya çapında fitness profesyonelleri tarafından kullanılır.',
-        color: 'indigo'
+        content: 'ABD Deniz Kuvvetleri tarafından askeri personelin vücut yağ oranını ölçmek için geliştirilmiş bilimsel bir yöntemdir. Basit ölçümlerle (boyun, bel, kalça) yüksek doğruluk oranı sağlar ve dünya çapında fitness profesyonelleri tarafından kullanılır.'
     },
     'navy-formula-2': {
         title: 'ℹ️ US Navy Formülü',
-        content: '1984\'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.',
-        color: 'amber'
+        content: '1984\'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.'
     },
     'bmi': {
         title: '📊 BMI (Body Mass Index)',
-        content: 'Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir. Formül: Kilo (kg) / Boy² (m)',
-        color: 'blue'
+        content: 'Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir. Formül: Kilo (kg) / Boy² (m)'
     },
     'tvgbf': {
         title: '🏆 TVGBF 2nd Level',
-        content: 'Türkiye Vücut Geliştirme ve Fitness Federasyonu tarafından verilen 2. Seviye Antrenörlük Sertifikası. İleri düzey antrenman programlama, spor fizyolojisi ve beslenme konularında yetkinlik belgesidir.',
-        color: 'indigo'
+        content: 'Türkiye Vücut Geliştirme ve Fitness Federasyonu tarafından verilen 2. Seviye Antrenörlük Sertifikası. İleri düzey antrenman programlama, spor fizyolojisi ve beslenme konularında yetkinlik belgesidir.'
     },
     'eqf': {
         title: '🎓 EQF Level 4 Personal Trainer',
-        content: 'European Qualifications Framework (Avrupa Yeterlilik Çerçevesi) 4. Seviye Personal Trainer sertifikası. AB ülkelerinde tanınan, uluslararası standartlarda eğitim yeterliliği belgesidir.',
-        color: 'purple'
+        content: 'European Qualifications Framework (Avrupa Yeterlilik Çerçevesi) 4. Seviye Personal Trainer sertifikası. AB ülkelerinde tanınan, uluslararası standartlarda eğitim yeterliliği belgesidir.'
     },
     'issa': {
         title: '🌟 ISSA Certified Personal Trainer',
-        content: 'International Sports Sciences Association - 1988\'den beri dünya çapında 140+ ülkede tanınan, bilimsel temelli personal training sertifikası. Spor bilimi, anatomi ve egzersiz fizyolojisi alanlarında kapsamlı eğitim.',
-        color: 'pink'
+        content: 'International Sports Sciences Association - 1988\'den beri dünya çapında 140+ ülkede tanınan, bilimsel temelli personal training sertifikası. Spor bilimi, anatomi ve egzersiz fizyolojisi alanlarında kapsamlı eğitim.'
     }
 };
 
@@ -1050,19 +1044,11 @@ function openTooltipModal(tooltipId) {
 
     if (!tooltip) return;
 
-    const colorClasses = {
-        'indigo': 'text-indigo-600 bg-indigo-50 border-indigo-200',
-        'amber': 'text-amber-600 bg-amber-50 border-amber-200',
-        'blue': 'text-blue-600 bg-blue-50 border-blue-200',
-        'purple': 'text-purple-600 bg-purple-50 border-purple-200',
-        'pink': 'text-pink-600 bg-pink-50 border-pink-200'
-    };
-
     content.innerHTML = `
-        <div class="mb-4 p-4 ${colorClasses[tooltip.color]} border-2 rounded-xl">
-            <h3 class="font-bold text-lg mb-2">${tooltip.title}</h3>
+        <div class="mb-4 p-4 glass-vip-gold rounded-xl border border-gold-400/40">
+            <h3 class="font-bold text-lg text-white mb-1 flex items-center gap-2">${tooltip.title}</h3>
         </div>
-        <p class="text-slate-700 leading-relaxed">${tooltip.content}</p>
+        <p class="text-slate-300 leading-relaxed text-sm">${tooltip.content}</p>
     `;
 
     modal.classList.add('active');

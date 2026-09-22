@@ -725,52 +725,113 @@
             tailwind.config = {
                 theme: {
                     extend: {
+                        fontFamily: {
+                            sans: ['Inter', 'sans-serif'],
+                            display: ['Plus Jakarta Sans', 'sans-serif'],
+                        },
                         colors: {
-                            primary: '#6366f1',
-                            secondary: '#8b5cf6',
-                            accent: '#ec4899',
-                            dark: '#0f172a',
-                            light: '#f8fafc',
+                            obsidian: {
+                                950: '#05080e',
+                                900: '#080c14',
+                                850: '#0c111c',
+                                800: '#0f1726',
+                                700: '#162035',
+                            },
+                            gold: {
+                                100: '#fff7d6',
+                                200: '#ffea9f',
+                                300: '#ffd666',
+                                400: '#f5c33b',
+                                500: '#d4af37',
+                                600: '#b88e28',
+                                700: '#916b1b',
+                            },
+                            amber: {
+                                400: '#fbbf24',
+                                500: '#f59e0b',
+                                600: '#d97706',
+                            },
                             cappuccino: {
-                                50: '#faf8f5',
-                                100: '#f5efe6',
-                                200: '#ebe0d1',
-                                300: '#dcc8b0',
-                                400: '#c9ab89',
-                                500: '#b8906d',
-                                600: '#a67c5d',
-                                700: '#8b664e',
-                                800: '#715343',
-                                900: '#5c4438',
+                                50: '#080c14',
+                                100: '#0c111c',
+                                200: '#162035',
+                                300: '#d4af37',
+                                400: '#f3c669',
+                                500: '#d4af37',
+                                600: '#b88e28',
+                                700: '#e2e8f0',
+                                800: '#0f1726',
+                                900: '#080c14',
                             }
                         }
                     }
                 }
             }
         </script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap">
         <style>
 
             body {
                 font-family: 'Inter', sans-serif;
+                background-color: #080c14;
+                color: #f8fafc;
             }
 
-            .gradient-primary {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            h1, h2, h3, h4, .font-display {
+                font-family: 'Plus Jakarta Sans', sans-serif;
             }
 
-            .gradient-accent {
-                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            .gold-glow-text {
+                background: linear-gradient(135deg, #fff3d1 0%, #ffd666 35%, #d4af37 70%, #aa7c11 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
 
-            .gradient-blue {
-                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            .gold-glow-text-bright {
+                background: linear-gradient(135deg, #ffffff 0%, #fff2cb 40%, #ffd666 80%, #d4af37 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
 
-            .glass {
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
+            .glass-vip {
+                background: rgba(15, 23, 38, 0.75);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(212, 175, 55, 0.2);
+            }
+
+            .glass-vip-gold {
+                background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(15, 23, 38, 0.85) 100%);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(212, 175, 55, 0.35);
+            }
+
+            .glass-vip-card {
+                background: rgba(15, 23, 38, 0.7);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .glass-vip-card:hover {
+                border-color: rgba(212, 175, 55, 0.4);
+                box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.2);
+                transform: translateY(-4px);
+            }
+
+            .gold-button {
+                background: linear-gradient(135deg, #f5c33b 0%, #d4af37 50%, #b88e28 100%);
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+                color: #05080e;
+                font-weight: 700;
+            }
+
+            .gold-button:hover {
+                background: linear-gradient(135deg, #ffd666 0%, #e0bd42 50%, #c4992b 100%);
+                box-shadow: 0 6px 28px rgba(212, 175, 55, 0.45);
+                transform: translateY(-2px);
             }
 
             .hover-scale {
@@ -778,16 +839,16 @@
             }
 
             .hover-scale:hover {
-                transform: scale(1.05);
+                transform: scale(1.04);
             }
 
             .animate-float {
-                animation: float 3s ease-in-out infinite;
+                animation: float 4s ease-in-out infinite;
             }
 
             @keyframes float {
                 0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-20px); }
+                50% { transform: translateY(-12px); }
             }
 
             /* Mobile safe area padding */
@@ -797,8 +858,9 @@
 
             /* Active section navigation link */
             nav a.active-section {
-                color: #fbbf24 !important;
+                color: #ffd666 !important;
                 font-weight: 700;
+                text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
             }
 
             /* Tooltip styles */
@@ -854,14 +916,16 @@
                 }
 
                 .mobile-tooltip-content {
-                    background: white;
+                    background: #080c14;
+                    border: 1px solid rgba(212, 175, 55, 0.4);
                     border-radius: 1rem;
                     padding: 1.5rem;
                     max-width: 90%;
                     max-height: 80vh;
                     overflow-y: auto;
-                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.15);
                     animation: slideUp 0.3s ease-out;
+                    color: #f8fafc;
                 }
 
                 @keyframes slideUp {
@@ -885,11 +949,13 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: #f1f5f9;
+                    background: rgba(212, 175, 55, 0.15);
+                    border: 1px solid rgba(212, 175, 55, 0.3);
                     border-radius: 50%;
                     margin-left: 1rem;
                     margin-bottom: 0.5rem;
                     cursor: pointer;
+                    color: #d4af37;
                 }
             }
 
@@ -961,188 +1027,220 @@
     </head>
     <body class="bg-cappuccino-50">
         <!-- Navigation -->
-        <nav class="fixed w-full z-50 bg-cappuccino-900/95 backdrop-blur-md shadow-lg">
+        <nav class="fixed w-full z-50 bg-obsidian-950/85 backdrop-blur-xl border-b border-gold-500/20 shadow-2xl">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
                     <div class="flex items-center gap-3">
-                        <img src="images/logo.jpeg" alt="ERS PT Studio Logo" class="h-14 w-14 rounded-full object-cover shadow-lg">
-                        <h2 class="text-2xl font-bold bg-gradient-to-r from-cappuccino-200 to-cappuccino-100 bg-clip-text text-transparent">
-                            ERS PT STUDIO
-                        </h2>
+                        <div class="relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-gold-400 to-amber-500 rounded-full blur-sm opacity-60"></div>
+                            <img src="images/logo.jpeg" alt="ERS PT Studio Logo" class="relative h-12 w-12 rounded-full object-cover border border-gold-400/50">
+                        </div>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold font-display tracking-wider gold-glow-text flex items-center gap-2">
+                                ERS PT STUDIO
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-gold-500/10 border border-gold-400/30 text-gold-300 font-semibold uppercase tracking-widest hidden sm:inline-block">VIP</span>
+                            </h2>
+                        </div>
                     </div>
-                    <div class="hidden md:flex space-x-8">
-                        <a href="#home" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Ana Sayfa</a>
-                        <a href="#about" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Hakkımızda</a>
-                        <a href="#services" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Hizmetler</a>
-                        <a href="#packages" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Paketler</a>
-                        <a href="#calculator" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Hesaplama</a>
-                        <a href="#reviews" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Yorumlar</a>
-                        <a href="#schedule" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">Randevu</a>
-                        <a href="#contact" class="text-cappuccino-200 hover:text-cappuccino-50 transition-colors duration-300">İletişim</a>
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#home" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">Ana Sayfa</a>
+                        <a href="#about" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">Hakkımızda</a>
+                        <a href="#services" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">Hizmetler</a>
+                        <a href="#packages" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">Paketler</a>
+                        <a href="#calculator" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">Hesaplama</a>
+                        <a href="#reviews" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">Yorumlar</a>
+                        <a href="#schedule" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">Randevu</a>
+                        <a href="#contact" class="text-slate-300 hover:text-gold-300 transition-colors duration-300 text-sm font-medium">İletişim</a>
+                        
+                        <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20VIP%20üyelik%20ve%20dersler%20hakkında%20bilgi%20almak%20istiyorum" 
+                           target="_blank" data-ga-event="whatsapp-cta" data-ga-location="header-nav"
+                           class="gold-button px-5 py-2.5 rounded-full text-xs uppercase tracking-wider flex items-center gap-2">
+                            <i class="fab fa-whatsapp text-sm"></i>
+                            <span>VIP İletişim</span>
+                        </a>
                     </div>
-                    <button class="md:hidden text-cappuccino-100" id="mobile-menu-btn">
+                    <button class="md:hidden text-gold-400 p-2" id="mobile-menu-btn" aria-label="Menüyü Aç">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-cappuccino-800 pb-4">
-                <a href="#home" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Ana Sayfa</a>
-                <a href="#about" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Hakkımızda</a>
-                <a href="#services" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Hizmetler</a>
-                <a href="#packages" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Paketler</a>
-                <a href="#calculator" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Hesaplama</a>
-                <a href="#reviews" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Yorumlar</a>
-                <a href="#schedule" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">Randevu</a>
-                <a href="#contact" class="block px-4 py-2 text-cappuccino-200 hover:bg-cappuccino-700">İletişim</a>
+            <div id="mobile-menu" class="hidden md:hidden bg-obsidian-900/95 border-b border-gold-500/20 pb-4 px-4 pt-2">
+                <a href="#home" class="block px-4 py-2.5 text-slate-200 hover:text-gold-300 hover:bg-gold-500/10 rounded-lg">Ana Sayfa</a>
+                <a href="#about" class="block px-4 py-2.5 text-slate-200 hover:text-gold-300 hover:bg-gold-500/10 rounded-lg">Hakkımızda</a>
+                <a href="#services" class="block px-4 py-2.5 text-slate-200 hover:text-gold-300 hover:bg-gold-500/10 rounded-lg">Hizmetler</a>
+                <a href="#packages" class="block px-4 py-2.5 text-slate-200 hover:text-gold-300 hover:bg-gold-500/10 rounded-lg">Paketler</a>
+                <a href="#calculator" class="block px-4 py-2.5 text-gold-400 font-semibold hover:bg-gold-500/10 rounded-lg">Vücut Yağ Hesapla</a>
+                <a href="#reviews" class="block px-4 py-2.5 text-slate-200 hover:text-gold-300 hover:bg-gold-500/10 rounded-lg">Yorumlar</a>
+                <a href="#schedule" class="block px-4 py-2.5 text-slate-200 hover:text-gold-300 hover:bg-gold-500/10 rounded-lg">Randevu Al</a>
+                <a href="#contact" class="block px-4 py-2.5 text-slate-200 hover:text-gold-300 hover:bg-gold-500/10 rounded-lg">İletişim</a>
             </div>
         </nav>
 
-        <!-- Quick Navigation / Anchor Links -->
+        <!-- Quick Navigation / Anchor Links (Desktop) -->
         <div class="fixed bottom-8 right-8 z-40 hidden lg:block">
-            <div class="bg-white rounded-2xl shadow-2xl p-3 space-y-2">
-                <a href="#home" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-cappuccino-100 transition-all group relative" title="Ana Sayfa">
-                    <i class="fas fa-home text-cappuccino-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-cappuccino-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Ana Sayfa</span>
+            <div class="glass-vip rounded-2xl p-2.5 space-y-2 border border-gold-500/30 shadow-2xl">
+                <a href="#home" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="Ana Sayfa">
+                    <i class="fas fa-home text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Ana Sayfa</span>
                 </a>
-                <a href="#about" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-cappuccino-100 transition-all group relative" title="Hakkımızda">
-                    <i class="fas fa-user text-cappuccino-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-cappuccino-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Hakkımızda</span>
+                <a href="#about" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="Hakkımızda">
+                    <i class="fas fa-user-shield text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Hakkımızda</span>
                 </a>
-                <a href="#services" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-cappuccino-100 transition-all group relative" title="Hizmetler">
-                    <i class="fas fa-dumbbell text-cappuccino-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-cappuccino-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Hizmetler</span>
+                <a href="#services" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="Hizmetler">
+                    <i class="fas fa-dumbbell text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Hizmetler</span>
                 </a>
-                <a href="#packages" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-cappuccino-100 transition-all group relative" title="Paketler">
-                    <i class="fas fa-box text-cappuccino-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-cappuccino-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Paketler</span>
+                <a href="#packages" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="Paketler">
+                    <i class="fas fa-crown text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Paketler</span>
                 </a>
-                <a href="#calculator" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-gradient-to-r hover:from-indigo-100 hover:to-purple-100 transition-all group relative" title="Hesaplama">
-                    <i class="fas fa-calculator text-indigo-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-indigo-600 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Hesaplama</span>
+                <a href="#calculator" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="Hesaplama">
+                    <i class="fas fa-calculator text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Yağ Oranı Hesapla</span>
                 </a>
-                <a href="#reviews" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-cappuccino-100 transition-all group relative" title="Yorumlar">
-                    <i class="fas fa-star text-cappuccino-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-cappuccino-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Yorumlar</span>
+                <a href="#reviews" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="Yorumlar">
+                    <i class="fas fa-star text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Yorumlar</span>
                 </a>
-                <a href="#schedule" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-cappuccino-100 transition-all group relative" title="Randevu">
-                    <i class="fas fa-calendar text-cappuccino-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-cappuccino-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Randevu</span>
+                <a href="#schedule" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="Randevu">
+                    <i class="fas fa-calendar-alt text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">VIP Randevu</span>
                 </a>
-                <a href="#contact" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-cappuccino-100 transition-all group relative" title="İletişim">
-                    <i class="fas fa-envelope text-cappuccino-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-cappuccino-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">İletişim</span>
+                <a href="#contact" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-500/20 text-gold-400 transition-all group relative" title="İletişim">
+                    <i class="fas fa-envelope text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">İletişim</span>
                 </a>
-                <div class="border-t border-cappuccino-200 my-2"></div>
-                <a href="#home" class="block w-12 h-12 flex items-center justify-center rounded-xl hover:bg-green-100 transition-all group relative scroll-to-top" title="Yukarı Çık">
-                    <i class="fas fa-arrow-up text-green-600 text-lg group-hover:scale-110 transition-transform"></i>
-                    <span class="absolute right-full mr-3 bg-green-600 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Yukarı</span>
+                <div class="border-t border-gold-500/20 my-1"></div>
+                <a href="#home" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-gold-400/30 text-gold-300 transition-all group relative scroll-to-top" title="Yukarı Çık">
+                    <i class="fas fa-arrow-up text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="absolute right-full mr-3 bg-obsidian-900 border border-gold-500/30 text-gold-200 px-3 py-1 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Yukarı</span>
                 </a>
             </div>
         </div>
 
         <!-- Mobile Quick Navigation (Bottom Bar) -->
-        <div class="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t border-cappuccino-200 shadow-2xl">
-            <div class="flex justify-around items-center py-3">
-                <a href="#home" class="flex flex-col items-center text-cappuccino-600 hover:text-cappuccino-900 transition-colors">
-                    <i class="fas fa-home text-xl mb-1"></i>
-                    <span class="text-xs">Ana Sayfa</span>
+        <div class="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-obsidian-950/90 border-t border-gold-500/20 backdrop-blur-lg">
+            <div class="flex justify-around items-center py-2.5 px-2">
+                <a href="#home" class="flex flex-col items-center text-slate-400 hover:text-gold-300 transition-colors">
+                    <i class="fas fa-home text-lg mb-1"></i>
+                    <span class="text-[10px] tracking-tight">Ana Sayfa</span>
                 </a>
-                <a href="#services" class="flex flex-col items-center text-cappuccino-600 hover:text-cappuccino-900 transition-colors">
-                    <i class="fas fa-dumbbell text-xl mb-1"></i>
-                    <span class="text-xs">Hizmetler</span>
+                <a href="#services" class="flex flex-col items-center text-slate-400 hover:text-gold-300 transition-colors">
+                    <i class="fas fa-dumbbell text-lg mb-1"></i>
+                    <span class="text-[10px] tracking-tight">Hizmetler</span>
                 </a>
-                <a href="#packages" class="flex flex-col items-center text-cappuccino-600 hover:text-cappuccino-900 transition-colors">
-                    <i class="fas fa-box text-xl mb-1"></i>
-                    <span class="text-xs">Paketler</span>
+                <a href="#packages" class="flex flex-col items-center text-slate-400 hover:text-gold-300 transition-colors">
+                    <i class="fas fa-crown text-lg mb-1 text-gold-400"></i>
+                    <span class="text-[10px] tracking-tight text-gold-400 font-semibold">Paketler</span>
                 </a>
-                <a href="#calculator" class="flex flex-col items-center text-indigo-600 hover:text-indigo-900 transition-colors">
-                    <i class="fas fa-calculator text-xl mb-1"></i>
-                    <span class="text-xs">Hesapla</span>
+                <a href="#calculator" class="flex flex-col items-center text-slate-400 hover:text-gold-300 transition-colors">
+                    <i class="fas fa-calculator text-lg mb-1"></i>
+                    <span class="text-[10px] tracking-tight">Hesapla</span>
                 </a>
-                <a href="#contact" class="flex flex-col items-center text-cappuccino-600 hover:text-cappuccino-900 transition-colors">
-                    <i class="fas fa-envelope text-xl mb-1"></i>
-                    <span class="text-xs">İletişim</span>
+                <a href="#contact" class="flex flex-col items-center text-slate-400 hover:text-gold-300 transition-colors">
+                    <i class="fas fa-envelope text-lg mb-1"></i>
+                    <span class="text-[10px] tracking-tight">İletişim</span>
                 </a>
             </div>
         </div>
 
         <!-- Hero Section -->
-        <section id="home" class="relative min-h-screen flex items-center bg-gradient-to-br from-cappuccino-900 via-cappuccino-800 to-cappuccino-900 overflow-hidden">
-            <div class="absolute inset-0 bg-[url('images/salon.jpeg')] bg-cover bg-center opacity-20"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-cappuccino-900/50"></div>
+        <section id="home" class="relative min-h-screen flex items-center bg-obsidian-950 overflow-hidden pt-20">
+            <!-- Ambient Lighting Effects -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-br from-amber-500/15 via-gold-600/10 to-transparent rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute inset-0 bg-[url('images/salon.jpeg')] bg-cover bg-center opacity-15"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian-950/60 via-obsidian-950/90 to-obsidian-950"></div>
 
-            <div class="relative z-10 w-full mt-24 mb-12">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
+            <div class="relative z-10 w-full py-16 lg:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
                     <!-- Left: Hero text -->
-                    <div class="text-center md:text-left">
-                        <div class="inline-block md:inline bg-black/30 backdrop-blur-sm px-6 py-4 pb-0 rounded-3xl mb-8">
-                            <div class="animate-float">
-                                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 leading-tight" style="text-shadow: 1px 2px 4px rgba(0,0,0,0.5);">
-                                    <span class="text-white">ERS PERSONAL</span><br/>
-                                    <span class="bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 bg-clip-text text-transparent font-black" style="-webkit-text-stroke: 1px rgba(0,0,0,0.3);">
-                                        TRAINING STUDIO
-                                    </span>
-                                </h1>
-                            </div>
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <!-- VIP Badge capsule -->
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-vip-gold mb-6 border border-gold-400/40">
+                            <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-gold-300">
+                                Bayraklı, İzmir'in En Özel VIP Personal Training Stüdyosu
+                            </span>
                         </div>
-                        <p class="text-xl md:text-2xl text-white mb-8 max-w-xl md:max-w-none md:pr-8" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">
-                            İzmir'in En Modern ve Özel Antrenman Stüdyosu
+
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display leading-[1.1] mb-6 tracking-tight">
+                            <span class="text-white block mb-1">BİREBİR ÖZEL</span>
+                            <span class="gold-glow-text-bright block">VIP PERSONAL TRAINING</span>
+                        </h1>
+
+                        <p class="text-base sm:text-xl text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                            Ersin Hoca ile %100 kişiye özel, mobilite & güç odaklı VIP dersler. Kalabalıktan uzak, sessiz, son teknoloji donanımlı stüdyoda hedeflerinize ulaşın.
                         </p>
 
-                        <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-8">
-                            <div class="glass px-6 py-4 rounded-full">
-                                <i class="fas fa-award text-yellow-400 text-2xl mr-2"></i>
-                                <span class="text-white font-semibold">14 Yıl Deneyim</span>
+                        <!-- Key Features Badges -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-3 mb-10">
+                            <div class="glass-vip px-4 py-2.5 rounded-xl flex items-center gap-2 border border-gold-500/20">
+                                <i class="fas fa-award text-gold-400 text-lg"></i>
+                                <span class="text-slate-200 text-xs sm:text-sm font-semibold">14 Yıl Deneyim</span>
                             </div>
-                            <div class="glass px-6 py-4 rounded-full">
-                                <i class="fas fa-user text-indigo-400 text-2xl mr-2"></i>
-                                <span class="text-white font-semibold">1-1 Özel Ders</span>
+                            <div class="glass-vip px-4 py-2.5 rounded-xl flex items-center gap-2 border border-gold-500/20">
+                                <i class="fas fa-crown text-gold-400 text-lg"></i>
+                                <span class="text-slate-200 text-xs sm:text-sm font-semibold">Sadece 1-1 VIP Ders</span>
                             </div>
-                            <div class="glass px-6 py-4 rounded-full">
-                                <i class="fas fa-dumbbell text-pink-400 text-2xl mr-2"></i>
-                                <span class="text-white font-semibold">Modern Ekipman</span>
+                            <div class="glass-vip px-4 py-2.5 rounded-xl flex items-center gap-2 border border-gold-500/20">
+                                <i class="fas fa-shield-alt text-gold-400 text-lg"></i>
+                                <span class="text-slate-200 text-xs sm:text-sm font-semibold">ISSA Master Trainer</span>
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                            <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
-                               data-ga-event="whatsapp-cta" data-ga-location="hero"
-                               class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white text-lg font-bold rounded-full shadow-2xl hover-scale transition-all duration-300">
-                                <i class="fab fa-whatsapp text-2xl mr-3"></i>
-                                Hemen Başla
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                            <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20VIP%20ücretsiz%20analiz%20seansı%20hakkında%20bilgi%20almak%20istiyorum" 
+                               target="_blank" data-ga-event="whatsapp-cta" data-ga-location="hero"
+                               class="gold-button px-8 py-4 rounded-full text-base tracking-wide flex items-center gap-3 transition-all duration-300">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                                <span>VIP Randevunu Al</span>
                             </a>
                             <a href="https://www.instagram.com/ers.ptstudio/" target="_blank"
                                data-ga-event="instagram-cta" data-ga-location="hero"
-                               class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white text-lg font-bold rounded-full shadow-2xl hover-scale transition-all duration-300">
-                                <i class="fab fa-instagram text-2xl mr-3"></i>
-                                Dönüşümleri Gör
+                               class="glass-vip px-8 py-4 rounded-full text-base font-bold text-slate-200 hover:text-gold-300 hover:border-gold-400/50 flex items-center gap-3 transition-all duration-300">
+                                <i class="fab fa-instagram text-xl text-gold-400"></i>
+                                <span>Dönüşümleri İncele</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Right: Large trainer card -->
-                    <div class="block">
-                        <div class="relative max-w-md mx-auto md:ml-auto mt-8 md:mt-0">
-                            <div class="absolute -inset-4 bg-gradient-to-br from-amber-300/40 via-cappuccino-400/40 to-amber-500/40 rounded-3xl blur-2xl opacity-80"></div>
-                            <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-cappuccino-50/95 border border-cappuccino-200">
-                                <img src="images/trainer.jpeg" alt="Ersin Hoca - Personal Trainer" loading="eager"
-                                     class="w-full h-80 object-cover">
-                                <div class="p-6">
-                                    <p class="text-xs font-semibold tracking-wide text-cappuccino-700 uppercase mb-2 flex items-center gap-2">
-                                        <i class="fas fa-user-shield text-cappuccino-600"></i>
-                                        ISSA Certified Personal Trainer
+                    <!-- Right: Trainer Card -->
+                    <div class="lg:col-span-5">
+                        <div class="relative max-w-md mx-auto">
+                            <!-- Glow aura -->
+                            <div class="absolute -inset-4 bg-gradient-to-tr from-gold-500/30 via-amber-500/20 to-transparent rounded-3xl blur-2xl opacity-70"></div>
+                            
+                            <div class="relative glass-vip-gold rounded-3xl p-3 border border-gold-400/40 shadow-2xl overflow-hidden">
+                                <div class="relative rounded-2xl overflow-hidden mb-5 bg-obsidian-950">
+                                    <img src="images/trainer.jpeg" alt="Ersin Hoca - ISSA VIP Personal Trainer" loading="eager"
+                                         class="w-full h-auto rounded-2xl object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent"></div>
+                                    <div class="absolute top-4 right-4 bg-obsidian-950/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-gold-400/40 flex items-center gap-1.5 shadow-lg">
+                                        <i class="fas fa-check-circle text-gold-400 text-xs"></i>
+                                        <span class="text-[11px] font-bold text-gold-200 uppercase tracking-wider">ISSA Certified</span>
+                                    </div>
+                                </div>
+
+                                <div class="px-3 pb-3">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <h3 class="text-2xl font-bold font-display text-white">Ersin Hoca</h3>
+                                        <span class="text-xs font-bold text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded-full border border-gold-400/30">Head PT</span>
+                                    </div>
+                                    <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+                                        14 yıllık deneyim. ISSA, TVGBF 2. Seviye ve EQF Level 4 sertifikalı bilimsel antrenörlük yaklaşımı.
                                     </p>
-                                    <h3 class="text-2xl font-bold text-slate-900 mb-1">Ersin Hoca</h3>
-                                    <p class="text-slate-700 mb-4 text-sm">14 yıllık deneyimiyle postür, mobilite ve güç odaklı birebir antrenmanlar.</p>
-                                    <div class="flex flex-wrap items-center gap-3">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
-                                            <i class="fas fa-user-check mr-1"></i>
-                                            Sınırlı kontenjan
+                                    <div class="flex items-center justify-between border-t border-gold-500/20 pt-3">
+                                        <span class="text-xs text-gold-300 font-medium flex items-center gap-1.5">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                            Sınırlı VIP Kontenjan
                                         </span>
-                                        <a href="#schedule" data-ga-event="schedule-cta" data-ga-location="hero-trainer-card" class="inline-flex items-center px-4 py-2 bg-cappuccino-700 hover:bg-cappuccino-800 text-white rounded-full text-sm font-semibold shadow-lg transition-all duration-300">
-                                            <i class="fas fa-calendar-check mr-2"></i>
-                                            İlk Randevunu Ayarla
+                                        <a href="#schedule" data-ga-event="schedule-cta" data-ga-location="hero-trainer-card" 
+                                           class="text-xs font-bold text-gold-400 hover:text-white flex items-center gap-1 transition-colors">
+                                            <span>Ücretsiz Analiz</span>
+                                            <i class="fas fa-chevron-right text-[10px]"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -1154,115 +1252,114 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-cappuccino-100">
+        <section id="about" class="py-24 bg-obsidian-900 border-t border-b border-gold-500/10 relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hakkımızda</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-3.5 py-1.5 rounded-full border border-gold-400/30">
+                        Boutique VIP Studio
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 mb-4">
+                        Hakkımızda & VIP Yaklaşım
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full"></div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h3 class="text-3xl font-bold text-slate-900 mb-4">
-                            Ersin Hoca ile Kişiye Özel Antrenman
+                        <h3 class="text-2xl sm:text-4xl font-bold font-display text-white mb-4 leading-snug">
+                            Ersin Hoca ile %100 Birebir VIP Ders Deneyimi
                         </h3>
-                        <p class="text-xl text-indigo-600 font-semibold mb-6">
-                            14 yıllık deneyime sahip Ersin Hoca ile tüm dersler birebir ve tamamen kişiye özeldir.
+                        <p class="text-base sm:text-lg text-gold-300 font-medium mb-8 leading-relaxed">
+                            14 yıllık tecrübeye sahip Ersin Hoca ile tüm antrenmanlar tamamen kişiye özel ve tek kişilik stüdyoda gerçekleştirilir.
                         </p>
 
+                        <!-- Certificates Grid -->
                         <div class="space-y-4 mb-8">
-                            <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
-                                <i class="fas fa-certificate text-indigo-600 text-3xl"></i>
-                                <span class="relative group tooltip-trigger">
-                                    <span onclick="openTooltipModal('tvgbf')" class="text-slate-800 font-semibold underline decoration-dotted cursor-help hover:text-indigo-600 transition-colors">TVGBF 2nd Level</span>
-                                    <span class="text-slate-800 font-semibold"> 🏆🏆</span>
-                                    <!-- Desktop Tooltip -->
-                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
-                                        <strong class="block mb-2 text-indigo-300">🏆 TVGBF 2nd Level</strong>
-                                        Türkiye Vücut Geliştirme ve Fitness Federasyonu tarafından verilen 2. Seviye Antrenörlük Sertifikası. İleri düzey antrenman programlama, spor fizyolojisi ve beslenme konularında yetkinlik belgesidir.
-                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
-                                    </span>
-                                </span>
+                            <div class="glass-vip p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-gold-400/50 transition-all" onclick="openTooltipModal('tvgbf')">
+                                <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-trophy text-gold-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm sm:text-base flex items-center gap-2">
+                                        TVGBF 2nd Level Antrenör
+                                        <span class="text-xs text-gold-400 font-normal">🏆 2. Kademe</span>
+                                    </h4>
+                                    <p class="text-slate-400 text-xs mt-0.5">Türkiye Vücut Geliştirme ve Fitness Federasyonu Onaylı Uzman</p>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
-                                <i class="fas fa-graduation-cap text-purple-600 text-3xl"></i>
-                                <span class="relative group tooltip-trigger">
-                                    <span onclick="openTooltipModal('eqf')" class="text-slate-800 font-semibold underline decoration-dotted cursor-help hover:text-purple-600 transition-colors">EQF L-4 PT</span>
-                                    <span class="text-slate-800 font-semibold"> ☄️</span>
-                                    <!-- Desktop Tooltip -->
-                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
-                                        <strong class="block mb-2 text-purple-300">🎓 EQF Level 4 Personal Trainer</strong>
-                                        European Qualifications Framework (Avrupa Yeterlilik Çerçevesi) 4. Seviye Personal Trainer sertifikası. AB ülkelerinde tanınan, uluslararası standartlarda eğitim yeterliliği belgesidir.
-                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
-                                    </span>
-                                </span>
+
+                            <div class="glass-vip p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-gold-400/50 transition-all" onclick="openTooltipModal('eqf')">
+                                <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-graduation-cap text-gold-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm sm:text-base flex items-center gap-2">
+                                        EQF Level 4 Personal Trainer
+                                        <span class="text-xs text-gold-400 font-normal">🇪🇺 Avrupa Standardı</span>
+                                    </h4>
+                                    <p class="text-slate-400 text-xs mt-0.5">Avrupa Yeterlilik Çerçevesi Uluslararası Yetkinlik Sertifikası</p>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl">
-                                <i class="fas fa-award text-pink-600 text-3xl"></i>
-                                <span class="relative group tooltip-trigger">
-                                    <span onclick="openTooltipModal('issa')" class="text-slate-800 font-semibold underline decoration-dotted cursor-help hover:text-pink-600 transition-colors">ISSA Certified Personal Trainer</span>
-                                    <span class="text-slate-800 font-semibold"> 🌟</span>
-                                    <!-- Desktop Tooltip -->
-                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
-                                        <strong class="block mb-2 text-pink-300">🌟 ISSA Certified Personal Trainer</strong>
-                                        International Sports Sciences Association - 1988'den beri dünya çapında 140+ ülkede tanınan, bilimsel temelli personal training sertifikası. Spor bilimi, anatomi ve egzersiz fizyolojisi alanlarında kapsamlı eğitim.
-                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
-                                    </span>
-                                </span>
+
+                            <div class="glass-vip p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:border-gold-400/50 transition-all" onclick="openTooltipModal('issa')">
+                                <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-certificate text-gold-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm sm:text-base flex items-center gap-2">
+                                        ISSA Certified Trainer
+                                        <span class="text-xs text-gold-400 font-normal">🌟 Uluslararası</span>
+                                    </h4>
+                                    <p class="text-slate-400 text-xs mt-0.5">International Sports Sciences Association Bilimsel Antrenörlüğü</p>
+                                </div>
                             </div>
                         </div>
 
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                İzmir'in tam ortası Bayraklı'da
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                Otopark sorunu yok - kolay ulaşım
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                Sessiz, sakin ve tertemiz ortam
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                Yepyeni ve en modern cihazlar
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                Profesyonel ekipmanlar
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                Kişiye özel antrenman programları
-                            </li>
-                        </ul>
+                        <!-- Check points -->
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-2.5 text-slate-300 text-sm">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>Bayraklı Merkez Ulaşım</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-slate-300 text-sm">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>Özel Ücretsiz Otopark</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-slate-300 text-sm">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>Steril & Hijyenik VIP Alan</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 text-slate-300 text-sm">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>Son Teknoloji Cihazlar</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="space-y-6">
                         <!-- Studio Images Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-scale">
-                                <div class="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl opacity-20 blur-xl"></div>
-                                <img src="images/enterance.jpeg" alt="Ers PT Studio - Giriş" loading="lazy"
-                                     class="relative w-full h-64 object-cover rounded-2xl">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="relative overflow-hidden rounded-2xl border border-gold-500/20 group">
+                                <img src="images/enterance.jpeg" alt="Ers PT Studio Giriş" loading="lazy"
+                                     class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/80 via-transparent to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-xs font-semibold text-white">Stüdyo Giriş</span>
                             </div>
-                            <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover-scale">
-                                <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-20 blur-xl"></div>
-                                <img src="images/external.jpeg" alt="Ers PT Studio - Dış Görünüm" loading="lazy"
-                                     class="relative w-full h-64 object-cover rounded-2xl">
+                            <div class="relative overflow-hidden rounded-2xl border border-gold-500/20 group">
+                                <img src="images/external.jpeg" alt="Ers PT Studio Dış Alan" loading="lazy"
+                                     class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/80 via-transparent to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-xs font-semibold text-white">Bayraklı Dış Görünüm</span>
                             </div>
                         </div>
 
-                        <!-- Trainer highlight text (kept subtle in about section) -->
-                        <div class="mt-6 rounded-2xl bg-white/80 border border-cappuccino-200 p-6 shadow-md">
-                            <h4 class="text-xl font-bold text-slate-900 mb-2">Antrenörünüzü Tanıyın</h4>
-                            <p class="text-slate-700 text-sm mb-2">
-                                Tüm seanslar, 14 yıllık deneyime sahip <strong>Ersin Hoca</strong> ile birebir olarak gerçekleştirilir.
-                            </p>
-                            <p class="text-slate-700 text-sm">
-                                ISSA onaylı kişisel antrenörlük, TVGBF 2. Kademe ve EQF L-4 PT sertifikaları ile hem güvenli hem de bilimsel temelli bir yaklaşım sunar.
+                        <div class="glass-vip p-6 rounded-2xl border border-gold-400/30">
+                            <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fas fa-star text-gold-400"></i>
+                                Birebir Koçluk Felsefesi
+                            </h4>
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                                Stüdyomuzda aynı anda birden fazla üye çalışmaz. Antrenman süresince antrenörünüz 60 dakika boyunca sadece sizin hareket formunuza, nefes ritminize ve hedefinize odaklanır.
                             </p>
                         </div>
                     </div>
@@ -1271,89 +1368,94 @@
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-20 bg-gradient-to-br from-cappuccino-50 to-cappuccino-200">
+        <section id="services" class="py-24 bg-obsidian-950 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hizmetlerimiz</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-3.5 py-1.5 rounded-full border border-gold-400/30">
+                        Uzmanlık Alanlarımız
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 mb-4">
+                        VIP Antrenman Programları
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full"></div>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Functional Fitness Card -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100 cursor-pointer group" onclick="openServiceModal('functional')">
-                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-running text-white text-3xl"></i>
+                    <div class="glass-vip-card p-8 rounded-3xl cursor-pointer group" onclick="openServiceModal('functional')">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-running text-obsidian-950 text-2xl font-bold"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Functional Fitness</h3>
-                        <p class="text-slate-600 mb-4">Günlük hayatınızı kolaylaştıran fonksiyonel fitness antrenmanları</p>
-                        <div class="flex items-center text-indigo-600 font-semibold text-sm group-hover:text-indigo-700">
-                            <span>Detaylı Bilgi</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-300 transition-colors">Functional Fitness</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-6 leading-relaxed">Günlük hayat hareket kalıplarınızı güçlendiren fonksiyonel antrenmanlar.</p>
+                        <div class="flex items-center text-gold-400 text-xs font-bold group-hover:translate-x-1 transition-transform">
+                            <span>Detayları İncele</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                     </div>
 
                     <!-- Strength Training Card -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-purple-100 cursor-pointer group" onclick="openServiceModal('strength')">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-dumbbell text-white text-3xl"></i>
+                    <div class="glass-vip-card p-8 rounded-3xl cursor-pointer group" onclick="openServiceModal('strength')">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-dumbbell text-obsidian-950 text-2xl font-bold"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Strength Training</h3>
-                        <p class="text-slate-600 mb-4">Kuvvet ve kas gelişimi için özel tasarlanmış programlar</p>
-                        <div class="flex items-center text-purple-600 font-semibold text-sm group-hover:text-purple-700">
-                            <span>Detaylı Bilgi</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-300 transition-colors">Strength Training</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-6 leading-relaxed">Kas kütlesi artırımı ve güç geliştirme odaklı periodize edilmiş yüklemeler.</p>
+                        <div class="flex items-center text-gold-400 text-xs font-bold group-hover:translate-x-1 transition-transform">
+                            <span>Detayları İncele</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                     </div>
 
                     <!-- Mobility & Flexibility Card -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-pink-100 cursor-pointer group" onclick="openServiceModal('mobility')">
-                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-person-walking text-white text-3xl"></i>
+                    <div class="glass-vip-card p-8 rounded-3xl cursor-pointer group" onclick="openServiceModal('mobility')">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-person-walking text-obsidian-950 text-2xl font-bold"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Mobility & Flexibility</h3>
-                        <p class="text-slate-600 mb-4">Hareket kabiliyetinizi artıran mobilite çalışmaları</p>
-                        <div class="flex items-center text-pink-600 font-semibold text-sm group-hover:text-pink-700">
-                            <span>Detaylı Bilgi</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-300 transition-colors">Mobility & Flexibility</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-6 leading-relaxed">Eklem hareket açıklığı artırma ve omurga esnekliği geliştirme çalışmaları.</p>
+                        <div class="flex items-center text-gold-400 text-xs font-bold group-hover:translate-x-1 transition-transform">
+                            <span>Detayları İncele</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                     </div>
 
                     <!-- Conditioning Card -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-blue-100 cursor-pointer group" onclick="openServiceModal('conditioning')">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-heartbeat text-white text-3xl"></i>
+                    <div class="glass-vip-card p-8 rounded-3xl cursor-pointer group" onclick="openServiceModal('conditioning')">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-heartbeat text-obsidian-950 text-2xl font-bold"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Conditioning</h3>
-                        <p class="text-slate-600 mb-4">Kardiyovasküler dayanıklılık ve kondisyon geliştirme</p>
-                        <div class="flex items-center text-blue-600 font-semibold text-sm group-hover:text-blue-700">
-                            <span>Detaylı Bilgi</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-300 transition-colors">Conditioning</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-6 leading-relaxed">Kardiyovasküler dayanıklılık, yağ yakımı ve yüksek kondisyon hedefi.</p>
+                        <div class="flex items-center text-gold-400 text-xs font-bold group-hover:translate-x-1 transition-transform">
+                            <span>Detayları İncele</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                     </div>
 
                     <!-- Corrective Exercises Card -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-green-100 cursor-pointer group" onclick="openServiceModal('corrective')">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-user-md text-white text-3xl"></i>
+                    <div class="glass-vip-card p-8 rounded-3xl cursor-pointer group" onclick="openServiceModal('corrective')">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-user-md text-obsidian-950 text-2xl font-bold"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Corrective Exercises</h3>
-                        <p class="text-slate-600 mb-4">Postür düzeltme ve koruyucu egzersizler</p>
-                        <div class="flex items-center text-green-600 font-semibold text-sm group-hover:text-green-700">
-                            <span>Detaylı Bilgi</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-300 transition-colors">Corrective Exercises</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-6 leading-relaxed">Postür düzeltme, bel-boyun ağrılarına yönelik koruyucu egzersizler.</p>
+                        <div class="flex items-center text-gold-400 text-xs font-bold group-hover:translate-x-1 transition-transform">
+                            <span>Detayları İncele</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                     </div>
 
                     <!-- 1-1 Personal Training Card -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover-scale border border-indigo-100 cursor-pointer group" onclick="openServiceModal('personal')">
-                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-users text-white text-3xl"></i>
+                    <div class="glass-vip-card p-8 rounded-3xl cursor-pointer group" onclick="openServiceModal('personal')">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-crown text-obsidian-950 text-2xl font-bold"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-3">1-1 Personal Training</h3>
-                        <p class="text-slate-600 mb-4">Tamamen size özel, birebir antrenman seansları</p>
-                        <div class="flex items-center text-indigo-600 font-semibold text-sm group-hover:text-indigo-700">
-                            <span>Detaylı Bilgi</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-300 transition-colors">1-1 VIP Personal Training</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-6 leading-relaxed">Birebir özel antrenörlük, beslenme rehberliği ve sürekli takip.</p>
+                        <div class="flex items-center text-gold-400 text-xs font-bold group-hover:translate-x-1 transition-transform">
+                            <span>Detayları İncele</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -1361,428 +1463,360 @@
         </section>
 
         <!-- Packages Section -->
-        <section id="packages" class="py-20 bg-gradient-to-br from-cappuccino-900 to-cappuccino-800">
+        <section id="packages" class="py-24 bg-obsidian-900 border-t border-b border-gold-500/10 relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-cappuccino-50 mb-4">Antrenman Paketleri</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-cappuccino-400 to-cappuccino-300 mx-auto rounded-full"></div>
-                    <p class="text-cappuccino-200 mt-4">Size en uygun paketi seçin ve hedefinize ulaşın</p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-3.5 py-1.5 rounded-full border border-gold-400/30">
+                        Özel Üyelik Paketleri
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 mb-4">
+                        VIP Antrenman Paketleri
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full"></div>
+                    <p class="text-slate-400 mt-4 text-sm sm:text-base max-w-xl mx-auto">Hedefinize en uygun VIP ders paketini seçin, hemen dönüşüme başlayın.</p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid lg:grid-cols-3 gap-8 items-center">
                     <!-- 8 Ders Paketi -->
-                    <div class="bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 hover-scale border-4 border-cappuccino-200">
-                        <div class="text-center mb-6">
-                            <div class="inline-block bg-gradient-to-br from-indigo-500 to-purple-500 text-white px-6 py-3 rounded-full font-bold text-lg mb-4">
-                                Başlangıç
-                            </div>
-                            <h3 class="text-4xl font-bold text-slate-900 mb-2">8 Ders</h3>
-                            <p class="text-slate-600">Spor alışkanlığı kazanmak isteyenler için</p>
+                    <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                        <div class="text-center mb-8">
+                            <span class="inline-block bg-gold-500/10 text-gold-300 border border-gold-400/30 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4">
+                                Başlangıç Seviyesi
+                            </span>
+                            <h3 class="text-4xl font-extrabold font-display text-white mb-2">8 Ders</h3>
+                            <p class="text-slate-400 text-xs">Temel form ve spor alışkanlığı için</p>
                         </div>
                         <ul class="space-y-4 mb-8">
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">8 Birebir Antrenman Seansı</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>8 Birebir VIP Antrenman Seansı</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Kişiye Özel Program</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>Kişiye Özel Antrenman Programı</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Vücut Analizi</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>İlk Seans Vücut Yağ Analizi</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Beslenme Önerileri</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>Beslenme & Postür Danışmanlığı</span>
                             </li>
                         </ul>
-                        <a href="https://wa.me/905332470660?text=8%20ders%20paketi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
+                        <a href="https://wa.me/905332470660?text=8%20ders%20VIP%20paketi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
                            data-ga-event="package-cta" data-ga-package="8-ders"
-                           class="block w-full py-4 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-bold rounded-full text-center transition-all duration-300">
-                            Hemen Başla
+                           class="glass-vip block w-full py-4 text-center rounded-full text-gold-300 hover:text-white hover:border-gold-400 font-bold text-sm transition-all duration-300">
+                            Paket Detayı Al
                         </a>
                     </div>
 
-                    <!-- 12 Ders Paketi (Popular) -->
-                    <div class="bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 hover-scale border-4 border-purple-500 relative transform md:scale-105">
-                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-bold text-sm">
-                            EN POPÜLER
+                    <!-- 12 Ders Paketi (Featured VIP) -->
+                    <div class="glass-vip-gold p-8 rounded-3xl border-2 border-gold-400/80 relative shadow-2xl lg:-translate-y-4">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-400 to-amber-500 text-obsidian-950 px-5 py-1 rounded-full font-extrabold text-xs tracking-wider uppercase shadow-lg flex items-center gap-1.5 whitespace-nowrap">
+                            <i class="fas fa-crown"></i>
+                            <span>EN ÇOK TERCİH EDİLEN VIP</span>
                         </div>
-                        <div class="text-center mb-6 mt-4">
-                            <div class="inline-block bg-gradient-to-br from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-bold text-lg mb-4">
-                                Orta Seviye
-                            </div>
-                            <h3 class="text-4xl font-bold text-slate-900 mb-2">12 Ders</h3>
-                            <p class="text-slate-600">Düzenli gelişim isteyenler için</p>
+                        <div class="text-center mb-8 mt-4">
+                            <span class="inline-block bg-gold-400/20 text-gold-200 border border-gold-400/40 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4">
+                                İdeal VIP Program
+                            </span>
+                            <h3 class="text-5xl font-extrabold font-display text-white mb-2">12 Ders</h3>
+                            <p class="text-gold-200 text-xs font-medium">Gözle görülür hızlı değişim için</p>
                         </div>
                         <ul class="space-y-4 mb-8">
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">12 Birebir Antrenman Seansı</span>
+                            <li class="flex items-center gap-3 text-white text-sm font-medium">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>12 Birebir VIP Antrenman Seansı</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Kişiye Özel Program</span>
+                            <li class="flex items-center gap-3 text-white text-sm font-medium">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>Kişiye Özel Mobilite & Güç Programı</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Detaylı Vücut Analizi</span>
+                            <li class="flex items-center gap-3 text-white text-sm font-medium">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>Detaylı US Navy Vücut Kompozisyonu</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Beslenme Programı</span>
+                            <li class="flex items-center gap-3 text-white text-sm font-medium">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>Kişiselleştirilmiş Makro Beslenme Planı</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">WhatsApp Desteği</span>
+                            <li class="flex items-center gap-3 text-white text-sm font-medium">
+                                <i class="fas fa-check-circle text-gold-400"></i>
+                                <span>7/24 Eğitmen WhatsApp Desteği</span>
                             </li>
                         </ul>
-                        <a href="https://wa.me/905332470660?text=12%20ders%20paketi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
+                        <a href="https://wa.me/905332470660?text=12%20ders%20VIP%20paketi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
                            data-ga-event="package-cta" data-ga-package="12-ders"
-                           class="block w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold rounded-full text-center transition-all duration-300">
-                            Hemen Başla
+                           class="gold-button block w-full py-4 text-center rounded-full text-obsidian-950 font-extrabold text-sm tracking-wide transition-all duration-300">
+                            VIP Kontenjan Ayır
                         </a>
                     </div>
 
                     <!-- 16 Ders Paketi -->
-                    <div class="bg-white rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 hover-scale border-4 border-cappuccino-200">
-                        <div class="text-center mb-6">
-                            <div class="inline-block bg-gradient-to-br from-pink-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold text-lg mb-4">
-                                Pro Seviye
-                            </div>
-                            <h3 class="text-4xl font-bold text-slate-900 mb-2">16 Ders</h3>
-                            <p class="text-slate-600">Maksimum sonuç isteyenler için</p>
+                    <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                        <div class="text-center mb-8">
+                            <span class="inline-block bg-gold-500/10 text-gold-300 border border-gold-400/30 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4">
+                                Pro Dönüşüm
+                            </span>
+                            <h3 class="text-4xl font-extrabold font-display text-white mb-2">16 Ders</h3>
+                            <p class="text-slate-400 text-xs">Maksimum fiziksel & kondisyon sonucu</p>
                         </div>
                         <ul class="space-y-4 mb-8">
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">16 Birebir Antrenman Seansı</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>16 Birebir VIP Antrenman Seansı</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Kişiye Özel Program</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>İleri Seviye Güç & Postür Programı</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Detaylı Vücut Analizi</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>Haftalık Vücut Gelişim Analizleri</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">Özel Beslenme Programı</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">7/24 WhatsApp Desteği</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                                <span class="text-slate-700">İlerleme Takibi</span>
+                            <li class="flex items-center gap-3 text-slate-300 text-sm">
+                                <i class="fas fa-check text-gold-400"></i>
+                                <span>Tam Kapsamlı Beslenme & Takviye Rehberi</span>
                             </li>
                         </ul>
-                        <a href="https://wa.me/905332470660?text=16%20ders%20paketi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
+                        <a href="https://wa.me/905332470660?text=16%20ders%20Pro%20VIP%20paketi%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
                            data-ga-event="package-cta" data-ga-package="16-ders"
-                           class="block w-full py-4 bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 text-white font-bold rounded-full text-center transition-all duration-300">
-                            Hemen Başla
+                           class="glass-vip block w-full py-4 text-center rounded-full text-gold-300 hover:text-white hover:border-gold-400 font-bold text-sm transition-all duration-300">
+                            Paket Detayı Al
                         </a>
                     </div>
                 </div>
-
-                <div class="text-center mt-12">
-                    <p class="text-cappuccino-200 text-lg">
-                        <i class="fas fa-info-circle mr-2"></i>
-                        Detaylı fiyat bilgisi için WhatsApp üzerinden iletişime geçin
-                    </p>
-                </div>
             </div>
-        </section>
+
 
     <!-- Body Fat Calculator Section -->
-    <section id="calculator" class="py-20 bg-gradient-to-br from-slate-50 to-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="calculator" class="py-24 bg-obsidian-950 relative overflow-hidden border-t border-b border-gold-500/10">
+        <!-- Ambient lighting -->
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-3.5 py-1.5 rounded-full border border-gold-400/30">
+                    İnteraktif Vücut Analiz Aracı
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 mb-4">
                     Ücretsiz Vücut Yağ Oranı Hesaplama
                 </h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
                     <span class="relative group tooltip-trigger">
-                        <strong onclick="openTooltipModal('navy-formula')" class="underline decoration-dotted cursor-help hover:text-indigo-600 transition-colors">US Navy formülü</strong>
-                        <!-- Desktop Tooltip -->
-                        <span class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
-                            <strong class="block mb-2 text-indigo-300">🎖️ US Navy Formülü</strong>
-                            ABD Deniz Kuvvetleri tarafından askeri personelin vücut yağ oranını ölçmek için geliştirilmiş bilimsel bir yöntemdir. Basit ölçümlerle (boyun, bel, kalça) yüksek doğruluk oranı sağlar ve dünya çapında fitness profesyonelleri tarafından kullanılır.
-                            <span class="absolute top-full left-1/2 -translate-x-1/2 -mt-2 border-8 border-transparent border-t-slate-900"></span>
-                        </span>
-                    </span> kullanılarak vücut yağ oranınızı, <span class="relative group tooltip-trigger">
-                        <strong onclick="openTooltipModal('bmi')" class="underline decoration-dotted cursor-help hover:text-blue-600 transition-colors">BMI değerinizi</strong>
-                        <!-- Desktop Tooltip -->
-                        <span class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
-                            <strong class="block mb-2 text-blue-300">📊 BMI (Body Mass Index)</strong>
-                            Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir.
-                            <span class="absolute top-full left-4 -mt-2 border-8 border-transparent border-t-slate-900"></span>
-                        </span>
-                    </span> ve <strong>ideal kilonuzu</strong> anında hesaplayın
+                        <strong onclick="openTooltipModal('navy-formula')" class="underline decoration-dotted cursor-help text-gold-400 hover:text-white transition-colors">US Navy Formülü</strong>
+                    </span> kullanılarak vücut yağ oranınızı, 
+                    <span class="relative group tooltip-trigger">
+                        <strong onclick="openTooltipModal('bmi')" class="underline decoration-dotted cursor-help text-gold-400 hover:text-white transition-colors">BMI Değerinizi</strong>
+                    </span> ve ideal kilonuzu anında hesaplayın.
                 </p>
-                <p class="text-slate-500 mt-3 text-sm">
-                    ⚡ Anında sonuç • 📱 WhatsApp ile paylaş • 🎯 Hedef belirleme
+                <p class="text-gold-300/80 mt-3 text-xs font-medium">
+                    ⚡ Bilimsel Formül • 📱 WhatsApp Rapor Formatı • 🎯 Birebir VIP Tavsiye
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12">
+            <div class="grid lg:grid-cols-2 gap-10 items-start">
                 <!-- Calculator Form -->
-                <div class="bg-white rounded-3xl p-8 shadow-2xl">
+                <div class="glass-vip rounded-3xl p-6 sm:p-10 border border-gold-500/30 shadow-2xl">
                     <div class="mb-8">
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Ölçüm Bilgileri</h3>
-                        <p class="text-slate-600 text-sm">Tüm ölçümler santimetre cinsinden olmalıdır</p>
+                        <h3 class="text-2xl font-bold font-display text-white mb-2 flex items-center gap-2">
+                            <i class="fas fa-calculator text-gold-400"></i>
+                            Ölçüm Bilgileri
+                        </h3>
+                        <p class="text-slate-400 text-xs">Mezura ile alınan ölçümleri santimetre cinsinden giriniz</p>
                     </div>
 
                     <form id="bodyFatForm" class="space-y-6">
                         <!-- Gender Selection -->
                         <div>
-                            <label class="block text-slate-700 font-semibold mb-3">Cinsiyet</label>
+                            <label class="block text-slate-300 font-semibold text-xs uppercase tracking-wider mb-3">Cinsiyet Seçimi</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <button type="button" onclick="selectGender('male')" id="maleBtn"
-                                    class="gender-btn py-4 px-6 rounded-xl border-2 border-slate-300 hover:border-indigo-500 transition-all duration-300 flex items-center justify-center gap-3">
-                                    <i class="fas fa-mars text-2xl text-indigo-500"></i>
-                                    <span class="font-semibold">Erkek</span>
+                                    class="gender-btn py-3.5 px-6 rounded-2xl border-2 border-obsidian-800 bg-obsidian-900 text-slate-300 font-semibold hover:border-gold-400/50 transition-all flex items-center justify-center gap-3">
+                                    <i class="fas fa-mars text-xl text-gold-400"></i>
+                                    <span>Erkek</span>
                                 </button>
                                 <button type="button" onclick="selectGender('female')" id="femaleBtn"
-                                    class="gender-btn py-4 px-6 rounded-xl border-2 border-slate-300 hover:border-pink-500 transition-all duration-300 flex items-center justify-center gap-3">
-                                    <i class="fas fa-venus text-2xl text-pink-500"></i>
-                                    <span class="font-semibold">Kadın</span>
+                                    class="gender-btn py-3.5 px-6 rounded-2xl border-2 border-obsidian-800 bg-obsidian-900 text-slate-300 font-semibold hover:border-gold-400/50 transition-all flex items-center justify-center gap-3">
+                                    <i class="fas fa-venus text-xl text-amber-400"></i>
+                                    <span>Kadın</span>
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Age -->
-                        <div>
-                            <label for="age" class="block text-slate-700 font-semibold mb-2">
-                                <i class="fas fa-calendar-alt text-indigo-500 mr-2"></i>Yaş
-                            </label>
-                            <input type="number" id="age" min="15" max="100" required
-                                class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:border-indigo-500 focus:outline-none transition-colors"
-                                placeholder="Örn: 30">
-                        </div>
-
-                        <!-- Height -->
-                        <div>
-                            <label for="height" class="block text-slate-700 font-semibold mb-2">
-                                <i class="fas fa-arrows-alt-v text-indigo-500 mr-2"></i>Boy (cm)
-                            </label>
-                            <input type="number" id="height" min="100" max="250" step="0.1" required
-                                class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:border-indigo-500 focus:outline-none transition-colors"
-                                placeholder="Örn: 175">
-                        </div>
-
-                        <!-- Weight -->
-                        <div>
-                            <label for="weight" class="block text-slate-700 font-semibold mb-2">
-                                <i class="fas fa-weight text-indigo-500 mr-2"></i>Kilo (kg)
-                            </label>
-                            <input type="number" id="weight" min="30" max="300" step="0.1" required
-                                class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:border-indigo-500 focus:outline-none transition-colors"
-                                placeholder="Örn: 75">
+                        <!-- Grid for Age, Height, Weight -->
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="age" class="block text-slate-300 text-xs font-semibold mb-2">Yaş</label>
+                                <input type="number" id="age" min="15" max="100" required
+                                    class="w-full px-4 py-3 bg-obsidian-900 border border-gold-500/30 rounded-xl text-white focus:border-gold-400 focus:outline-none transition-colors"
+                                    placeholder="Örn: 30">
+                            </div>
+                            <div>
+                                <label for="height" class="block text-slate-300 text-xs font-semibold mb-2">Boy (cm)</label>
+                                <input type="number" id="height" min="100" max="250" step="0.1" required
+                                    class="w-full px-4 py-3 bg-obsidian-900 border border-gold-500/30 rounded-xl text-white focus:border-gold-400 focus:outline-none transition-colors"
+                                    placeholder="Örn: 175">
+                            </div>
+                            <div>
+                                <label for="weight" class="block text-slate-300 text-xs font-semibold mb-2">Kilo (kg)</label>
+                                <input type="number" id="weight" min="30" max="300" step="0.1" required
+                                    class="w-full px-4 py-3 bg-obsidian-900 border border-gold-500/30 rounded-xl text-white focus:border-gold-400 focus:outline-none transition-colors"
+                                    placeholder="Örn: 75">
+                            </div>
                         </div>
 
                         <!-- Neck -->
                         <div>
-                            <label for="neck" class="block text-slate-700 font-semibold mb-2">
-                                <i class="fas fa-ruler-horizontal text-indigo-500 mr-2"></i>Boyun Çevresi (cm)
-                            </label>
+                            <label for="neck" class="block text-slate-300 text-xs font-semibold mb-2">Boyun Çevresi (cm)</label>
                             <input type="number" id="neck" min="20" max="100" step="0.1" required
-                                class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:border-indigo-500 focus:outline-none transition-colors"
-                                placeholder="Örn: 38">
-                            <p class="text-xs text-slate-500 mt-1">Boyun çevresini adem elması hizasından ölçün</p>
+                                class="w-full px-4 py-3 bg-obsidian-900 border border-gold-500/30 rounded-xl text-white focus:border-gold-400 focus:outline-none transition-colors"
+                                placeholder="Adem elması hizasından ölçün">
                         </div>
 
                         <!-- Waist -->
                         <div>
-                            <label for="waist" class="block text-slate-700 font-semibold mb-2">
-                                <i class="fas fa-ruler-horizontal text-indigo-500 mr-2"></i>Bel Çevresi (cm)
-                            </label>
+                            <label for="waist" class="block text-slate-300 text-xs font-semibold mb-2">Bel Çevresi (cm)</label>
                             <input type="number" id="waist" min="40" max="200" step="0.1" required
-                                class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:border-indigo-500 focus:outline-none transition-colors"
-                                placeholder="Örn: 85">
-                            <p class="text-xs text-slate-500 mt-1">Göbek deliği hizasından ölçün</p>
+                                class="w-full px-4 py-3 bg-obsidian-900 border border-gold-500/30 rounded-xl text-white focus:border-gold-400 focus:outline-none transition-colors"
+                                placeholder="Göbek deliği hizasından nefes vererek ölçün">
                         </div>
 
                         <!-- Hip (Female only) -->
                         <div id="hipContainer" style="display: none;">
-                            <label for="hip" class="block text-slate-700 font-semibold mb-2">
-                                <i class="fas fa-ruler-horizontal text-pink-500 mr-2"></i>Kalça Çevresi (cm)
-                            </label>
+                            <label for="hip" class="block text-slate-300 text-xs font-semibold mb-2">Kalça Çevresi (cm)</label>
                             <input type="number" id="hip" min="50" max="200" step="0.1"
-                                class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl focus:border-pink-500 focus:outline-none transition-colors"
-                                placeholder="Örn: 95">
-                            <p class="text-xs text-slate-500 mt-1">En geniş noktadan ölçün</p>
+                                class="w-full px-4 py-3 bg-obsidian-900 border border-gold-500/30 rounded-xl text-white focus:border-gold-400 focus:outline-none transition-colors"
+                                placeholder="Kalçanın en geniş noktasından ölçün">
                         </div>
 
                         <button type="submit"
-                            class="w-full py-4 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            <i class="fas fa-calculator mr-2"></i>Hesapla
+                            class="gold-button w-full py-4 rounded-xl text-obsidian-950 font-extrabold text-base tracking-wide flex items-center justify-center gap-2 transition-all duration-300">
+                            <i class="fas fa-calculator"></i>
+                            <span>Hesapla & Rapor Oluştur</span>
                         </button>
                     </form>
                 </div>
 
-                <!-- Results -->
+                <!-- Results Column -->
                 <div>
-                    <div id="resultsContainer" class="bg-white rounded-3xl p-8 shadow-2xl" style="display: none;">
-                        <h3 class="text-2xl font-bold text-slate-900 mb-6">
-                            <i class="fas fa-chart-line text-indigo-500 mr-2"></i>Sonuçlarınız
+                    <div id="resultsContainer" class="glass-vip-gold rounded-3xl p-6 sm:p-8 border border-gold-400/50 shadow-2xl" style="display: none;">
+                        <h3 class="text-2xl font-bold font-display text-white mb-6 flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i class="fas fa-chart-pie text-gold-400"></i>
+                                Vücut Analiz Sonucunuz
+                            </span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-gold-400/20 text-gold-200 border border-gold-400/40">VIP Report</span>
                         </h3>
 
-                        <!-- Body Fat Percentage -->
-                        <div class="mb-8 p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl">
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="text-slate-600 font-semibold">Vücut Yağ Oranı</span>
-                                <span id="bodyFatPercentage" class="text-4xl font-bold text-indigo-600">--%</span>
+                        <!-- Body Fat Percentage Card -->
+                        <div class="mb-6 p-6 glass-vip rounded-2xl border border-gold-500/30">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-slate-300 text-sm font-medium">Vücut Yağ Oranı</span>
+                                <span id="bodyFatPercentage" class="text-4xl font-extrabold gold-glow-text-bright">--%</span>
                             </div>
-                            <div class="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
-                                <div id="bodyFatBar" class="h-4 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                            <div class="w-full bg-obsidian-950 rounded-full h-3.5 overflow-hidden border border-gold-500/20">
+                                <div id="bodyFatBar" class="h-full rounded-full transition-all duration-1000 bg-gradient-to-r from-gold-400 to-amber-500" style="width: 0%"></div>
                             </div>
-                            <p id="bodyFatCategory" class="text-center mt-3 font-semibold"></p>
+                            <p id="bodyFatCategory" class="text-center mt-3 font-semibold text-gold-300 text-sm"></p>
                         </div>
 
-                        <!-- BMI -->
-                        <div class="mb-6 p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl">
-                            <div class="flex items-center justify-between">
-                                <span class="relative group tooltip-trigger">
-                                    <span onclick="openTooltipModal('bmi')" class="text-slate-600 font-semibold underline decoration-dotted cursor-help hover:text-blue-600 transition-colors">
-                                        Vücut Kitle İndeksi (BMI)
-                                    </span>
-                                    <!-- Desktop Tooltip -->
-                                    <span class="tooltip-content absolute bottom-full left-0 mb-2 hidden w-80 max-w-[90vw] bg-slate-900 text-white text-sm rounded-xl p-4 shadow-2xl z-50 pointer-events-none">
-                                        <strong class="block mb-2 text-blue-300">📊 BMI (Body Mass Index)</strong>
-                                        Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir.
-                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
-                                    </span>
-                                </span>
-                                <span id="bmiValue" class="text-3xl font-bold text-blue-600">--</span>
+                        <!-- Results Grid -->
+                        <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                            <!-- BMI -->
+                            <div class="p-5 glass-vip rounded-2xl border border-gold-500/20">
+                                <span class="text-slate-400 text-xs block mb-1">Vücut Kitle İndeksi (BMI)</span>
+                                <span id="bmiValue" class="text-2xl font-bold text-white block">--</span>
+                                <span id="bmiCategory" class="text-xs font-medium text-gold-400 mt-1 block"></span>
                             </div>
-                            <p id="bmiCategory" class="text-center mt-2 text-sm font-semibold"></p>
-                        </div>
 
-                        <!-- Body Fat Mass -->
-                        <div class="mb-6 p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl">
-                            <div class="flex items-center justify-between">
-                                <span class="text-slate-600 font-semibold">Yağ Kütlesi</span>
-                                <span id="fatMass" class="text-3xl font-bold text-orange-600">-- kg</span>
+                            <!-- Fat Mass -->
+                            <div class="p-5 glass-vip rounded-2xl border border-gold-500/20">
+                                <span class="text-slate-400 text-xs block mb-1">Toplam Yağ Kütlesi</span>
+                                <span id="fatMass" class="text-2xl font-bold text-amber-400 block">-- kg</span>
                             </div>
-                        </div>
 
-                        <!-- Lean Body Mass -->
-                        <div class="mb-6 p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
-                            <div class="flex items-center justify-between">
-                                <span class="text-slate-600 font-semibold">Yağsız Vücut Kütlesi</span>
-                                <span id="leanMass" class="text-3xl font-bold text-green-600">-- kg</span>
+                            <!-- Lean Mass -->
+                            <div class="p-5 glass-vip rounded-2xl border border-gold-500/20">
+                                <span class="text-slate-400 text-xs block mb-1">Yağsız Kas Kütlesi</span>
+                                <span id="leanMass" class="text-2xl font-bold text-emerald-400 block">-- kg</span>
                             </div>
-                        </div>
 
-                        <!-- Ideal Weight Range -->
-                        <div class="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
-                            <div class="text-center">
-                                <span class="text-slate-600 font-semibold block mb-2">İdeal Kilo Aralığı</span>
-                                <span id="idealWeight" class="text-2xl font-bold text-purple-600">-- - -- kg</span>
+                            <!-- Ideal Weight Range -->
+                            <div class="p-5 glass-vip rounded-2xl border border-gold-500/20">
+                                <span class="text-slate-400 text-xs block mb-1">İdeal Kilo Aralığınız</span>
+                                <span id="idealWeight" class="text-xl font-bold text-gold-300 block">-- - -- kg</span>
                             </div>
                         </div>
 
                         <!-- Recommendations -->
-                        <div id="recommendations" class="mt-8 p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl">
-                            <h4 class="font-bold text-slate-900 mb-3 flex items-center">
-                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Öneriler
+                        <div id="recommendations" class="mb-8 p-6 glass-vip rounded-2xl border border-gold-500/20">
+                            <h4 class="font-bold text-white mb-3 text-sm flex items-center gap-2">
+                                <i class="fas fa-lightbulb text-gold-400"></i>
+                                Ersin Hoca'dan VIP Öneriler
                             </h4>
-                            <ul id="recommendationsList" class="space-y-2 text-sm text-slate-700">
+                            <ul id="recommendationsList" class="space-y-2 text-xs text-slate-300">
                             </ul>
                         </div>
 
                         <!-- CTA Button -->
-                        <div class="mt-8">
-                            <a href="https://wa.me/905332470660?text=Vücut%20yağ%20oranı%20hesaplamam%20sonucunda%20sizinle%20çalışmak%20istiyorum"
+                        <div>
+                            <a href="https://wa.me/905332470660?text=Merhaba%20Ersin%20Hoca,%20Vücut%20yağ%20oranı%20hesaplama%20sonuçlarımı%20aldım%20ve%20birebir%20VIP%20program%20hakkında%20görüşmek%20istiyorum"
                                target="_blank"
                                data-ga-event="calculator-whatsapp-cta"
-                               class="block w-full py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold rounded-xl text-center transition-all duration-300 transform hover:scale-105">
-                                <i class="fab fa-whatsapp mr-2"></i>Kişisel Program İçin İletişime Geç
+                               class="gold-button block w-full py-4 text-center rounded-xl text-obsidian-950 font-extrabold text-sm tracking-wide transition-all duration-300">
+                                <i class="fab fa-whatsapp text-lg mr-2"></i>
+                                Sonuçlarımı Ersin Hoca'ya Gönder & VIP Bilgi Al
                             </a>
                         </div>
                     </div>
 
                     <!-- Info Card (shown before calculation) -->
-                    <div id="infoCard" class="bg-white rounded-3xl p-8 shadow-2xl">
-                        <h3 class="text-2xl font-bold text-slate-900 mb-6">
-                            <i class="fas fa-info-circle text-indigo-500 mr-2"></i>Nasıl Ölçülür?
+                    <div id="infoCard" class="glass-vip rounded-3xl p-6 sm:p-8 border border-gold-500/20 shadow-2xl">
+                        <h3 class="text-2xl font-bold font-display text-white mb-6 flex items-center gap-2">
+                            <i class="fas fa-info-circle text-gold-400"></i>
+                            Doğru Ölçüm Nasıl Yapılır?
                         </h3>
 
                         <div class="space-y-6">
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-ruler text-indigo-600"></i>
+                            <div class="flex gap-4 items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400 font-bold">
+                                    1
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 mb-2">Boyun Çevresi</h4>
-                                    <p class="text-slate-600 text-sm mb-2">Başınızı dik tutun ve boyun çevrenizi adem elması hizasından ölçün. Mezurayı çok sıkmayın.</p>
+                                    <h4 class="font-bold text-white text-sm mb-1">Boyun Çevresi</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Başınız dik pozisyonda iken adem elmasının hemen altından mezurayı sıkmadan ölçün.</p>
                                 </div>
                             </div>
 
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-ruler text-purple-600"></i>
+                            <div class="flex gap-4 items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400 font-bold">
+                                    2
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 mb-2">Bel Çevresi</h4>
-                                    <p class="text-slate-600 text-sm mb-2">Ayakta dik durun, nefes verin ve gevşeyin. Göbek deliğiniz hizasından bel çevrenizi ölçün.</p>
+                                    <h4 class="font-bold text-white text-sm mb-1">Bel Çevresi</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Ayakta dik durarak nefesinizi rahatça verin. Göbek deliği seviyesinden ölçün.</p>
                                 </div>
                             </div>
 
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-ruler text-pink-600"></i>
+                            <div class="flex gap-4 items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400 font-bold">
+                                    3
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 mb-2">Kalça Çevresi (Kadınlar İçin)</h4>
-                                    <p class="text-slate-600 text-sm">Kalçanızın en geniş noktasından mezura ile ölçüm yapın.</p>
+                                    <h4 class="font-bold text-white text-sm mb-1">Kalça Çevresi (Kadınlar)</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Kadınlar için kalçanın en geniş çevresinden mezurayı yatay tutarak ölçüm yapın.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-8 p-4 bg-amber-50 border-l-4 border-amber-500 rounded">
-                            <p class="text-amber-800 text-sm">
-                                <i class="fas fa-exclamation-triangle mr-2"></i>
-                                <strong>Not:</strong> Bu hesaplama
-                                <span class="inline-flex items-center gap-1 relative group tooltip-trigger">
-                                    <span onclick="openTooltipModal('navy-formula-2')" class="underline decoration-dotted cursor-help font-semibold hover:text-amber-900 transition-colors">US Navy formülüne</span>
-                                    <!-- Desktop Tooltip -->
-                                    <span class="tooltip-content absolute bottom-full left-4 -mt-2 hidden w-72 max-w-[90vw] bg-slate-900 text-white text-xs rounded-lg p-3 shadow-2xl z-50 pointer-events-none">
-                                        <strong class="block mb-1 text-amber-300">ℹ️ US Navy Formülü</strong>
-                                        1984'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.
-                                        <span class="absolute top-full left-4 -mt-2 border-4 border-transparent border-t-slate-900"></span>
-                                    </span>
-                                </span> dayalı bir tahmindir. Kesin sonuçlar için profesyonel vücut analizi önerilir.
+                        <div class="mt-8 p-4 glass-vip-gold rounded-xl border border-gold-400/30">
+                            <p class="text-gold-200 text-xs leading-relaxed">
+                                <i class="fas fa-crown text-gold-400 mr-1.5"></i>
+                                <strong>Stüdyomuzda Birebir Vücut Kompozisyonu Analizi:</strong> İlk VIP randevunuzda dijital kas/yağ analiz cihazımız ile detaylı segmantal raporlama ücretsiz olarak sunulmaktadır.
                             </p>
-                        </div>
-
-                        <div class="mt-6 p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl">
-                            <h4 class="font-bold text-slate-900 mb-3">Vücut Yağ Kategorileri</h4>
-                            <div class="space-y-2 text-sm">
-                                <div class="flex justify-between">
-                                    <span class="font-semibold">Erkekler:</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-2 text-slate-600">
-                                    <span>• Atletik: 6-13%</span>
-                                    <span>• İdeal: 14-17%</span>
-                                    <span>• Ortalama: 18-24%</span>
-                                    <span>• Yüksek: 25%+</span>
-                                </div>
-                                <div class="flex justify-between mt-3">
-                                    <span class="font-semibold">Kadınlar:</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-2 text-slate-600">
-                                    <span>• Atletik: 14-20%</span>
-                                    <span>• İdeal: 21-24%</span>
-                                    <span>• Ortalama: 25-31%</span>
-                                    <span>• Yüksek: 32%+</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1790,409 +1824,361 @@
         </div>
     </section>
 
-    <!-- Why Body Fat Percentage Matters Section -->
-    <section class="py-16 bg-white">
+    <!-- Why Body Fat Matters Section -->
+    <section class="py-20 bg-obsidian-900 border-b border-gold-500/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Neden Vücut Yağ Oranını Bilmeli?</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full"></div>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mb-4">Neden Vücut Yağ Oranını Bilmeli?</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Goal Setting -->
-                <div class="group text-center p-8 rounded-3xl bg-gradient-to-br from-indigo-50 to-purple-50 hover:shadow-xl transition-all duration-300 hover-scale">
-                    <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-bullseye text-3xl text-white"></i>
+                <div class="glass-vip-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-bullseye text-2xl text-gold-400"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Hedef Belirleme</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Fitness hedeflerinizi belirlemek ve ilerlemenizi takip etmek için başlangıç noktanızı öğrenin.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">Doğru Hedef Programlama</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">Sadece kilo odaklı değil, doğrudan yağ yakımı ve kas kütlesi kazanımı için başlangıç seviyenizi belirleyin.</p>
                 </div>
 
-                <!-- Health Risk -->
-                <div class="group text-center p-8 rounded-3xl bg-gradient-to-br from-pink-50 to-red-50 hover:shadow-xl transition-all duration-300 hover-scale">
-                    <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-heartbeat text-3xl text-white"></i>
+                <div class="glass-vip-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-heartbeat text-2xl text-gold-400"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Sağlık Riski</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Yüksek vücut yağ oranı kalp hastalıkları, diyabet gibi sağlık risklerini artırabilir.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">Metabolik Sağlık</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">İdeal yağ aralığında kalmak eklem yükünü azaltır, enerji seviyenizi ve yaşam kalitenizi artırır.</p>
                 </div>
 
-                <!-- Progress Tracking -->
-                <div class="group text-center p-8 rounded-3xl bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-xl transition-all duration-300 hover-scale">
-                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-chart-line text-3xl text-white"></i>
+                <div class="glass-vip-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-2xl text-gold-400"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4">İlerleme Takibi</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Düzenli ölçümlerle antrenman ve beslenme programınızın etkinliğini görün.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Additional Info -->
-            <div class="mt-12 max-w-4xl mx-auto">
-                <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 md:p-10">
-                    <div class="flex flex-col md:flex-row items-center gap-6">
-                        <div class="flex-shrink-0">
-                            <div class="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user-md text-4xl text-white"></i>
-                            </div>
-                        </div>
-                        <div class="flex-1 text-center md:text-left">
-                            <h3 class="text-2xl font-bold text-slate-900 mb-3">Profesyonel Destek Alın</h3>
-                            <p class="text-slate-600 mb-4">
-                                Vücut yağ oranınızı bilmek ilk adımdır. Hedeflerinize ulaşmak için ISSA sertifikalı personal trainer ile kişiye özel program ve beslenme desteği alın.
-                            </p>
-                            <a href="https://wa.me/905332470660?text=Vücut%20yağ%20oranım%20hakkında%20bilgi%20almak%20ve%20kişisel%20program%20için%20destek%20istiyorum"
-                               target="_blank"
-                               data-ga-event="whatsapp-cta"
-                               class="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105">
-                                <i class="fab fa-whatsapp text-xl"></i>
-                                <span>WhatsApp ile İletişime Geç</span>
-                            </a>
-                        </div>
-                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Somut İlerleme Takibi</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">Düzenli periyotlarla yapılan ölçümlerle yaptığınız sporun ve beslenmenin net karşılığını görün.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="py-20 bg-cappuccino-100">
+    <section id="reviews" class="py-24 bg-obsidian-950 relative border-b border-gold-500/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Müşteri Yorumları</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-600">Müşterilerimizden gelen gerçek değerlendirmeler</p>
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-3.5 py-1.5 rounded-full border border-gold-400/30">
+                    Gerçek Deneyimler
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 mb-4">
+                    VIP Üye Yorumları
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-sm">Google Haritalar üzerinden 5.0 ★★★★★ tam puanlı üye değerlendirmeleri</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                    <p class="text-slate-700 italic mb-4">"Ersin hocayla çalışmaya başlayınca hızlı bir şekilde güçlendim. Salon güzel ekipmanlara sahip ve çok temiz. Gönül rahatlığıyla tercih edebilirsiniz."</p>
-                    <p class="font-semibold text-slate-900">- Güngör</p>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                    <div class="text-gold-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-slate-300 text-xs sm:text-sm italic mb-6 leading-relaxed">"Ersin hocayla çalışmaya başlayınca hızlı bir şekilde güçlendim. Salon güzel ekipmanlara sahip ve çok temiz. Gönül rahatlığıyla tercih edebilirsiniz."</p>
+                    <div class="flex items-center justify-between border-t border-gold-500/10 pt-4">
+                        <span class="font-bold text-white text-sm">- Güngör</span>
+                        <span class="text-xs text-gold-400 font-semibold"><i class="fab fa-google mr-1"></i>Google Review</span>
+                    </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                    <p class="text-slate-700 italic mb-4">"Kesinlikle kendinizi gönül rahatlığıyla emanet edebileceğiniz bir antrenör Ersin hoca... kısa zamanda sonuç alabileceğiniz bir stüdyo. Severek devam ediyorum... Tavsiye edilir😉"</p>
-                    <p class="font-semibold text-slate-900">- Esra Özdal</p>
+                <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                    <div class="text-gold-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-slate-300 text-xs sm:text-sm italic mb-6 leading-relaxed">"Kesinlikle kendinizi gönül rahatlığıyla emanet edebileceğiniz bir antrenör Ersin hoca... kısa zamanda sonuç alabileceğiniz bir stüdyo. Severek devam ediyorum... Tavsiye edilir😉"</p>
+                    <div class="flex items-center justify-between border-t border-gold-500/10 pt-4">
+                        <span class="font-bold text-white text-sm">- Esra Özdal</span>
+                        <span class="text-xs text-gold-400 font-semibold"><i class="fab fa-google mr-1"></i>Google Review</span>
+                    </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                    <p class="text-slate-700 italic mb-4">"Amacınıza ulaşmak için en kısa ve en güvenilir yol arayış içerisinde iseniz kesinlikle gitmeniz gereken en doğru yerdesiniz. Sessiz sakin bir ortamda mükemmel antrenörlük bilgisi ile Ersin hocanın ilgi ve alakası birleşince en uzun yol bile size yakın gelir."</p>
-                    <p class="font-semibold text-slate-900">- Yılmaz Hoca</p>
+                <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                    <div class="text-gold-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-slate-300 text-xs sm:text-sm italic mb-6 leading-relaxed">"Amacınıza ulaşmak için en kısa ve en güvenilir yol arayış içerisinde iseniz kesinlikle gitmeniz gereken en doğru yerdesiniz. Sessiz sakin bir ortamda mükemmel antrenörlük bilgisi."</p>
+                    <div class="flex items-center justify-between border-t border-gold-500/10 pt-4">
+                        <span class="font-bold text-white text-sm">- Yılmaz Hoca</span>
+                        <span class="text-xs text-gold-400 font-semibold"><i class="fab fa-google mr-1"></i>Google Review</span>
+                    </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                    <p class="text-slate-700 italic mb-4">"Ersin hocamızın disiplinli olması beni en çok motive eden şey. Birde ödün vermez tam çalışma bitmeden bırakmaz, özverili şekilde o gün ki çalışma neyse bitene kadar ilgilenir."</p>
-                    <p class="font-semibold text-slate-900">- Kadriye S.</p>
+                <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                    <div class="text-gold-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-slate-300 text-xs sm:text-sm italic mb-6 leading-relaxed">"Ersin hocamızın disiplinli olması beni en çok motive eden şey. Özverili şekilde o gün ki çalışma neyse bitene kadar ilgilenir."</p>
+                    <div class="flex items-center justify-between border-t border-gold-500/10 pt-4">
+                        <span class="font-bold text-white text-sm">- Kadriye S.</span>
+                        <span class="text-xs text-gold-400 font-semibold"><i class="fab fa-google mr-1"></i>Google Review</span>
+                    </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                    <p class="text-slate-700 italic mb-4">"Spor yapmayı sevmiyorsanız, ya da motivasyon yerlerdeyse ya da 'ben kendimi geliştireceğim' diyorsanız Ersin Hoca doğru adres. Hiç düşünmeyin. Kapın suyunuzu havlunuzu, dayanın kapısına. Pişman olmayacaksınız!"</p>
-                    <p class="font-semibold text-slate-900">- Şebnem Tuna</p>
+                <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                    <div class="text-gold-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-slate-300 text-xs sm:text-sm italic mb-6 leading-relaxed">"Spor yapmayı sevmiyorsanız ya da motivasyon yerlerdeyse Ersin Hoca doğru adres. Kapın suyunuzu havlunuzu, dayanın kapısına. Pişman olmayacaksınız!"</p>
+                    <div class="flex items-center justify-between border-t border-gold-500/10 pt-4">
+                        <span class="font-bold text-white text-sm">- Şebnem Tuna</span>
+                        <span class="text-xs text-gold-400 font-semibold"><i class="fab fa-google mr-1"></i>Google Review</span>
+                    </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                    <p class="text-slate-700 italic mb-4">"Ersin ile yaptığım antrenmanlardan çok memnunum. Spor alanında ikinci kademe antrenör olarak bir profesyonel olarak, detaylara ve öğrencisinin bireysel özelliklerine son derece dikkat ediyor."</p>
-                    <p class="font-semibold text-slate-900">- Aydoğan Karagöz</p>
+                <div class="glass-vip-card p-8 rounded-3xl border border-gold-500/20">
+                    <div class="text-gold-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-slate-300 text-xs sm:text-sm italic mb-6 leading-relaxed">"Ersin ile yaptığım antrenmanlardan çok memnunum. İkinci kademe antrenör olarak bir profesyonel olarak, öğrencisinin bireysel özelliklerine son derece dikkat ediyor."</p>
+                    <div class="flex items-center justify-between border-t border-gold-500/10 pt-4">
+                        <span class="font-bold text-white text-sm">- Aydoğan Karagöz</span>
+                        <span class="text-xs text-gold-400 font-semibold"><i class="fab fa-google mr-1"></i>Google Review</span>
+                    </div>
                 </div>
             </div>
 
             <div class="text-center">
                 <a href="https://maps.app.goo.gl/acynQNu1m71YwE9n6" target="_blank"
                    data-ga-event="google-reviews" data-ga-location="reviews-section"
-                   class="inline-flex items-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full shadow-lg hover-scale transition-all duration-300">
-                    <i class="fab fa-google text-2xl mr-3"></i>
-                    Tüm Yorumları Google'da Görüntüle
+                   class="glass-vip px-8 py-4 rounded-full text-gold-300 border border-gold-400/40 hover:text-white hover:border-gold-400 font-bold text-sm inline-flex items-center gap-3 transition-all duration-300">
+                    <i class="fab fa-google text-gold-400 text-lg"></i>
+                    <span>Tüm Yorumları Google Haritalar'da Oku (5.0 ★)</span>
                 </a>
             </div>
         </div>
     </section>
 
-        <!-- Appointment Scheduling Section -->
-        <section id="schedule" class="py-20 bg-gradient-to-br from-cappuccino-50 to-cappuccino-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Hemen Randevunu Al</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full mb-4"></div>
-                    <p class="text-slate-600 text-lg">Müsait zamanları gör, seansını planla</p>
+    <!-- Appointment Scheduling Section -->
+    <section id="schedule" class="py-24 bg-obsidian-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-3.5 py-1.5 rounded-full border border-gold-400/30">
+                    Online Rezervasyon
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 mb-4">
+                    VIP İlk Randevunu Ayarla
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-sm sm:text-base">Müsait saatleri inceleyin, 1-1 tanışma ve analiz seansınızı takvimden seçin.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-vip rounded-3xl overflow-hidden border border-gold-500/30 shadow-2xl">
+                    <div class="p-6 bg-gradient-to-r from-gold-500/20 via-obsidian-900 to-gold-500/20 text-white text-center border-b border-gold-500/20">
+                        <i class="fas fa-calendar-check text-gold-400 text-3xl mb-2"></i>
+                        <h3 class="text-2xl font-bold font-display">Canlı Takvim Randevu Sistemi</h3>
+                        <p class="text-slate-300 text-xs mt-1">Stüdyo müsaitlik durumunu canlı olarak görüntüleyin</p>
+                    </div>
+
+                    <!-- Google Calendar Appointment Scheduling Embed -->
+                    <div class="relative bg-white" style="min-height: 600px;">
+                        <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ028x5Db2FQ5l94iTOHSChkOkzPL-ohjoinBU11eDpJY3d8_ZKiK01mTV7h9m28sTP9Ter6yKK1?gv=true"
+                                style="border: 0"
+                                width="100%"
+                                height="600"
+                                frameborder="0">
+                        </iframe>
+
+                        <div class="p-6 bg-obsidian-950 text-center border-t border-gold-500/20">
+                            <p class="text-slate-300 text-xs mb-3">
+                                <i class="fas fa-info-circle text-gold-400 mr-1.5"></i>
+                                Doğrudan WhatsApp hattından randevu almak ister misiniz?
+                            </p>
+                            <a href="https://wa.me/905332470660?text=Merhaba,%20Randevu%20saatleri%20hakkında%20bilgi%20almak%20istiyorum"
+                               target="_blank" data-ga-event="whatsapp-cta" data-ga-location="schedule-fallback"
+                               class="gold-button inline-flex items-center px-6 py-3 rounded-full text-xs font-extrabold uppercase tracking-wider">
+                                <i class="fab fa-whatsapp text-sm mr-2"></i>
+                                WhatsApp ile Anında Randevu Yazın
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="max-w-4xl mx-auto">
-                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                        <div class="p-6 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-center">
-                            <i class="fas fa-calendar-check text-4xl mb-3"></i>
-                            <h3 class="text-2xl font-bold">Online Randevu Sistemi</h3>
-                            <p class="mt-2">Müsait zamanları görüntüleyin ve size uygun saati seçin</p>
+                <!-- Instructions Card -->
+                <div class="mt-8 glass-vip p-6 rounded-2xl border border-gold-500/20">
+                    <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-question-circle text-gold-400"></i>
+                        Randevu Adımları
+                    </h4>
+                    <div class="grid sm:grid-cols-3 gap-4 text-xs text-slate-300">
+                        <div class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-400 text-obsidian-950 font-bold flex items-center justify-center flex-shrink-0">1</span>
+                            <span>Yukarıdaki canlı takvimden size uygun seans saatini seçin.</span>
                         </div>
-
-                        <!-- Google Calendar Appointment Scheduling Embed -->
-                        <div class="relative" style="min-height: 600px;">
-                            <!-- Google Calendar Appointment Scheduling begin -->
-                            <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ028x5Db2FQ5l94iTOHSChkOkzPL-ohjoinBU11eDpJY3d8_ZKiK01mTV7h9m28sTP9Ter6yKK1?gv=true"
-                                    style="border: 0"
-                                    width="100%"
-                                    height="600"
-                                    frameborder="0">
-                            </iframe>
-                            <!-- end Google Calendar Appointment Scheduling -->
-
-                            <!-- Fallback content -->
-                            <div class="p-8 text-center">
-                                <p class="text-slate-600 mb-4">
-                                    <i class="fas fa-info-circle mr-2"></i>
-                                    Takvim yüklenirken sorun mu yaşıyorsunuz?
-                                </p>
-                                <a href="https://wa.me/905332470660?text=Randevu%20almak%20istiyorum"
-                                   target="_blank"
-                                   data-ga-event="whatsapp-cta" data-ga-location="schedule-fallback"
-                                   class="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-all duration-300">
-                                    <i class="fab fa-whatsapp text-xl mr-2"></i>
-                                    WhatsApp ile Randevu Al
-                                </a>
-                            </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-400 text-obsidian-950 font-bold flex items-center justify-center flex-shrink-0">2</span>
+                            <span>İletişim bilgilerinizi eksiksiz tamamlayın.</span>
                         </div>
-                    </div>
-
-                    <!-- Instructions Card -->
-                    <div class="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 shadow-lg">
-                        <h4 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                            <i class="fas fa-question-circle text-indigo-600"></i>
-                            Nasıl Randevu Alırım?
-                        </h4>
-                        <ol class="space-y-3 text-slate-700">
-                            <li class="flex items-start gap-3">
-                                <span class="flex-shrink-0 w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold">1</span>
-                                <span>Yukarıdaki takvimden size uygun bir tarih ve saat seçin</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="flex-shrink-0 w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">2</span>
-                                <span>İletişim bilgilerinizi girin</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center font-bold">3</span>
-                                <span>Randevunuzu onaylayın - size otomatik hatırlatma gelecek</span>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <!-- Important Notes Card -->
-                    <div class="mt-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 shadow-lg border-2 border-amber-200">
-                        <h4 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                            <i class="fas fa-exclamation-circle text-amber-600"></i>
-                            Önemli Bilgiler
-                        </h4>
-                        <div class="space-y-3 text-slate-700">
-                            <p class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-green-600 mt-1 flex-shrink-0"></i>
-                                <span><strong>Yanınızda Getirmeniz Gerekenler:</strong> Spor kıyafeti, havlu, temiz iç mekan spor ayakkabısı ve su matarası</span>
-                            </p>
-                            <p class="flex items-start gap-3">
-                                <i class="fas fa-utensils text-orange-600 mt-1 flex-shrink-0"></i>
-                                <span><strong>Beslenme:</strong> Antrenman öncesi en az 2 saat önce yemek yemiş olmanız önerilir. Ağır yemeklerden kaçının</span>
-                            </p>
-                            <p class="flex items-start gap-3">
-                                <i class="fas fa-clock text-blue-600 mt-1 flex-shrink-0"></i>
-                                <span><strong>Zamanında Geliş:</strong> Lütfen randevu saatinizden 5-10 dakika önce stüdyoda olun</span>
-                            </p>
-                            <p class="flex items-start gap-3">
-                                <i class="fas fa-info-circle text-indigo-600 mt-1 flex-shrink-0"></i>
-                                <span><strong>İptal/Değişiklik:</strong> Randevunuzu iptal veya değiştirmek isterseniz lütfen en az 24 saat önceden haber verin</span>
-                            </p>
-                            <p class="flex items-start gap-3">
-                                <i class="fas fa-heartbeat text-red-600 mt-1 flex-shrink-0"></i>
-                                <span><strong>Sağlık Durumu:</strong> Herhangi bir sağlık sorununuz veya sakatlığınız varsa lütfen antrenörünüze bilgi verin</span>
-                            </p>
+                        <div class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-400 text-obsidian-950 font-bold flex items-center justify-center flex-shrink-0">3</span>
+                            <span>Onay SMS & e-postanız anında iletilecektir.</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gradient-to-br from-cappuccino-900 to-cappuccino-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-cappuccino-50 mb-4">İletişim</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-cappuccino-400 to-cappuccino-300 mx-auto rounded-full"></div>
-                </div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-obsidian-950 relative border-t border-gold-500/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-3.5 py-1.5 rounded-full border border-gold-400/30">
+                    Lokasyon & İletişim
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 mb-4">
+                    Stüdyomuza Ulaşın
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-400 to-amber-500 mx-auto rounded-full"></div>
+            </div>
 
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
-                            <i class="fas fa-map-marker-alt text-cappuccino-300 text-3xl"></i>
-                            <div>
-                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">Adres</h4>
-                                <p class="text-cappuccino-200">Adalet Mahallesi 1594/9 Sokak, I Blok, Apt No: 87M, Kat: 0<br>Bayraklı, İzmir 35530</p>
-                            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="glass-vip p-6 rounded-2xl border border-gold-500/20 flex items-start gap-4">
+                        <i class="fas fa-map-marker-alt text-gold-400 text-2xl mt-1"></i>
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-1">Stüdyo Adresi</h4>
+                            <p class="text-slate-300 text-xs leading-relaxed">
+                                Adalet Mahallesi 1594/9 Sokak, I Blok, Apt No: 87M, Kat: 0<br>Bayraklı, İzmir 35530
+                            </p>
                         </div>
+                    </div>
 
-                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
-                            <i class="fas fa-phone text-green-400 text-3xl"></i>
-                            <div>
-                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">Telefon</h4>
-                                <a href="tel:+905332470660" class="text-cappuccino-200 hover:text-cappuccino-50">+90 533 247 06 60</a>
-                            </div>
+                    <div class="glass-vip p-6 rounded-2xl border border-gold-500/20 flex items-start gap-4">
+                        <i class="fas fa-phone text-gold-400 text-2xl mt-1"></i>
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-1">Telefon Hattı</h4>
+                            <a href="tel:+905332470660" class="text-slate-300 hover:text-gold-300 text-sm font-semibold transition-colors">+90 533 247 06 60</a>
                         </div>
+                    </div>
 
-                        <div class="flex items-start gap-4 p-6 bg-cappuccino-800/60 backdrop-blur-md rounded-2xl border border-cappuccino-700">
-                            <i class="fab fa-whatsapp text-green-400 text-3xl"></i>
-                            <div>
-                                <h4 class="text-xl font-bold text-cappuccino-50 mb-2">WhatsApp</h4>
-                                <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" class="text-cappuccino-200 hover:text-cappuccino-50">Mesaj Gönder</a>
-                            </div>
+                    <div class="glass-vip p-6 rounded-2xl border border-gold-500/20 flex items-start gap-4">
+                        <i class="fab fa-whatsapp text-emerald-400 text-2xl mt-1"></i>
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-1">VIP WhatsApp</h4>
+                            <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20VIP%20stüdyo%20hakkında%20bilgi%20almak%20istiyorum" 
+                               target="_blank" class="text-emerald-400 hover:text-emerald-300 text-sm font-semibold transition-colors">Mesaj Gönder & Anında Yanıt Al</a>
                         </div>
+                    </div>
 
-                        <!-- Working Hours -->
-                        <div class="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm" aria-label="Calisma saatleri">
-                          <h3 class="text-lg font-bold text-white">Çalışma Saatleri</h3>
-                          <p class="mt-1 text-sm text-slate-300">Randevu ile çalışıyoruz. Tüm günler için saatler aşağıdaki gibidir.</p>
+                    <!-- Working Hours Status Card -->
+                    <div class="glass-vip p-6 rounded-2xl border border-gold-500/20">
+                        <h3 class="text-lg font-bold text-white mb-2">Çalışma Saatleri</h3>
+                        <p class="text-slate-400 text-xs mb-4">Stüdyomuz sadece randevu ile birebir hizmet vermektedir.</p>
 
-                          <div id="workingHoursStatus" class="mt-3 flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm">
+                        <div id="workingHoursStatus" class="flex items-center gap-2 rounded-xl bg-obsidian-900 px-4 py-2.5 border border-gold-500/20 text-xs">
                             <span id="workingHoursStatusDot" class="inline-block h-2.5 w-2.5 rounded-full bg-slate-400"></span>
-                            <span id="workingHoursStatusText" class="font-semibold text-white">Durum yükleniyor...</span>
-                            <span id="workingHoursStatusDetail" class="text-slate-300"></span>
-                          </div>
-
-                          <ul class="mt-4 space-y-2 text-sm text-slate-200" role="list">
-                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                              <span class="font-medium">Pazartesi</span>
-                              <span class="text-slate-300">08:00 - 22:00</span>
-                            </li>
-                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                              <span class="font-medium">Salı</span>
-                              <span class="text-slate-300">08:00 - 22:00</span>
-                            </li>
-                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                              <span class="font-medium">Çarşamba</span>
-                              <span class="text-slate-300">08:00 - 22:00</span>
-                            </li>
-                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                              <span class="font-medium">Perşembe</span>
-                              <span class="text-slate-300">08:00 - 22:00</span>
-                            </li>
-                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                              <span class="font-medium">Cuma</span>
-                              <span class="text-slate-300">08:00 - 22:00</span>
-                            </li>
-                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                              <span class="font-medium">Cumartesi</span>
-                              <span class="text-slate-300">09:00 - 22:00</span>
-                            </li>
-                            <li class="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                              <span class="font-medium">Pazar</span>
-                              <span class="text-slate-300">11:30 - 18:30</span>
-                            </li>
-                          </ul>
+                            <span id="workingHoursStatusText" class="font-bold text-white">Durum yükleniyor...</span>
+                            <span id="workingHoursStatusDetail" class="text-slate-400"></span>
                         </div>
-                    </div>
 
-                    <div class="rounded-2xl overflow-hidden shadow-2xl h-96">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3121.9324963166656!2d27.178644412597695!3d38.46161316928958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b9637b76ccbd2d%3A0xa3add55aa69718c4!2sErs%20Personal%20Training%20Studio!5e0!3m2!1str!2str!4v1733500000000!5m2!1str!2str"
-                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mobile Tooltip Modals -->
-        <div id="mobileTooltipModal" class="mobile-tooltip-modal">
-            <div class="mobile-tooltip-content" onclick="event.stopPropagation()">
-                <button onclick="closeTooltipModal()" class="mobile-tooltip-close">
-                    <i class="fas fa-times text-slate-600"></i>
-                </button>
-                <div id="mobileTooltipContent"></div>
-            </div>
-        </div>
-
-        <!-- Service Modals -->
-        <div id="serviceModal" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-black/60 backdrop-blur-sm">
-            <div class="flex items-center justify-center min-h-screen px-3 py-6 sm:px-4 sm:py-8">
-                <div class="relative bg-white rounded-2xl sm:rounded-3xl max-w-3xl w-full shadow-2xl transform transition-all max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
-                    <!-- Close Button -->
-                    <button onclick="closeServiceModal()" class="sticky top-3 sm:top-4 right-3 sm:right-4 float-right w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors z-10 ml-3 mb-3">
-                        <i class="fas fa-times text-gray-600 text-xl"></i>
-                    </button>
-
-                    <!-- Modal Content Container -->
-                    <div id="modalContent" class="p-6 sm:p-8 md:p-12 clear-both">
-                        <!-- Content will be dynamically loaded here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="bg-cappuccino-950 text-cappuccino-100 py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid md:grid-cols-3 gap-8 mb-8">
-                    <div>
-                        <h3 class="text-2xl font-bold bg-gradient-to-r from-cappuccino-300 to-cappuccino-200 bg-clip-text text-transparent mb-4">
-                            ERS PT STUDIO
-                        </h3>
-                        <p class="text-cappuccino-300">İzmir'in en modern ve özel kişisel antrenman stüdyosu</p>
-                    </div>
-
-                    <div>
-                        <h4 class="text-lg font-bold mb-4 text-cappuccino-50">Hızlı Linkler</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#home" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Ana Sayfa</a></li>
-                            <li><a href="#about" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Hakkımızda</a></li>
-                            <li><a href="#services" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Hizmetler</a></li>
-                            <li><a href="#packages" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Paketler</a></li>
-                            <li><a href="#calculator" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">Vücut Yağ Hesaplama</a></li>
-                            <li><a href="#contact" class="text-cappuccino-300 hover:text-cappuccino-50 transition-colors">İletişim</a></li>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-300">
+                            <li class="flex items-center justify-between p-2 rounded-lg bg-obsidian-900/60">
+                                <span>Pazartesi - Cuma</span>
+                                <span class="font-bold text-gold-300">08:00 - 22:00</span>
+                            </li>
+                            <li class="flex items-center justify-between p-2 rounded-lg bg-obsidian-900/60">
+                                <span>Cumartesi</span>
+                                <span class="font-bold text-gold-300">09:00 - 22:00</span>
+                            </li>
+                            <li class="flex items-center justify-between p-2 rounded-lg bg-obsidian-900/60">
+                                <span>Pazar</span>
+                                <span class="font-bold text-gold-300">11:30 - 18:30</span>
+                            </li>
                         </ul>
                     </div>
-
-                    <div>
-                        <h4 class="text-lg font-bold mb-4 text-cappuccino-50">İletişim</h4>
-                        <p class="text-cappuccino-300">Bayraklı, İzmir</p>
-                        <p class="text-cappuccino-300 mb-4">Tel: +90 533 247 06 60</p>
-                        <div class="flex gap-4 mt-4">
-                            <a href="https://www.instagram.com/ers.ptstudio/" target="_blank"
-                               class="w-10 h-10 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                <i class="fab fa-instagram text-white text-xl"></i>
-                            </a>
-                            <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
-                               class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                <i class="fab fa-whatsapp text-white text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="border-t border-cappuccino-800 pt-8 text-center text-cappuccino-300">
-                    <p>&copy; 2025 Ers Personal Training Studio. Tüm hakları saklıdır.</p>
+                <!-- Google Maps Embed -->
+                <div class="rounded-3xl overflow-hidden border border-gold-500/30 shadow-2xl h-[520px]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3121.9324963166656!2d27.178644412597695!3d38.46161316928958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b9637b76ccbd2d%3A0xa3add55aa69718c4!2sErs%20Personal%20Training%20Studio!5e0!3m2!1str!2str!4v1733500000000!5m2!1str!2str"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-        </footer>
-
-        <!-- Floating Social Media Buttons -->
-        <div class="fixed bottom-8 right-8 flex flex-col gap-4 z-50">
-            <a href="https://www.instagram.com/ers.ptstudio/" target="_blank"
-               data-ga-event="instagram-cta" data-ga-location="floating"
-               class="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 rounded-full flex items-center justify-center shadow-2xl hover-scale transition-all duration-300">
-                <i class="fab fa-instagram text-white text-3xl"></i>
-            </a>
-            <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
-               data-ga-event="whatsapp-cta" data-ga-location="floating"
-               class="w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl hover-scale transition-all duration-300">
-                <i class="fab fa-whatsapp text-white text-3xl"></i>
-            </a>
         </div>
+    </section>
 
-        <script src="script.js"></script>
-    </body>
-    </html>
+    <!-- Mobile Tooltip Modals -->
+    <div id="mobileTooltipModal" class="mobile-tooltip-modal">
+        <div class="mobile-tooltip-content" onclick="event.stopPropagation()">
+            <button onclick="closeTooltipModal()" class="mobile-tooltip-close">
+                <i class="fas fa-times text-slate-600"></i>
+            </button>
+            <div id="mobileTooltipContent"></div>
+        </div>
+    </div>
+
+    <!-- Service Modals -->
+    <div id="serviceModal" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-md">
+        <div class="flex items-center justify-center min-h-screen px-3 py-6 sm:px-4 sm:py-8">
+            <div class="relative glass-vip rounded-2xl sm:rounded-3xl max-w-3xl w-full shadow-2xl border border-gold-500/40 transform transition-all max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                <!-- Close Button -->
+                <button onclick="closeServiceModal()" class="sticky top-3 sm:top-4 right-3 sm:right-4 float-right w-10 h-10 flex items-center justify-center rounded-full bg-obsidian-900 border border-gold-500/30 text-gold-400 hover:text-white transition-colors z-10 ml-3 mb-3">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <!-- Modal Content Container -->
+                <div id="modalContent" class="p-6 sm:p-8 md:p-12 clear-both text-slate-200">
+                    <!-- Content loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-obsidian-950 text-slate-400 border-t border-gold-500/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold font-display gold-glow-text mb-3">
+                        ERS PT STUDIO VIP
+                    </h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">İzmir Bayraklı'da postür, mobilite ve güç odaklı 1-1 özel kişisel antrenman stüdyosu.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Hızlı Linkler</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#home" class="hover:text-gold-300 transition-colors">Ana Sayfa</a></li>
+                        <li><a href="#about" class="hover:text-gold-300 transition-colors">Hakkımızda</a></li>
+                        <li><a href="#services" class="hover:text-gold-300 transition-colors">VIP Hizmetler</a></li>
+                        <li><a href="#packages" class="hover:text-gold-300 transition-colors">Paketler</a></li>
+                        <li><a href="#calculator" class="hover:text-gold-300 transition-colors">Vücut Yağ Oranı Hesaplama</a></li>
+                        <li><a href="#contact" class="hover:text-gold-300 transition-colors">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Sosyal Medya & İletişim</h4>
+                    <p class="text-xs text-slate-400 mb-1">Bayraklı, İzmir</p>
+                    <p class="text-xs text-gold-300 font-semibold mb-4">Tel: +90 533 247 06 60</p>
+                    <div class="flex gap-3">
+                        <a href="https://www.instagram.com/ers.ptstudio/" target="_blank"
+                           class="w-10 h-10 rounded-xl glass-vip border border-gold-500/30 flex items-center justify-center text-gold-400 hover:text-white hover:border-gold-400 transition-all">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
+                           class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 hover:text-white transition-all">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gold-500/10 pt-8 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Ers Personal Training Studio. Tüm hakları saklıdır. ISSA Certified VIP PT Studio.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Social Media Buttons -->
+    <div class="fixed bottom-8 right-8 flex flex-col gap-3 z-50">
+        <a href="https://www.instagram.com/ers.ptstudio/" target="_blank"
+           data-ga-event="instagram-cta" data-ga-location="floating"
+           class="w-14 h-14 glass-vip rounded-full flex items-center justify-center border border-gold-400/50 shadow-2xl text-gold-400 hover:text-white hover:scale-110 transition-all">
+            <i class="fab fa-instagram text-2xl"></i>
+        </a>
+        <a href="https://wa.me/905332470660?text=Merhaba,%20Ers%20PT%20Studio%20VIP%20dersler%20hakkında%20bilgi%20almak%20istiyorum" target="_blank"
+           data-ga-event="whatsapp-cta" data-ga-location="floating"
+           class="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
