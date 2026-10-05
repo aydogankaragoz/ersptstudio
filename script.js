@@ -970,8 +970,8 @@ function openServiceModal(serviceType) {
 
         <div class="glass-vip-gold rounded-2xl p-6 text-center border border-gold-400/50 shadow-xl">
             <h3 class="text-white text-xl font-bold mb-2">Bu Antrenman Size Uygun mu?</h3>
-            <p class="text-gold-200 text-xs sm:text-sm mb-5">Hemen iletişime geçin, size özel bir VIP program oluşturalım!</p>
-            <a href="https://wa.me/905332470660?text=Merhaba!%20${encodeURIComponent(service.title)}%20hakkında%20detaylı%20bilgi%20almak%20istiyorum" 
+            <p class="text-gold-200 text-xs sm:text-sm mb-5">Hemen iletişime geçin, hedefinize uygun programı birlikte netleştirelim.</p>
+            <a href="https://wa.me/905332470660?text=Merhaba!%20${encodeURIComponent(service.title)}%20hakkında%20detaylı%20bilgi%20almak%20istiyorum"
                target="_blank"
                onclick="if(typeof gtag !== 'undefined'){gtag('event','whatsapp_from_modal',{'service':'${serviceType}'})}"
                class="gold-button inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-obsidian-950 font-extrabold text-sm shadow-lg hover:scale-105 transition-transform duration-300">
