@@ -161,14 +161,6 @@ function selectGender(gender) {
     hipInput.required = gender === 'female';
     showCalcError('');
 
-    // Track gender selection
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'calculator_gender_select', {
-            event_category: 'calculator',
-            event_label: gender,
-            value: 1
-        });
-    }
 }
 
 // Make selectGender available globally
@@ -283,88 +275,9 @@ if (bodyFatForm) {
         // Update WhatsApp CTA with calculation results
         updateWhatsAppCTA();
 
-        // Track calculator usage with detailed data
+        // Count the calculation only. Measurements and results stay in the visitor's browser.
         if (typeof gtag !== 'undefined') {
-            // Main calculation event with full user data
-            gtag('event', 'calculate_body_fat', {
-                event_category: 'calculator',
-                event_label: selectedGender,
-                value: Math.round(bodyFatPercentage),
-                // Detailed measurement data
-                user_gender: selectedGender,
-                user_age: age,
-                user_height: height,
-                user_weight: weight,
-                user_neck: neck,
-                user_waist: waist,
-                user_hip: hip || 0,
-                // Calculated results
-                result_bodyfat: bodyFatPercentage.toFixed(1),
-                result_bmi: bmi.toFixed(1),
-                result_fat_mass: fatMass.toFixed(1),
-                result_lean_mass: leanMass.toFixed(1),
-                result_ideal_min: idealWeightMin.toFixed(1),
-                result_ideal_max: idealWeightMax.toFixed(1),
-                // Timestamp
-                calculation_date: new Date().toISOString()
-            });
-
-            // Track BMI category
-            let bmiCategory;
-            if (bmi < 18.5) bmiCategory = 'underweight';
-            else if (bmi <= 24.9) bmiCategory = 'normal';
-            else if (bmi <= 29.9) bmiCategory = 'overweight';
-            else bmiCategory = 'obese';
-
-            gtag('event', 'calculator_bmi_category', {
-                event_category: 'calculator',
-                event_label: bmiCategory,
-                value: Math.round(bmi),
-                bmi_value: bmi.toFixed(1),
-                gender: selectedGender,
-                age: age
-            });
-
-            // Track body fat category
-            let bfCategory;
-            if (selectedGender === 'male') {
-                if (bodyFatPercentage < 6) bfCategory = 'very_low';
-                else if (bodyFatPercentage <= 13) bfCategory = 'athletic';
-                else if (bodyFatPercentage <= 17) bfCategory = 'ideal';
-                else if (bodyFatPercentage <= 24) bfCategory = 'average';
-                else bfCategory = 'high';
-            } else {
-                if (bodyFatPercentage < 14) bfCategory = 'very_low';
-                else if (bodyFatPercentage <= 20) bfCategory = 'athletic';
-                else if (bodyFatPercentage <= 24) bfCategory = 'ideal';
-                else if (bodyFatPercentage <= 31) bfCategory = 'average';
-                else bfCategory = 'high';
-            }
-
-            gtag('event', 'calculator_bodyfat_category', {
-                event_category: 'calculator',
-                event_label: `${selectedGender}_${bfCategory}`,
-                value: Math.round(bodyFatPercentage),
-                bodyfat_percentage: bodyFatPercentage.toFixed(1),
-                category: bfCategory,
-                gender: selectedGender
-            });
-
-            // Track age group
-            let ageGroup;
-            if (age < 25) ageGroup = '18-24';
-            else if (age < 35) ageGroup = '25-34';
-            else if (age < 45) ageGroup = '35-44';
-            else if (age < 55) ageGroup = '45-54';
-            else ageGroup = '55+';
-
-            gtag('event', 'calculator_age_group', {
-                event_category: 'calculator',
-                event_label: ageGroup,
-                value: 1,
-                exact_age: age,
-                gender: selectedGender
-            });
+            gtag('event', 'calculate_body_fat', { event_category: 'calculator' });
         }
 
         // Smooth scroll to results
@@ -576,7 +489,7 @@ const serviceContent = {
             },
             {
                 title: 'Kemik Yoğunluğu',
-                desc: 'Kemikleriniz güçlenir, osteoporoz riskini azaltırsınız'
+                desc: 'Düzenli yüklenme kemik sağlığınızı destekler'
             },
             {
                 title: 'Fiziksel Güç',
@@ -599,11 +512,11 @@ const serviceContent = {
     mobility: {
         title: 'Mobilite ve esneklik',
         subtitle: 'Hareket Kabiliyeti ve Esneklik',
-        description: 'Mobilite ve esneklik çalışmaları, eklemlerinizin hareket genişliğini artırarak daha sağlıklı ve ağrısız hareket etmenizi sağlar.',
+        description: 'Mobilite ve esneklik çalışmaları, eklemlerinizin hareket genişliğini artırarak daha rahat hareket etmenize yardımcı olur.',
         benefits: [
             {
                 title: 'Ağrı Azalması',
-                desc: 'Sırt, boyun, bel ağrılarınız azalır, eklemleriniz daha rahat hareket eder'
+                desc: 'Eklemleriniz daha rahat hareket eder; sırt, boyun ve bel gerginliğini azaltmaya yardımcı olur'
             },
             {
                 title: 'Hareket Genişliği',
@@ -638,7 +551,7 @@ const serviceContent = {
         benefits: [
             {
                 title: 'Kalp Sağlığı',
-                desc: 'Kalp kasınız güçlenir, kan dolaşımınız iyileşir, hastalık riski azalır'
+                desc: 'Düzenli kardiyo kalp ve dolaşım sağlığınızı destekler'
             },
             {
                 title: 'Solunum Kapasitesi',
@@ -656,7 +569,7 @@ const serviceContent = {
         forWhom: [
             'Kilo vermek isteyenler',
             'Dayanıklılığını artırmak isteyenler',
-            'Kalp sağlığını iyileştirmek isteyenler',
+            'Kalp ve dolaşım sağlığını desteklemek isteyenler',
             'Spor müsabakalarına hazırlananlar'
         ],
         examples: [
@@ -669,15 +582,15 @@ const serviceContent = {
     corrective: {
         title: 'Düzeltici egzersiz',
         subtitle: 'Postür Düzeltme ve Koruyucu Egzersizler',
-        description: 'Düzeltici egzersizler, vücudunuzdaki kas dengesizliklerini ve postür bozukluklarını düzelterek ağrısız bir yaşam sürmenizi sağlar.',
+        description: 'Düzeltici egzersizler, kas dengesizlikleri ve postür bozuklukları üzerinde çalışarak günlük hareketlerinizi rahatlatmayı hedefler.',
         benefits: [
             {
                 title: 'Postür Düzeltme',
-                desc: 'Kamburluk, omuz düşüklüğü gibi postür bozukluklarınız düzelir'
+                desc: 'Kamburluk, omuz düşüklüğü gibi postür bozuklukları üzerinde çalışırız'
             },
             {
-                title: 'Ağrı Önleme',
-                desc: 'Kronik ağrılarınız azalır veya tamamen geçer'
+                title: 'Ağrıya Karşı Destek',
+                desc: 'Ağrıyı artıran duruş ve hareket alışkanlıklarını birlikte ele alırız'
             },
             {
                 title: 'Kas Dengesi',
@@ -685,11 +598,11 @@ const serviceContent = {
             },
             {
                 title: 'Sakatlık Koruması',
-                desc: 'Gelecekteki sakatlıklara karşı korunmanızı sağlar'
+                desc: 'Sakatlık riskini azaltmaya yardımcı olur'
             }
         ],
         forWhom: [
-            'Kronik ağrısı olanlar (bel, boyun, omuz)',
+            'Bel, boyun veya omuz ağrısı yaşayanlar (doktor onayıyla)',
             'Postür problemi yaşayanlar',
             'Sakatlık geçmişi olanlar',
             'Önleyici sağlık yaklaşımı isteyenler'
@@ -771,6 +684,8 @@ function openServiceModal(serviceType) {
         <ul class="plain-list">
             ${service.examples.map(example => `<li>${example}</li>`).join('')}
         </ul>
+
+        <p class="dialog-note soft small">Teşhis konmuş bir rahatsızlığınız ya da devam eden bir ağrınız varsa başlamadan önce doktorunuza danışın.</p>
 
         <div class="dialog-cta">
             <h3>Size uygun mu, emin değil misiniz?</h3>
