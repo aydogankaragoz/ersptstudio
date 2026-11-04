@@ -620,9 +620,9 @@ const serviceContent = {
         ]
     },
     personal: {
-        title: 'Birebir takip',
-        subtitle: 'Tamamen Size Özel Bireysel Antrenman',
-        description: 'Birebir antrenman, sadece sizin hedeflerinize ve ihtiyaçlarınıza odaklanan, %100 kişiselleştirilmiş antrenman deneyimidir.',
+        title: 'Kişisel takip',
+        subtitle: 'Size Özel Planlanan Antrenman',
+        description: 'Kişisel takip, hedeflerinize ve ihtiyaçlarınıza göre planlanan kişisel bir antrenman deneyimidir.',
         benefits: [
             {
                 title: 'Hedefe Odaklı',
@@ -630,7 +630,7 @@ const serviceContent = {
             },
             {
                 title: 'Kişisel İlgi',
-                desc: 'Antrenörünüzün tüm dikkatini alırsınız, her harekette destek görürsünız'
+                desc: 'Antrenörünüz formunuzu yakından takip eder, her harekette destek görürsünüz'
             },
             {
                 title: 'Esnek Program',
@@ -638,7 +638,7 @@ const serviceContent = {
             },
             {
                 title: 'Hızlı İlerleme',
-                desc: 'Bireysel rehberlik sayesinde daha hızlı ve etkili sonuçlar alırsınız'
+                desc: 'Kişisel rehberlik sayesinde daha hızlı ve etkili sonuçlar alırsınız'
             }
         ],
         forWhom: [
