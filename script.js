@@ -108,6 +108,11 @@ if (typeof gtag !== 'undefined') {
 }
 
 // Section entrances. Content is visible by default; the hidden start exists only under .motion in the CSS
+// The class is set here, not in the page, so an old or blocked script can never leave content hidden
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('motion');
+}
+
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
