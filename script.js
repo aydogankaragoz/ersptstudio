@@ -1,91 +1,37 @@
-// Mobile Menu Toggle
+// Mobile menu
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
+function setMobileMenu(open) {
+    mobileMenu.hidden = !open;
+    mobileMenuBtn.setAttribute('aria-expanded', String(open));
+    mobileMenuBtn.textContent = open ? 'Kapat' : 'Menü';
+}
+
 if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu when clicking on a link
+    mobileMenuBtn.addEventListener('click', () => setMobileMenu(mobileMenu.hidden));
     mobileMenu.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            mobileMenu.classList.add('hidden');
-        }
+        if (e.target.tagName === 'A') setMobileMenu(false);
     });
 }
 
-// Smooth Scrolling with event delegation and URL update
-document.addEventListener('click', function(e) {
-    if (e.target.matches('a[href^="#"]')) {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href');
-        const target = document.querySelector(targetId);
-        if (target) {
-            const offsetTop = target.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-            // Update URL without page jump
-            history.pushState(null, null, targetId);
+// Which section is on screen: marks the nav link and changes the photo on the stage
+const stageImages = document.querySelectorAll('.stage img');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]:not(.btn)');
 
-            // Update active state in navigation
-            updateActiveNavLink(targetId);
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach(link => link.classList.toggle('is-current', link.getAttribute('href') === '#' + id));
+        const chapter = entry.target.dataset.chapter;
+        if (chapter) {
+            stageImages.forEach(img => img.classList.toggle('is-active', img.dataset.stage === chapter));
         }
-    }
-});
-
-// Scroll to section if URL has hash on page load
-window.addEventListener('load', function() {
-    if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-            setTimeout(function() {
-                const offsetTop = target.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                updateActiveNavLink(window.location.hash);
-            }, 100);
-        }
-    }
-});
-
-// Update active navigation link
-function updateActiveNavLink(hash) {
-    // Remove active class from all links
-    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-        link.classList.remove('active-section');
     });
+}, { rootMargin: '-45% 0px -50% 0px' });
 
-    // Add active class to current link
-    document.querySelectorAll(`nav a[href="${hash}"]`).forEach(link => {
-        link.classList.add('active-section');
-    });
-}
-
-// Update active link on scroll
-let scrollTimeout;
-window.addEventListener('scroll', function() {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(function() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPosition = window.scrollY + 150;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = '#' + section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                history.replaceState(null, null, sectionId);
-                updateActiveNavLink(sectionId);
-            }
-        });
-    }, 100);
-});
+document.querySelectorAll('section[id]').forEach(section => sectionObserver.observe(section));
 
 // Google Analytics Event Tracking
 if (typeof gtag !== 'undefined') {
@@ -161,21 +107,17 @@ if (typeof gtag !== 'undefined') {
     });
 }
 
-// Scroll Animations with Intersection Observer
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
+// Section entrances. Content is visible by default; the hidden start exists only under .motion in the CSS
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target); // Stop observing once animated
+            entry.target.classList.add('is-in');
+            revealObserver.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // Track when calculator section comes into view
 const calculatorSection = document.getElementById('calculator');
@@ -196,29 +138,13 @@ if (calculatorSection && typeof gtag !== 'undefined') {
     calculatorObserver.observe(calculatorSection);
 }
 
-// Use requestIdleCallback for non-critical animations
-if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-        document.querySelectorAll('section > div').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(el);
-        });
-    });
-} else {
-    // Fallback for browsers that don't support requestIdleCallback
-    setTimeout(() => {
-        document.querySelectorAll('section > div').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(el);
-        });
-    }, 0);
+// Body Fat Calculator
+function showCalcError(message) {
+    const box = document.getElementById('calcError');
+    box.textContent = message;
+    box.hidden = !message;
 }
 
-// Body Fat Calculator
 let selectedGender = null;
 let calculationResults = null; // Store results for WhatsApp message
 
@@ -229,19 +155,11 @@ function selectGender(gender) {
     const hipContainer = document.getElementById('hipContainer');
     const hipInput = document.getElementById('hip');
 
-    // Reset both buttons
-    maleBtn.classList.remove('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
-    femaleBtn.classList.remove('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
-
-    if (gender === 'male') {
-        maleBtn.classList.add('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
-        hipContainer.style.display = 'none';
-        hipInput.removeAttribute('required');
-    } else {
-        femaleBtn.classList.add('border-gold-400', 'bg-gold-500/20', 'text-gold-300', 'shadow-[0_0_15px_rgba(212,175,55,0.2)]');
-        hipContainer.style.display = 'block';
-        hipInput.setAttribute('required', 'required');
-    }
+    maleBtn.setAttribute('aria-pressed', String(gender === 'male'));
+    femaleBtn.setAttribute('aria-pressed', String(gender === 'female'));
+    hipContainer.hidden = gender !== 'female';
+    hipInput.required = gender === 'female';
+    showCalcError('');
 
     // Track gender selection
     if (typeof gtag !== 'undefined') {
@@ -278,7 +196,7 @@ if (bodyFatForm) {
         e.preventDefault();
 
         if (!selectedGender) {
-            alert('Lütfen cinsiyetinizi seçin');
+            showCalcError('Hesaplama için önce cinsiyetinizi seçin.');
 
             // Track incomplete submission
             if (typeof gtag !== 'undefined') {
@@ -299,6 +217,23 @@ if (bodyFatForm) {
         const waist = parseFloat(document.getElementById('waist').value);
         const hip = selectedGender === 'female' ? parseFloat(document.getElementById('hip').value) : 0;
 
+        // Every field needs a value inside its allowed range
+        const invalidInput = Array.from(bodyFatForm.querySelectorAll('input')).find(input => !input.checkValidity());
+        if (invalidInput) {
+            const label = bodyFatForm.querySelector(`label[for="${invalidInput.id}"]`).textContent;
+            showCalcError(`${label} için ${invalidInput.min} ile ${invalidInput.max} arasında bir değer girin.`);
+            invalidInput.focus();
+            return;
+        }
+
+        // The formula takes the log of this difference, so it must be positive
+        if ((selectedGender === 'male' ? waist : waist + hip) <= neck) {
+            showCalcError('Bel ölçünüz boyun ölçünüzden büyük olmalı. Ölçümlerinizi kontrol edin.');
+            document.getElementById('waist').focus();
+            return;
+        }
+        showCalcError('');
+
         // Calculate body fat percentage using US Navy formula
         let bodyFatPercentage;
 
@@ -308,6 +243,12 @@ if (bodyFatForm) {
         } else {
             // Female formula
             bodyFatPercentage = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.22100 * Math.log10(height)) - 450;
+        }
+
+        // Anything outside this range means a mistyped measurement, not a real body
+        if (!Number.isFinite(bodyFatPercentage) || bodyFatPercentage < 2 || bodyFatPercentage > 70) {
+            showCalcError('Bu ölçülerle güvenilir bir sonuç çıkmıyor. Boyun, bel ve boy değerlerinizi kontrol edin.');
+            return;
         }
 
         // Calculate BMI
@@ -427,89 +368,65 @@ if (bodyFatForm) {
         }
 
         // Smooth scroll to results
+        const resultsTitle = document.getElementById('resultsTitle');
+        resultsTitle.focus({ preventScroll: true });
         document.getElementById('resultsContainer').scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest'
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            block: 'start'
         });
     });
 }
 
+const trNumber = (value) => value.toFixed(1).replace('.', ',');
+
 function displayResults(bodyFatPercentage, bmi, fatMass, leanMass, idealWeightMin, idealWeightMax, gender, age) {
-    // Show results container, hide info card
-    document.getElementById('resultsContainer').style.display = 'block';
-    document.getElementById('infoCard').style.display = 'none';
+    // Show results, hide the measuring guide
+    document.getElementById('resultsContainer').hidden = false;
+    document.getElementById('infoCard').hidden = true;
 
-    // Display body fat percentage
-    document.getElementById('bodyFatPercentage').textContent = bodyFatPercentage.toFixed(1) + '%';
+    document.getElementById('bodyFatPercentage').textContent = '%' + trNumber(bodyFatPercentage);
 
-    // Update body fat bar
-    const bodyFatBar = document.getElementById('bodyFatBar');
-    const percentage = Math.min(bodyFatPercentage, 50); // Cap at 50% for display
-    bodyFatBar.style.width = percentage + '%';
+    // The bar runs from 0 to 50%
+    document.getElementById('bodyFatBar').style.width = (Math.min(bodyFatPercentage, 50) / 50 * 100) + '%';
 
-    // Set bar color based on category
-    let barColor, category;
+    let category;
     if (gender === 'male') {
-        if (bodyFatPercentage < 6) {
-            barColor = 'bg-red-500';
-            category = '⚠️ Çok Düşük (Sağlıksız)';
-        } else if (bodyFatPercentage <= 13) {
-            barColor = 'bg-blue-500';
-            category = '💪 Atletik';
-        } else if (bodyFatPercentage <= 17) {
-            barColor = 'bg-green-500';
-            category = '✅ İdeal';
-        } else if (bodyFatPercentage <= 24) {
-            barColor = 'bg-yellow-500';
-            category = '📊 Ortalama';
-        } else {
-            barColor = 'bg-orange-500';
-            category = '⚠️ Yüksek';
-        }
+        if (bodyFatPercentage < 6) category = 'Çok düşük, sağlıklı aralığın altında';
+        else if (bodyFatPercentage <= 13) category = 'Atletik';
+        else if (bodyFatPercentage <= 17) category = 'İdeal';
+        else if (bodyFatPercentage <= 24) category = 'Ortalama';
+        else category = 'Yüksek';
     } else {
-        if (bodyFatPercentage < 14) {
-            barColor = 'bg-red-500';
-            category = '⚠️ Çok Düşük (Sağlıksız)';
-        } else if (bodyFatPercentage <= 20) {
-            barColor = 'bg-blue-500';
-            category = '💪 Atletik';
-        } else if (bodyFatPercentage <= 24) {
-            barColor = 'bg-green-500';
-            category = '✅ İdeal';
-        } else if (bodyFatPercentage <= 31) {
-            barColor = 'bg-yellow-500';
-            category = '📊 Ortalama';
-        } else {
-            barColor = 'bg-orange-500';
-            category = '⚠️ Yüksek';
-        }
+        if (bodyFatPercentage < 14) category = 'Çok düşük, sağlıklı aralığın altında';
+        else if (bodyFatPercentage <= 20) category = 'Atletik';
+        else if (bodyFatPercentage <= 24) category = 'İdeal';
+        else if (bodyFatPercentage <= 31) category = 'Ortalama';
+        else category = 'Yüksek';
     }
-
-    bodyFatBar.className = 'h-4 rounded-full transition-all duration-1000 ' + barColor;
     document.getElementById('bodyFatCategory').textContent = category;
 
     // Display BMI
-    document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+    document.getElementById('bmiValue').textContent = trNumber(bmi);
 
     let bmiCategory;
     if (bmi < 18.5) {
-        bmiCategory = '⚠️ Zayıf';
+        bmiCategory = 'Zayıf';
     } else if (bmi <= 24.9) {
-        bmiCategory = '✅ Normal';
+        bmiCategory = 'Normal';
     } else if (bmi <= 29.9) {
-        bmiCategory = '📊 Fazla Kilolu';
+        bmiCategory = 'Fazla kilolu';
     } else {
-        bmiCategory = '⚠️ Obez';
+        bmiCategory = 'Obez';
     }
     document.getElementById('bmiCategory').textContent = bmiCategory;
 
     // Display masses
-    document.getElementById('fatMass').textContent = fatMass.toFixed(1) + ' kg';
-    document.getElementById('leanMass').textContent = leanMass.toFixed(1) + ' kg';
+    document.getElementById('fatMass').textContent = trNumber(fatMass) + ' kg';
+    document.getElementById('leanMass').textContent = trNumber(leanMass) + ' kg';
 
     // Display ideal weight
     document.getElementById('idealWeight').textContent =
-        idealWeightMin.toFixed(1) + ' - ' + idealWeightMax.toFixed(1) + ' kg';
+        trNumber(idealWeightMin) + ' - ' + trNumber(idealWeightMax) + ' kg';
 
     // Generate recommendations
     const recommendations = generateRecommendations(bodyFatPercentage, bmi, gender, age);
@@ -517,8 +434,7 @@ function displayResults(bodyFatPercentage, bmi, fatMass, leanMass, idealWeightMi
     recommendationsList.innerHTML = '';
     recommendations.forEach(rec => {
         const li = document.createElement('li');
-        li.className = 'flex items-start gap-2';
-        li.innerHTML = '<i class="fas fa-check-circle text-green-500 mt-1"></i><span>' + rec + '</span>';
+        li.textContent = rec;
         recommendationsList.appendChild(li);
     });
 }
@@ -608,65 +524,26 @@ Hedeflerime ulaşmak için kişisel antrenman programı ve beslenme desteği alm
     }
 }
 
-// Smooth Scroll to Top - handled by main click handler now
-// Just ensure #home exists and works
-document.querySelectorAll('.scroll-to-top').forEach(button => {
-    // Anchor links will be handled by the main click handler above
-    // This is just for any custom behavior if needed
-});
-
-// Show/Hide Floating Navigation based on scroll
-let lastScrollTop = 0;
-const floatingNav = document.querySelector('.fixed.bottom-8.right-8');
-
-if (floatingNav) {
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Show after scrolling down 300px
-        if (scrollTop > 300) {
-            floatingNav.style.opacity = '1';
-            floatingNav.style.pointerEvents = 'auto';
-        } else {
-            floatingNav.style.opacity = '0';
-            floatingNav.style.pointerEvents = 'none';
-        }
-
-        lastScrollTop = scrollTop;
-    });
-
-    // Initially hide
-    floatingNav.style.opacity = '0';
-    floatingNav.style.pointerEvents = 'none';
-    floatingNav.style.transition = 'opacity 0.3s ease';
-}
-
 // Service Modal Functions
 const serviceContent = {
     functional: {
-        icon: 'fa-running',
-        gradient: 'from-indigo-500 to-purple-500',
-        title: 'Functional Fitness',
+        title: 'Fonksiyonel antrenman',
         subtitle: 'Günlük Hayatınızı Kolaylaştıran Antrenman',
-        description: 'Functional Fitness, günlük hayatta yaptığınız hareketleri daha kolay ve güvenli yapmanızı sağlayan özel bir antrenman yöntemidir.',
+        description: 'Fonksiyonel antrenman, günlük hayatta yaptığınız hareketleri daha kolay ve güvenli yapmanızı sağlayan özel bir antrenman yöntemidir.',
         benefits: [
             {
-                icon: 'fa-home',
                 title: 'Günlük Aktivitelerde Kolaylık',
                 desc: 'Merdiven çıkma, eşya taşıma, yerden kalkma gibi günlük hareketlerinizi daha kolay yaparsınız'
             },
             {
-                icon: 'fa-shield-alt',
                 title: 'Sakatlık Riskini Azaltma',
                 desc: 'Doğru hareket kalıplarını öğrenerek yaralanma riskini en aza indirirsiniz'
             },
             {
-                icon: 'fa-balance-scale',
                 title: 'Denge ve Koordinasyon',
                 desc: 'Vücudunuzun farklı kaslarını birlikte çalıştırarak denge ve koordinasyonunuzu geliştirirsiniz'
             },
             {
-                icon: 'fa-bolt',
                 title: 'Enerji ve Canlılık',
                 desc: 'Genel fitness seviyeniz artar, kendinizi daha enerjik ve canlı hissedersiniz'
             }
@@ -685,29 +562,23 @@ const serviceContent = {
         ]
     },
     strength: {
-        icon: 'fa-dumbbell',
-        gradient: 'from-purple-500 to-pink-500',
-        title: 'Strength Training',
+        title: 'Güç antrenmanı',
         subtitle: 'Kas ve Kuvvet Geliştirme Programı',
-        description: 'Strength Training, kaslarınızı güçlendirerek fiziksel gücünüzü ve vücut kompozisyonunuzu geliştiren sistemli bir antrenman yöntemidir.',
+        description: 'Güç antrenmanı, kaslarınızı güçlendirerek fiziksel gücünüzü ve vücut kompozisyonunuzu geliştiren sistemli bir antrenman yöntemidir.',
         benefits: [
             {
-                icon: 'fa-fire',
                 title: 'Metabolizma Hızlanması',
-                desc: 'Kas kütleniz arttıkça metabolizmanız hızlanır ve daha fazla kalori yakarırsınız'
+                desc: 'Kas kütleniz arttıkça metabolizmanız hızlanır ve daha fazla kalori yakarsınız'
             },
             {
-                icon: 'fa-chart-line',
                 title: 'Kas Gelişimi',
                 desc: 'Hedef aldığınız kas gruplarında görünür büyüme ve tanımlama sağlarsınız'
             },
             {
-                icon: 'fa-bone',
                 title: 'Kemik Yoğunluğu',
                 desc: 'Kemikleriniz güçlenir, osteoporoz riskini azaltırsınız'
             },
             {
-                icon: 'fa-battery-full',
                 title: 'Fiziksel Güç',
                 desc: 'Günlük aktivitelerde daha güçlü hisseder, yorulmanız azalır'
             }
@@ -726,29 +597,23 @@ const serviceContent = {
         ]
     },
     mobility: {
-        icon: 'fa-person-walking',
-        gradient: 'from-pink-500 to-rose-500',
-        title: 'Mobility & Flexibility',
+        title: 'Mobilite ve esneklik',
         subtitle: 'Hareket Kabiliyeti ve Esneklik',
-        description: 'Mobility ve Flexibility çalışmaları, eklemlerinizin hareket genişliğini artırarak daha sağlıklı ve ağrısız hareket etmenizi sağlar.',
+        description: 'Mobilite ve esneklik çalışmaları, eklemlerinizin hareket genişliğini artırarak daha sağlıklı ve ağrısız hareket etmenizi sağlar.',
         benefits: [
             {
-                icon: 'fa-hand-sparkles',
                 title: 'Ağrı Azalması',
                 desc: 'Sırt, boyun, bel ağrılarınız azalır, eklemleriniz daha rahat hareket eder'
             },
             {
-                icon: 'fa-expand',
                 title: 'Hareket Genişliği',
                 desc: 'Eklemlerinizin hareket aralığı artar, daha geniş ve serbest hareket edersiniz'
             },
             {
-                icon: 'fa-running',
                 title: 'Performans Artışı',
                 desc: 'Diğer antrenmanlarınızda daha iyi performans gösterirsiniz'
             },
             {
-                icon: 'fa-bed',
                 title: 'Yaşam Kalitesi',
                 desc: 'Günlük yaşamınızda daha rahat ve konforlu hareket edersiniz'
             }
@@ -767,29 +632,23 @@ const serviceContent = {
         ]
     },
     conditioning: {
-        icon: 'fa-heartbeat',
-        gradient: 'from-blue-500 to-cyan-500',
-        title: 'Conditioning',
+        title: 'Kondisyon',
         subtitle: 'Kardiyovasküler Dayanıklılık Geliştirme',
-        description: 'Conditioning antrenmanları, kalp-damar sağlığınızı ve genel dayanıklılığınızı geliştirerek enerjinizi artırır.',
+        description: 'Kondisyon antrenmanları, kalp-damar sağlığınızı ve genel dayanıklılığınızı geliştirerek enerjinizi artırır.',
         benefits: [
             {
-                icon: 'fa-heart',
                 title: 'Kalp Sağlığı',
                 desc: 'Kalp kasınız güçlenir, kan dolaşımınız iyileşir, hastalık riski azalır'
             },
             {
-                icon: 'fa-lungs',
                 title: 'Solunum Kapasitesi',
                 desc: 'Akciğer kapasitesi artar, daha verimli nefes alıp verirsiniz'
             },
             {
-                icon: 'fa-weight-scale',
                 title: 'Yağ Yakımı',
                 desc: 'Yüksek kalori yakımı ile kilo verme ve fit kalmanızı destekler'
             },
             {
-                icon: 'fa-mountain',
                 title: 'Dayanıklılık',
                 desc: 'Uzun süreli aktivitelerde yorulmadan performans gösterirsiniz'
             }
@@ -808,29 +667,23 @@ const serviceContent = {
         ]
     },
     corrective: {
-        icon: 'fa-user-md',
-        gradient: 'from-green-500 to-emerald-500',
-        title: 'Corrective Exercises',
+        title: 'Düzeltici egzersiz',
         subtitle: 'Postür Düzeltme ve Koruyucu Egzersizler',
-        description: 'Corrective Exercises, vücudunuzdaki kas dengesizliklerini ve postür bozukluklarını düzelterek ağrısız bir yaşam sürmenizi sağlar.',
+        description: 'Düzeltici egzersizler, vücudunuzdaki kas dengesizliklerini ve postür bozukluklarını düzelterek ağrısız bir yaşam sürmenizi sağlar.',
         benefits: [
             {
-                icon: 'fa-user-check',
                 title: 'Postür Düzeltme',
                 desc: 'Kamburluk, omuz düşüklüğü gibi postür bozukluklarınız düzelir'
             },
             {
-                icon: 'fa-ban',
                 title: 'Ağrı Önleme',
                 desc: 'Kronik ağrılarınız azalır veya tamamen geçer'
             },
             {
-                icon: 'fa-balance-scale',
                 title: 'Kas Dengesi',
                 desc: 'Zayıf kaslarınız güçlenir, gergin kaslarınız gevşer'
             },
             {
-                icon: 'fa-shield',
                 title: 'Sakatlık Koruması',
                 desc: 'Gelecekteki sakatlıklara karşı korunmanızı sağlar'
             }
@@ -849,29 +702,23 @@ const serviceContent = {
         ]
     },
     personal: {
-        icon: 'fa-users',
-        gradient: 'from-indigo-500 to-blue-500',
-        title: '1-1 Personal Training',
+        title: 'Birebir takip',
         subtitle: 'Tamamen Size Özel Bireysel Antrenman',
-        description: '1-1 Personal Training, sadece sizin hedeflerinize ve ihtiyaçlarınıza odaklanan, %100 kişiselleştirilmiş antrenman deneyimidir.',
+        description: 'Birebir antrenman, sadece sizin hedeflerinize ve ihtiyaçlarınıza odaklanan, %100 kişiselleştirilmiş antrenman deneyimidir.',
         benefits: [
             {
-                icon: 'fa-bullseye',
                 title: 'Hedefe Odaklı',
                 desc: 'Antrenmanlar tamamen sizin özel hedeflerinize göre tasarlanır'
             },
             {
-                icon: 'fa-user-clock',
                 title: 'Kişisel İlgi',
                 desc: 'Antrenörünüzün tüm dikkatini alırsınız, her harekette destek görürsünız'
             },
             {
-                icon: 'fa-calendar-check',
                 title: 'Esnek Program',
                 desc: 'Kendi programınıza uygun saatlerde antrenman yaparsınız'
             },
             {
-                icon: 'fa-chart-line',
                 title: 'Hızlı İlerleme',
                 desc: 'Bireysel rehberlik sayesinde daha hızlı ve etkili sonuçlar alırsınız'
             }
@@ -898,7 +745,6 @@ function openServiceModal(serviceType) {
 
     if (!service) return;
 
-    // Track modal open in Google Analytics if available
     if (typeof gtag !== 'undefined') {
         gtag('event', 'service_modal_open', {
             'service_type': serviceType,
@@ -907,250 +753,113 @@ function openServiceModal(serviceType) {
     }
 
     modalContent.innerHTML = `
-        <div class="mb-8 text-center">
-            <div class="w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-3xl flex items-center justify-center mb-6 mx-auto shadow-lg shadow-gold-500/10 border border-gold-400/30">
-                <i class="fas ${service.icon} text-white text-4xl"></i>
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white mb-2 gold-glow-text">${service.title}</h2>
-            <p class="text-center text-sm sm:text-base text-gold-300 font-medium mb-4">${service.subtitle}</p>
-            <p class="text-slate-300 text-center text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">${service.description}</p>
-        </div>
+        <h2 id="modalTitle">${service.title}</h2>
+        <p class="dialog-sub">${service.subtitle}</p>
+        <p class="dialog-desc">${service.description}</p>
 
-        <div class="mb-8">
-            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <i class="fas fa-star text-gold-400"></i>
-                Faydaları
-            </h3>
-            <div class="grid md:grid-cols-2 gap-4">
-                ${service.benefits.map(benefit => `
-                    <div class="glass-vip rounded-2xl p-5 border border-gold-500/20 hover:border-gold-500/40 transition-colors">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-gradient-to-br from-gold-400 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 border border-gold-400/30 shadow-md">
-                                <i class="fas ${benefit.icon} text-obsidian-950 font-bold text-lg"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white mb-1 text-sm sm:text-base">${benefit.title}</h4>
-                                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${benefit.desc}</p>
-                            </div>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
+        <h3>Ne kazanırsınız?</h3>
+        <ul class="benefits">
+            ${service.benefits.map(benefit => `<li><strong>${benefit.title}</strong><span>${benefit.desc}</span></li>`).join('')}
+        </ul>
 
-        <div class="mb-8">
-            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <i class="fas fa-user-check text-gold-400"></i>
-                Kimler İçin Uygundur?
-            </h3>
-            <ul class="grid sm:grid-cols-2 gap-3">
-                ${service.forWhom.map(item => `
-                    <li class="glass-vip p-3.5 rounded-xl border border-gold-500/20 flex items-center gap-3 text-slate-200 text-sm">
-                        <i class="fas fa-check-circle text-gold-400 text-base flex-shrink-0"></i>
-                        <span>${item}</span>
-                    </li>
-                `).join('')}
-            </ul>
-        </div>
+        <h3>Kimler için uygun?</h3>
+        <ul class="plain-list">
+            ${service.forWhom.map(item => `<li>${item}</li>`).join('')}
+        </ul>
 
-        <div class="mb-8">
-            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <i class="fas fa-dumbbell text-gold-400"></i>
-                Örnek Hareketler
-            </h3>
-            <div class="grid md:grid-cols-2 gap-3">
-                ${service.examples.map(example => `
-                    <div class="glass-vip border border-gold-500/20 rounded-xl p-4 flex items-center gap-3">
-                        <i class="fas fa-circle text-gold-400 text-xs"></i>
-                        <span class="text-slate-200 font-medium text-sm">${example}</span>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
+        <h3>Örnek hareketler</h3>
+        <ul class="plain-list">
+            ${service.examples.map(example => `<li>${example}</li>`).join('')}
+        </ul>
 
-        <div class="glass-vip-gold rounded-2xl p-6 text-center border border-gold-400/50 shadow-xl">
-            <h3 class="text-white text-xl font-bold mb-2">Bu Antrenman Size Uygun mu?</h3>
-            <p class="text-gold-200 text-xs sm:text-sm mb-5">Hemen iletişime geçin, hedefinize uygun programı birlikte netleştirelim.</p>
-            <a href="https://wa.me/905332470660?text=Merhaba!%20${encodeURIComponent(service.title)}%20hakkında%20detaylı%20bilgi%20almak%20istiyorum"
-               target="_blank"
-               onclick="if(typeof gtag !== 'undefined'){gtag('event','whatsapp_from_modal',{'service':'${serviceType}'})}"
-               class="gold-button inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-obsidian-950 font-extrabold text-sm shadow-lg hover:scale-105 transition-transform duration-300">
-                <i class="fab fa-whatsapp text-xl"></i>
-                WhatsApp ile İletişime Geç
-            </a>
+        <div class="dialog-cta">
+            <h3>Size uygun mu, emin değil misiniz?</h3>
+            <p>Yazın, hedefinize uyan programı birlikte netleştirelim.</p>
+            <a class="btn" href="https://wa.me/905332470660?text=Merhaba!%20${encodeURIComponent(service.title)}%20hakkında%20detaylı%20bilgi%20almak%20istiyorum"
+               target="_blank" rel="noopener"
+               onclick="if(typeof gtag !== 'undefined'){gtag('event','whatsapp_from_modal',{'service':'${serviceType}'})}">WhatsApp'tan yaz</a>
         </div>
     `;
 
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-
-    // Close on backdrop click
-    modal.onclick = function(e) {
-        if (e.target === modal) {
-            closeServiceModal();
-        }
-    };
+    modal.showModal();
+    modalContent.scrollTop = 0;
 }
 
 function closeServiceModal() {
-    const modal = document.getElementById('serviceModal');
-    modal.classList.add('hidden');
-    document.body.style.overflow = 'auto';
+    document.getElementById('serviceModal').close();
 }
 
-// Close modal on ESC key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeServiceModal();
-        closeTooltipModal();
-    }
+// Close on a click on the backdrop (Esc is handled by <dialog>)
+document.getElementById('serviceModal').addEventListener('click', function(e) {
+    if (e.target === this) closeServiceModal();
 });
 
-// Tooltip Modal Functions for Mobile
-const tooltipContents = {
-    'navy-formula': {
-        title: '🎖️ US Navy Formülü',
-        content: 'ABD Deniz Kuvvetleri tarafından askeri personelin vücut yağ oranını ölçmek için geliştirilmiş bilimsel bir yöntemdir. Basit ölçümlerle (boyun, bel, kalça) yüksek doğruluk oranı sağlar ve dünya çapında fitness profesyonelleri tarafından kullanılır.'
-    },
-    'navy-formula-2': {
-        title: 'ℹ️ US Navy Formülü',
-        content: '1984\'te ABD Deniz Kuvvetleri tarafından geliştirilen, çevre ölçümlerine dayalı vücut kompozisyonu hesaplama yöntemi. Caliperler veya pahalı ekipman gerektirmeden %3-4 doğruluk oranı sağlar.'
-    },
-    'bmi': {
-        title: '📊 BMI (Body Mass Index)',
-        content: 'Vücut Kitle İndeksi, kilo ve boy oranınıza göre hesaplanan bir ölçüttür. Dünya Sağlık Örgütü (WHO) tarafından kabul edilen, kişinin sağlıklı kilo aralığında olup olmadığını gösteren standart bir değerdir. Formül: Kilo (kg) / Boy² (m)'
-    },
-    'tvgbf': {
-        title: '🏆 TVGBF 2nd Level',
-        content: 'Türkiye Vücut Geliştirme ve Fitness Federasyonu tarafından verilen 2. Seviye Antrenörlük Sertifikası. İleri düzey antrenman programlama, spor fizyolojisi ve beslenme konularında yetkinlik belgesidir.'
-    },
-    'eqf': {
-        title: '🎓 EQF Level 4 Personal Trainer',
-        content: 'European Qualifications Framework (Avrupa Yeterlilik Çerçevesi) 4. Seviye Personal Trainer sertifikası. AB ülkelerinde tanınan, uluslararası standartlarda eğitim yeterliliği belgesidir.'
-    },
-    'issa': {
-        title: '🌟 ISSA Certified Personal Trainer',
-        content: 'International Sports Sciences Association - 1988\'den beri dünya çapında 140+ ülkede tanınan, bilimsel temelli personal training sertifikası. Spor bilimi, anatomi ve egzersiz fizyolojisi alanlarında kapsamlı eğitim.'
-    }
-};
-
-function openTooltipModal(tooltipId) {
-    // Only for mobile devices
-    if (window.innerWidth > 768) return;
-
-    const modal = document.getElementById('mobileTooltipModal');
-    const content = document.getElementById('mobileTooltipContent');
-    const tooltip = tooltipContents[tooltipId];
-
-    if (!tooltip) return;
-
-    content.innerHTML = `
-        <div class="mb-4 p-4 glass-vip-gold rounded-xl border border-gold-400/40">
-            <h3 class="font-bold text-lg text-white mb-1 flex items-center gap-2">${tooltip.title}</h3>
-        </div>
-        <p class="text-slate-300 leading-relaxed text-sm">${tooltip.content}</p>
-    `;
-
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    // Track in Google Analytics
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'tooltip_open', {
-            event_category: 'engagement',
-            event_label: tooltipId,
-            value: 1
-        });
-    }
-}
-
-function closeTooltipModal() {
-    const modal = document.getElementById('mobileTooltipModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-
-// Close tooltip modal on backdrop click
-document.getElementById('mobileTooltipModal')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeTooltipModal();
-    }
+// Certificate explanations used to be tooltips; keep measuring how often they are read
+document.querySelectorAll('details[data-tooltip]').forEach(item => {
+    item.addEventListener('toggle', () => {
+        if (item.open && typeof gtag !== 'undefined') {
+            gtag('event', 'tooltip_open', {
+                event_category: 'engagement',
+                event_label: item.dataset.tooltip,
+                value: 1
+            });
+        }
+    });
 });
 
-// Live working hours status (Google Maps style)
+// Live opening hours, always in Istanbul time wherever the visitor is
 (function() {
-  const statusDot = document.getElementById('workingHoursStatusDot');
-  const statusText = document.getElementById('workingHoursStatusText');
-  const statusDetail = document.getElementById('workingHoursStatusDetail');
-  if (!statusDot || !statusText || !statusDetail) return;
+    const dots = document.querySelectorAll('[data-hours-dot]');
+    const texts = document.querySelectorAll('[data-hours-text]');
+    const details = document.querySelectorAll('[data-hours-detail]');
+    if (!dots.length) return;
 
-  // Minutes from midnight
-  const toMinutes = (h, m) => h * 60 + m;
-  const formatTime = (mins) => {
-    const h = Math.floor(mins / 60);
-    const m = mins % 60;
-    const pad = (v) => String(v).padStart(2, '0');
-    return `${pad(h)}:${pad(m)}`;
-  };
-
-  // Weekly schedule: 0=Sunday ... 6=Saturday (Date.getDay)
-  const schedule = {
-    0: { open: toMinutes(11, 30), close: toMinutes(18, 30) },   // Pazar
-    1: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Pazartesi
-    2: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Salı
-    3: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Çarşamba
-    4: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Perşembe
-    5: { open: toMinutes(8, 0), close: toMinutes(22, 0) },   // Cuma
-    6: { open: toMinutes(9, 0), close: toMinutes(22, 0) },   // Cumartesi
-  };
-
-  const updateStatus = () => {
-    const now = new Date();
-    const day = now.getDay();
-    const minutesNow = now.getHours() * 60 + now.getMinutes();
-    const today = schedule[day];
-
-    const setUI = (dotColor, text, detail = '') => {
-      statusDot.className = `inline-block h-2.5 w-2.5 rounded-full ${dotColor}`;
-      statusText.textContent = text;
-      statusDetail.textContent = detail ? ` - ${detail}` : '';
+    const toMinutes = (h, m) => h * 60 + m;
+    const formatTime = (mins) => {
+        const pad = (v) => String(v).padStart(2, '0');
+        return `${pad(Math.floor(mins / 60))}:${pad(mins % 60)}`;
     };
 
-    const findNextOpen = () => {
-      for (let i = 1; i <= 7; i++) {
-        const nextDay = (day + i) % 7;
-        const next = schedule[nextDay];
-        if (next) return { dayOffset: i, time: next.open };
-      }
-      return null;
+    // 0 = Sunday ... 6 = Saturday (Date.getDay)
+    const schedule = {
+        0: { open: toMinutes(11, 30), close: toMinutes(18, 30) },
+        1: { open: toMinutes(8, 0), close: toMinutes(22, 0) },
+        2: { open: toMinutes(8, 0), close: toMinutes(22, 0) },
+        3: { open: toMinutes(8, 0), close: toMinutes(22, 0) },
+        4: { open: toMinutes(8, 0), close: toMinutes(22, 0) },
+        5: { open: toMinutes(8, 0), close: toMinutes(22, 0) },
+        6: { open: toMinutes(9, 0), close: toMinutes(22, 0) },
     };
 
-    if (today && minutesNow >= today.open && minutesNow < today.close) {
-      const minutesToClose = today.close - minutesNow;
-      if (minutesToClose <= 60) {
-        setUI('bg-amber-400', 'Yakında kapanıyor', `${formatTime(today.close)}'de kapanacak`);
-      } else {
-        setUI('bg-emerald-400', 'Şimdi açık', `${formatTime(today.close)}'e kadar acik`);
-      }
-      return;
-    }
+    const setUI = (state, text, detail) => {
+        dots.forEach(dot => { dot.className = `dot is-${state}`; });
+        texts.forEach(el => { el.textContent = text; });
+        details.forEach(el => { el.textContent = detail ? `, ${detail}` : ''; });
+    };
 
-    // Kapali durum: bugun daha acilmadiysa veya kapandiysa
-    if (today && minutesNow < today.open) {
-      setUI('bg-red-400', 'Kapalı', `Bugün ${formatTime(today.open)}'de acilacak`);
-      return;
-    }
+    const updateStatus = () => {
+        const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
+        const day = now.getDay();
+        const minutesNow = now.getHours() * 60 + now.getMinutes();
+        const today = schedule[day];
 
-    const next = findNextOpen();
-    if (next) {
-      const isTomorrow = next.dayOffset === 1;
-      const dayText = isTomorrow ? 'Yarın' : `${next.dayOffset} gün sonra`;
-      setUI('bg-red-400', 'Kapalı', `${dayText} ${formatTime(next.time)}'de açılacak`);
-    } else {
-      setUI('bg-red-400', 'Kapalı', 'Randevu için arayınız.');
-    }
-  };
+        document.querySelectorAll('#hoursTable [data-days]').forEach(row => {
+            row.classList.toggle('is-today', row.dataset.days.split(',').includes(String(day)));
+        });
 
-  updateStatus();
-  setInterval(updateStatus, 60000);
+        if (minutesNow >= today.open && minutesNow < today.close) {
+            if (today.close - minutesNow <= 60) {
+                setUI('soon', 'Birazdan kapanıyor', `kapanış ${formatTime(today.close)}`);
+            } else {
+                setUI('open', 'Şimdi açık', `kapanış ${formatTime(today.close)}`);
+            }
+        } else if (minutesNow < today.open) {
+            setUI('closed', 'Şu an kapalı', `bugün açılış ${formatTime(today.open)}`);
+        } else {
+            setUI('closed', 'Şu an kapalı', `yarın açılış ${formatTime(schedule[(day + 1) % 7].open)}`);
+        }
+    };
+
+    updateStatus();
+    setInterval(updateStatus, 60000);
 })();
